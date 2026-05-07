@@ -49,19 +49,11 @@ export default async function LocaleLayout({ children, params: { locale } }: Loc
   const messages = await getMessages()
 
   return (
-    <html lang={locale}>
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-      </head>
-      <body className="min-h-screen flex flex-col bg-white overflow-x-hidden">
-        <NextIntlClientProvider messages={messages} locale={locale}>
-          <Navbar locale={locale} />
-          <main className="flex-1 w-full">{children}</main>
-          <Footer />
-          <CookieBanner />
-        </NextIntlClientProvider>
-      </body>
-    </html>
+    <NextIntlClientProvider messages={messages} locale={locale}>
+      <Navbar locale={locale} />
+      <main className="flex-1 w-full">{children}</main>
+      <Footer />
+      <CookieBanner />
+    </NextIntlClientProvider>
   )
 }

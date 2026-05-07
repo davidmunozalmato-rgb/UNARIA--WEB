@@ -35,10 +35,14 @@ export async function POST(request: NextRequest) {
   const stripeLocale = getStripeLocale(data.locale)
 
   try {
-    let sessionId = 'mock_session_id'
-    let checkoutUrl = `/${data.locale}/mock-checkout?amount=${data.amount}&email=${encodeURIComponent(data.email)}&type=donate`
+    if (!process.env.STRIPE_SECRET_KEY || process.env.STRIPE_SECRET_KEY === 'sk_test_placeholder') {
+      return NextResponse.json({ error: 'Stripe no està configurat' }, { status: 503 })
+    }
 
-    if (process.env.STRIPE_SECRET_KEY !== 'sk_test_placeholder') {
+    let sessionId = 'pending'
+    let checkoutUrl = `${appUrl}/${data.locale}/donate`
+
+    if (true) {
       // Create Stripe Checkout session for one-time payment
       const session = await stripe.checkout.sessions.create({
         mode: 'payment',
