@@ -74,11 +74,11 @@ export async function POST(request: NextRequest) {
       const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
       const stripeLocale = getStripeLocale(data.locale)
       
-      if (!process.env.STRIPE_SECRET_KEY || process.env.STRIPE_SECRET_KEY === 'sk_test_placeholder') {
-        return NextResponse.json({ error: 'Stripe no està configurat' }, { status: 503 })
-      }
+      const stripeReady = process.env.STRIPE_SECRET_KEY && process.env.STRIPE_SECRET_KEY !== 'sk_test_placeholder'
 
-      if (true) {
+      checkoutUrl = `/${data.locale}/mock-checkout?amount=${data.monthlyQuota}&email=${encodeURIComponent(data.email)}&type=member`
+
+      if (stripeReady) {
         // Create price dynamically
         const price = await stripe.prices.create({
           currency: 'eur',
@@ -135,8 +135,8 @@ export async function POST(request: NextRequest) {
           },
         })
       } catch (dbError) {
-        console.warn('Could not save member to database:', dbError)
-        throw dbError
+        console.warn('Could not save member to database (is it running?):', dbError)
+        if (stripeReady) throw dbError
       }
 
       return NextResponse.json({ checkoutUrl })
@@ -145,7 +145,7 @@ export async function POST(request: NextRequest) {
     // SEPA flow: create member directly
     const ibanEncrypted = encrypt(data.iban!)
 
-    let memberId: string
+    let memberId = 'mock_member_id'
     try {
       const member = await prisma.member.create({
         data: {
@@ -170,7 +170,7 @@ export async function POST(request: NextRequest) {
       })
       memberId = member.id
     } catch (dbError) {
-      console.warn('Could not save SEPA member to database:', dbError)
+      console.warn('Could not save SEPA member to database (is it running?):', dbError)
       throw dbError
     }
 
