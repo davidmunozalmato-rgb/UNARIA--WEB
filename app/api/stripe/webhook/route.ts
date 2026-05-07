@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import prisma from '@/lib/prisma'
-import { sendWelcomeEmail, sendReceiptEmail } from '@/lib/email'
+import { sendWelcomeEmail, sendReceiptEmail, sendAdminPaymentNotification } from '@/lib/email'
 import { appendPaymentRow } from '@/lib/sheets'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2023-10-16' })
@@ -68,6 +68,17 @@ export async function POST(request: NextRequest) {
             } catch (e) {
               console.error('Failed to send welcome email:', e)
             }
+            // Notify admin
+            try {
+              await sendAdminPaymentNotification({
+                type: 'subscription',
+                name: `${member.name} ${member.surname}`,
+                email: member.email,
+                amount: member.monthlyQuota,
+              })
+            } catch (e) {
+              console.error('Failed to send admin notification:', e)
+            }
             // Register in Google Sheets
             await appendPaymentRow({
               date: new Date().toLocaleString('ca-ES', { timeZone: 'Europe/Madrid' }),
@@ -100,6 +111,17 @@ export async function POST(request: NextRequest) {
             })
           } catch (e) {
             console.error('Failed to send receipt email:', e)
+          }
+          // Notify admin
+          try {
+            await sendAdminPaymentNotification({
+              type: 'donation',
+              name: donorName,
+              email: donorEmail,
+              amount: donorAmount,
+            })
+          } catch (e) {
+            console.error('Failed to send admin notification:', e)
           }
           // Register in Google Sheets
           await appendPaymentRow({

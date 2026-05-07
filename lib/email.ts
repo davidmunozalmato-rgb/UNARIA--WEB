@@ -133,6 +133,28 @@ export async function sendCancellationEmail(data: CancellationEmailData) {
   })
 }
 
+export async function sendAdminPaymentNotification(data: {
+  type: 'donation' | 'subscription'
+  name: string
+  email: string
+  amount: number
+}) {
+  const typeLabel = data.type === 'subscription' ? 'Nova subscripció (soci)' : 'Nova donació puntual'
+  const html = emailTemplate(
+    `<strong>${typeLabel}</strong><br><br>
+     Nom: <strong>${data.name}</strong><br>
+     Email: <strong>${data.email}</strong><br>
+     Import: <strong>${data.amount}€${data.type === 'subscription' ? '/mes' : ''}</strong><br><br>
+     <a href="https://dashboard.stripe.com" style="color:#1B4F72">Veure a Stripe Dashboard →</a>`
+  )
+  await getResend().emails.send({
+    from: FROM,
+    to: 'unariabcn@gmail.com',
+    subject: `[Unaria] ${typeLabel} – ${data.name} (${data.amount}€)`,
+    html,
+  })
+}
+
 export async function sendTransferNotification(data: TransferNotificationData) {
   const html = emailTemplate(
     `<strong>Nova transferència a ONG registrada</strong><br><br>
