@@ -21,12 +21,21 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params: { locale } }: LocaleLayoutProps): Promise<Metadata> {
   if (!locales.includes(locale as any)) return {}
   const t = await getTranslations({ locale, namespace: 'hero' })
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://unaria.org'
   return {
+    metadataBase: new URL(appUrl),
     title: {
       default: 'Unaria – Solidaritat Organitzada',
       template: '%s | Unaria',
     },
     description: t('subtitle'),
+    openGraph: {
+      type: 'website',
+      siteName: 'Unaria',
+    },
+    twitter: {
+      card: 'summary_large_image',
+    },
     alternates: {
       canonical: `/${locale}`,
       languages: Object.fromEntries(locales.map((l) => [l, `/${l}`])),

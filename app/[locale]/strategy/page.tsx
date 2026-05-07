@@ -8,15 +8,38 @@ interface PageProps {
 
 export const dynamic = 'force-dynamic'
 
+const strategyTitles: Record<string, string> = {
+  ca: 'Estratègia',
+  es: 'Estrategia',
+  en: 'Strategy',
+  fr: 'Stratégie',
+  de: 'Strategie',
+}
+
+const strategyDescriptions: Record<string, string> = {
+  ca: 'Els sis pilars estratègics que guien com Unaria maximitza l\'impacte de cada euro recaptat.',
+  es: 'Los seis pilares estratégicos que guían cómo Unaria maximiza el impacto de cada euro recaudado.',
+  en: 'The six strategic pillars guiding how Unaria maximises the impact of every euro raised.',
+  fr: 'Les six piliers stratégiques qui guident la façon dont Unaria maximise l\'impact de chaque euro collecté.',
+  de: 'Die sechs strategischen Säulen, die beschreiben, wie Unaria die Wirkung jedes gesammelten Euros maximiert.',
+}
+
 export async function generateMetadata({ params: { locale } }: PageProps): Promise<Metadata> {
-  const titles: Record<string, string> = {
-    ca: 'Estratègia | Unaria',
-    es: 'Estrategia | Unaria',
-    en: 'Strategy | Unaria',
-    fr: 'Stratégie | Unaria',
-    de: 'Strategie | Unaria',
+  const title = strategyTitles[locale] ?? strategyTitles.ca
+  const description = strategyDescriptions[locale] ?? strategyDescriptions.ca
+  return {
+    title,
+    description,
+    openGraph: {
+      title: `${title} | Unaria`,
+      description,
+      url: `/${locale}/strategy`,
+    },
+    twitter: {
+      title: `${title} | Unaria`,
+      description,
+    },
   }
-  return { title: titles[locale] ?? titles.ca }
 }
 
 interface Pillar {

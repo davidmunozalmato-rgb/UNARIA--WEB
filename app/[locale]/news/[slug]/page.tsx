@@ -13,9 +13,23 @@ export async function generateMetadata({ params: { locale, slug } }: PageProps):
   const article = getArticleBySlug(slug)
   if (!article) return {}
   const lang = ['ca', 'es', 'en', 'fr', 'de'].includes(locale) ? locale : 'ca'
+  const title = article.titles[lang]
+  const description = article.excerpts[lang]
   return {
-    title: article.titles[lang],
-    description: article.excerpts[lang],
+    title,
+    description,
+    openGraph: {
+      title: `${title} | Unaria`,
+      description,
+      url: `/${locale}/news/${slug}`,
+      type: 'article',
+      images: [{ url: article.image, width: 1200, height: 630, alt: article.imageAlt }],
+    },
+    twitter: {
+      title: `${title} | Unaria`,
+      description,
+      images: [article.image],
+    },
   }
 }
 

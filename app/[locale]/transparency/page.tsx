@@ -10,9 +10,30 @@ interface PageProps {
 
 export const dynamic = 'force-dynamic'
 
+const transparencyDescriptions: Record<string, string> = {
+  ca: 'Consulta on va cada euro d\'Unaria: totes les transferències a ONG, imports i referències verificables.',
+  es: 'Consulta adónde va cada euro de Unaria: todas las transferencias a ONG, importes y referencias verificables.',
+  en: 'See where every euro from Unaria goes: all NGO transfers, amounts and verifiable references.',
+  fr: 'Consultez où va chaque euro d\'Unaria : tous les transferts aux ONG, montants et références vérifiables.',
+  de: 'Erfahren Sie, wohin jeder Euro von Unaria fließt: alle NGO-Überweisungen, Beträge und nachprüfbare Referenzen.',
+}
+
 export async function generateMetadata({ params: { locale } }: PageProps): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: 'transparencyPage' })
-  return { title: t('title') }
+  const description = transparencyDescriptions[locale] ?? transparencyDescriptions.ca
+  return {
+    title: t('title'),
+    description,
+    openGraph: {
+      title: `${t('title')} | Unaria`,
+      description,
+      url: `/${locale}/transparency`,
+    },
+    twitter: {
+      title: `${t('title')} | Unaria`,
+      description,
+    },
+  }
 }
 
 async function getTransferData() {

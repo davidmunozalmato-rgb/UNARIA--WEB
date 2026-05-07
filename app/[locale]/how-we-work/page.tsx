@@ -8,9 +8,30 @@ interface PageProps {
   params: { locale: string }
 }
 
+const howWeWorkDescriptions: Record<string, string> = {
+  ca: 'Descobreix el model de funcionament d\'Unaria: recaptació solidària, gestió transparent i impacte directe a les ONG.',
+  es: 'Descubre el modelo de funcionamiento de Unaria: recaudación solidaria, gestión transparente e impacto directo en las ONG.',
+  en: 'Discover how Unaria works: solidarity fundraising, transparent management and direct impact for NGOs.',
+  fr: 'Découvrez le modèle de fonctionnement d\'Unaria : collecte solidaire, gestion transparente et impact direct pour les ONG.',
+  de: 'Entdecken Sie das Funktionsmodell von Unaria: solidarische Spendensammlung, transparentes Management und direkte Wirkung für NGOs.',
+}
+
 export async function generateMetadata({ params: { locale } }: PageProps): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: 'howWeWorkPage' })
-  return { title: t('title') }
+  const description = howWeWorkDescriptions[locale] ?? howWeWorkDescriptions.ca
+  return {
+    title: t('title'),
+    description,
+    openGraph: {
+      title: `${t('title')} | Unaria`,
+      description,
+      url: `/${locale}/how-we-work`,
+    },
+    twitter: {
+      title: `${t('title')} | Unaria`,
+      description,
+    },
+  }
 }
 
 export default function HowWeWorkPage({ params: { locale } }: PageProps) {

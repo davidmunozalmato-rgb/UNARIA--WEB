@@ -14,9 +14,19 @@ interface PageProps {
 
 export async function generateMetadata({ params: { locale } }: PageProps): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: 'hero' })
+  const description = t('subtitle')
   return {
     title: 'Unaria – Solidaritat Organitzada',
-    description: t('subtitle'),
+    description,
+    openGraph: {
+      title: 'Unaria – Solidaritat Organitzada',
+      description,
+      url: `/${locale}`,
+    },
+    twitter: {
+      title: 'Unaria – Solidaritat Organitzada',
+      description,
+    },
   }
 }
 
@@ -147,7 +157,7 @@ function ObjectiusSection({ locale }: { locale: string }) {
                 {item.icon}
               </div>
               <h3 className="font-bold text-gray-900 text-base mb-2">{item.title}</h3>
-              <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
+              <p className="text-sm text-gray-500 leading-relaxed" style={{ textAlign: 'justify' }}>{item.desc}</p>
             </div>
           ))}
         </div>

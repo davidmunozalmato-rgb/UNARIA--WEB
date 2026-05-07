@@ -7,9 +7,30 @@ interface PageProps {
   params: { locale: string }
 }
 
+const aboutDescriptions: Record<string, string> = {
+  ca: 'Coneix l\'equip fundador d\'Unaria, la nostra missió i els valors que ens guien.',
+  es: 'Conoce al equipo fundador de Unaria, nuestra misión y los valores que nos guían.',
+  en: 'Meet the founding team behind Unaria, our mission and the values that guide us.',
+  fr: 'Découvrez l\'équipe fondatrice d\'Unaria, notre mission et les valeurs qui nous guident.',
+  de: 'Lernen Sie das Gründungsteam von Unaria kennen, unsere Mission und unsere Werte.',
+}
+
 export async function generateMetadata({ params: { locale } }: PageProps): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: 'about' })
-  return { title: t('title') }
+  const description = aboutDescriptions[locale] ?? aboutDescriptions.ca
+  return {
+    title: t('title'),
+    description,
+    openGraph: {
+      title: `${t('title')} | Unaria`,
+      description,
+      url: `/${locale}/about`,
+    },
+    twitter: {
+      title: `${t('title')} | Unaria`,
+      description,
+    },
+  }
 }
 
 export default function AboutPage({ params: { locale } }: PageProps) {
@@ -69,7 +90,7 @@ export default function AboutPage({ params: { locale } }: PageProps) {
                 </div>
                 <h3 className="text-lg font-bold text-gray-900">{founder.name}</h3>
                 <p className="text-brand-teal font-medium text-sm mb-3">{founder.role}</p>
-                <p className="text-gray-600 text-sm leading-relaxed">{founder.bio}</p>
+                <p className="text-gray-600 text-sm leading-relaxed text-justify">{founder.bio}</p>
               </div>
             ))}
           </div>
