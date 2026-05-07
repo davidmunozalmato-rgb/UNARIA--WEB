@@ -2,7 +2,7 @@ import { useTranslations } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import Link from 'next/link'
 import { ArrowRight, Shield, TrendingUp, Users, CheckCircle, Star, ArrowDownCircle } from 'lucide-react'
-import AnimatedCounter from '@/components/AnimatedCounter'
+import NewsSection from '@/components/NewsSection'
 import type { Metadata } from 'next'
 
 interface PageProps {
@@ -66,30 +66,6 @@ function HeroSection({ locale }: { locale: string }) {
   )
 }
 
-function StatsSection() {
-  const t = useTranslations('stats')
-  return (
-    <section className="bg-white py-14 border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-          {[
-            { value: 12450, suffix: '€', label: t('fundsRaised') },
-            { value: 2, suffix: '', label: t('ngosSupported') },
-            { value: 187, suffix: '', label: t('activeMembers') },
-            { value: 87, suffix: '%', label: t('transparency') },
-          ].map((stat, i) => (
-            <div key={i} className="text-center">
-              <div className="text-3xl sm:text-4xl font-extrabold text-brand-blue">
-                <AnimatedCounter end={stat.value} suffix={stat.suffix} />
-              </div>
-              <p className="text-sm text-gray-500 mt-1">{stat.label}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )
-}
 
 function HowItWorksSection({ locale }: { locale: string }) {
   const t = useTranslations('howItWorks')
@@ -324,10 +300,10 @@ export default function HomePage({ params: { locale } }: PageProps) {
   return (
     <>
       <HeroSection locale={locale} />
-      <StatsSection />
       <HowItWorksSection locale={locale} />
       <TransparencyBar />
       <NgoSection />
+      <NewsSection locale={locale} />
       <TestimonialsSection />
       <CtaSection locale={locale} />
     </>

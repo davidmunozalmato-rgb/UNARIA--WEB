@@ -9,7 +9,7 @@ const nextConfig = {
     serverComponentsExternalPackages: ['@prisma/client', 'bcryptjs'],
   },
   images: {
-    domains: ['unaria.org'],
+    domains: ['unaria.org', 'images.unsplash.com'],
   },
   async headers() {
     return [
