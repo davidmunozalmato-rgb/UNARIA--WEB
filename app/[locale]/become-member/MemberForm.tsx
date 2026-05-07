@@ -22,7 +22,6 @@ const memberSchema = z.object({
   idNumber: z.string().min(1),
   monthlyQuota: z.number().min(6),
   paymentMethod: z.enum(['sepa', 'card']),
-  iban: z.string().optional(),
   gdprRequired: z.literal(true, { errorMap: () => ({ message: 'Required' }) }),
   gdprMarketing: z.boolean(),
 })
@@ -274,22 +273,12 @@ export default function MemberForm({ locale }: { locale: string }) {
                     </button>
                   ))}
                 </div>
-                {paymentMethod === 'sepa' && (
-                  <div>
-                    <label className="form-label">{t('ibanLabel')} *</label>
-                    <input
-                      {...register('iban')}
-                      className="form-input font-mono"
-                      placeholder={t('ibanPlaceholder')}
-                    />
-                  </div>
-                )}
-                {paymentMethod === 'card' && (
-                  <p className="text-sm text-gray-500 flex items-center gap-2 bg-blue-50 rounded-xl p-3">
-                    <CreditCard className="w-4 h-4 text-brand-blue flex-shrink-0" />
-                    {t('processingCard')}
-                  </p>
-                )}
+                <p className="text-sm text-gray-500 flex items-center gap-2 bg-blue-50 rounded-xl p-3">
+                  <CreditCard className="w-4 h-4 text-brand-blue flex-shrink-0" />
+                  {paymentMethod === 'sepa'
+                    ? 'Stripe recollirà el teu IBAN de forma segura al següent pas.'
+                    : t('processingCard')}
+                </p>
               </div>
 
               {/* GDPR */}
@@ -337,7 +326,7 @@ export default function MemberForm({ locale }: { locale: string }) {
                   { label: t('email'), value: data.email },
                   { label: 'Quota', value: <span className="text-brand-blue font-extrabold">{data.monthlyQuota}€/mes</span> },
                   { label: t('idNumber'), value: data.idNumber },
-                  { label: t('paymentTitle'), value: data.paymentMethod === 'sepa' ? `SEPA · ${data.iban}` : 'Targeta bancària' },
+                  { label: t('paymentTitle'), value: data.paymentMethod === 'sepa' ? 'SEPA (Stripe recollirà IBAN)' : 'Targeta bancària' },
                 ]
                 return (
                   <div className="space-y-3 mb-6">

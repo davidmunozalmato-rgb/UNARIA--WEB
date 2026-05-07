@@ -2,10 +2,9 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import prisma from '@/lib/prisma'
 import { stripe, getStripeLocale } from '@/lib/stripe'
-import { encrypt } from '@/lib/encryption'
 import { sendWelcomeEmail } from '@/lib/email'
 import { rateLimit } from '@/lib/rateLimit'
-import { validateIban, getClientIp } from '@/lib/utils'
+import { getClientIp } from '@/lib/utils'
 
 const memberSchema = z.object({
   name: z.string().min(1).max(100),
@@ -18,7 +17,6 @@ const memberSchema = z.object({
   idNumber: z.string().min(1).max(30),
   monthlyQuota: z.number().min(6).max(10000),
   paymentMethod: z.enum(['sepa', 'card']),
-  iban: z.string().optional(),
   gdprRequired: z.boolean(),
   gdprMarketing: z.boolean(),
   locale: z.string().default('ca'),
@@ -48,16 +46,23 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'GDPR consent required' }, { status: 422 })
   }
 
-  if (data.paymentMethod === 'sepa') {
-    if (!data.iban) {
-      return NextResponse.json({ error: 'IBAN required for SEPA' }, { status: 422 })
-    }
-    if (!validateIban(data.iban)) {
-      return NextResponse.json({ error: 'Invalid IBAN' }, { status: 422 })
-    }
-  }
-
   const ip = getClientIp(request)
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
+  const stripeLocale = getStripeLocale(data.locale)
+  const stripeReady = process.env.STRIPE_SECRET_KEY && process.env.STRIPE_SECRET_KEY !== 'sk_test_placeholder'
+
+  const commonMeta = {
+    name: data.name,
+    surname: data.surname,
+    idNumber: data.idNumber,
+    phone: data.phone || '',
+    address: data.address || '',
+    city: data.city || '',
+    postalCode: data.postalCode || '',
+    gdprMarketing: String(data.gdprMarketing),
+    locale: data.locale,
+    ip,
+  }
 
   try {
     // Check for existing member
@@ -66,88 +71,39 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Email already registered' }, { status: 409 })
     }
 
-    let stripeCustomerId: string | undefined
-    let stripeSubscriptionId: string | undefined
-    let checkoutUrl: string | undefined
+    // Both card and SEPA use Stripe Checkout in subscription mode
+    // Stripe handles IBAN collection and mandate for SEPA
+    let checkoutUrl = `/${data.locale}/mock-checkout?amount=${data.monthlyQuota}&email=${encodeURIComponent(data.email)}&type=member`
 
-    if (data.paymentMethod === 'card') {
-      const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
-      const stripeLocale = getStripeLocale(data.locale)
-      
-      const stripeReady = process.env.STRIPE_SECRET_KEY && process.env.STRIPE_SECRET_KEY !== 'sk_test_placeholder'
+    if (stripeReady) {
+      const paymentMethodTypes = data.paymentMethod === 'sepa'
+        ? ['sepa_debit' as const]
+        : ['card' as const]
 
-      checkoutUrl = `/${data.locale}/mock-checkout?amount=${data.monthlyQuota}&email=${encodeURIComponent(data.email)}&type=member`
+      const price = await stripe.prices.create({
+        currency: 'eur',
+        unit_amount: Math.round(data.monthlyQuota * 100),
+        recurring: { interval: 'month' },
+        product_data: { name: `Quota soci Unaria – ${data.monthlyQuota}€/mes` },
+      })
 
-      if (stripeReady) {
-        // Create price dynamically
-        const price = await stripe.prices.create({
-          currency: 'eur',
-          unit_amount: Math.round(data.monthlyQuota * 100),
-          recurring: { interval: 'month' },
-          product_data: { name: `Quota soci Unaria – ${data.monthlyQuota}€/mes` },
-        })
+      const session = await stripe.checkout.sessions.create({
+        mode: 'subscription',
+        payment_method_types: paymentMethodTypes,
+        line_items: [{ price: price.id, quantity: 1 }],
+        customer_email: data.email,
+        locale: stripeLocale,
+        success_url: `${appUrl}/${data.locale}/become-member?success=1&email=${encodeURIComponent(data.email)}`,
+        cancel_url: `${appUrl}/${data.locale}/become-member`,
+        metadata: commonMeta,
+      })
 
-        const session = await stripe.checkout.sessions.create({
-          mode: 'subscription',
-          payment_method_types: ['card'],
-          line_items: [{ price: price.id, quantity: 1 }],
-          customer_email: data.email,
-          locale: stripeLocale,
-          success_url: `${appUrl}/${data.locale}/become-member?success=1&email=${encodeURIComponent(data.email)}`,
-          cancel_url: `${appUrl}/${data.locale}/become-member`,
-          metadata: {
-            name: data.name,
-            surname: data.surname,
-            idNumber: data.idNumber,
-            phone: data.phone || '',
-            address: data.address || '',
-            city: data.city || '',
-            postalCode: data.postalCode || '',
-            gdprMarketing: String(data.gdprMarketing),
-            locale: data.locale,
-            ip,
-          },
-        })
-
-        checkoutUrl = session.url!
-      }
-
-      try {
-        // Create pending member record
-        await prisma.member.create({
-          data: {
-            name: data.name,
-            surname: data.surname,
-            email: data.email,
-            phone: data.phone,
-            address: data.address,
-            city: data.city,
-            postalCode: data.postalCode,
-            idNumber: data.idNumber,
-            monthlyQuota: data.monthlyQuota,
-            status: 'pending',
-            gdprConsent: true,
-            gdprConsentAt: new Date(),
-            marketingConsent: data.gdprMarketing,
-            marketingConsentAt: data.gdprMarketing ? new Date() : undefined,
-            preferredLocale: data.locale,
-            consentIp: ip,
-          },
-        })
-      } catch (dbError) {
-        console.warn('Could not save member to database (is it running?):', dbError)
-        if (stripeReady) throw dbError
-      }
-
-      return NextResponse.json({ checkoutUrl })
+      checkoutUrl = session.url!
     }
 
-    // SEPA flow: create member directly
-    const ibanEncrypted = encrypt(data.iban!)
-
-    let memberId = 'mock_member_id'
+    // Save pending member record
     try {
-      const member = await prisma.member.create({
+      await prisma.member.create({
         data: {
           name: data.name,
           surname: data.surname,
@@ -157,7 +113,6 @@ export async function POST(request: NextRequest) {
           city: data.city,
           postalCode: data.postalCode,
           idNumber: data.idNumber,
-          ibanEncrypted,
           monthlyQuota: data.monthlyQuota,
           status: 'pending',
           gdprConsent: true,
@@ -168,25 +123,12 @@ export async function POST(request: NextRequest) {
           consentIp: ip,
         },
       })
-      memberId = member.id
     } catch (dbError) {
-      console.warn('Could not save SEPA member to database (is it running?):', dbError)
-      throw dbError
+      console.warn('Could not save member to database (is it running?):', dbError)
+      if (stripeReady) throw dbError
     }
 
-    // Send welcome email (best-effort)
-    try {
-      await sendWelcomeEmail({
-        name: data.name,
-        email: data.email,
-        quota: data.monthlyQuota,
-        locale: data.locale,
-      })
-    } catch (e) {
-      console.error('Failed to send welcome email:', e)
-    }
-
-    return NextResponse.json({ success: true, memberId })
+    return NextResponse.json({ checkoutUrl })
   } catch (err: any) {
     console.error('Member creation error:', err)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
