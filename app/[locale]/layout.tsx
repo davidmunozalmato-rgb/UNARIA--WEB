@@ -1,0 +1,58 @@
+export const dynamic = 'force-dynamic'
+
+import { NextIntlClientProvider } from 'next-intl'
+import { getMessages, getTranslations } from 'next-intl/server'
+import { notFound } from 'next/navigation'
+import { locales } from '@/i18n'
+import Navbar from '@/components/Navbar'
+import Footer from '@/components/Footer'
+import CookieBanner from '@/components/CookieBanner'
+import type { Metadata } from 'next'
+
+interface LocaleLayoutProps {
+  children: React.ReactNode
+  params: { locale: string }
+}
+
+export async function generateStaticParams() {
+  return locales.map((locale) => ({ locale }))
+}
+
+export async function generateMetadata({ params: { locale } }: LocaleLayoutProps): Promise<Metadata> {
+  if (!locales.includes(locale as any)) return {}
+  const t = await getTranslations({ locale, namespace: 'hero' })
+  return {
+    title: {
+      default: 'Unaria – Solidaritat Organitzada',
+      template: '%s | Unaria',
+    },
+    description: t('subtitle'),
+    alternates: {
+      canonical: `/${locale}`,
+      languages: Object.fromEntries(locales.map((l) => [l, `/${l}`])),
+    },
+  }
+}
+
+export default async function LocaleLayout({ children, params: { locale } }: LocaleLayoutProps) {
+  if (!locales.includes(locale as any)) notFound()
+
+  const messages = await getMessages()
+
+  return (
+    <html lang={locale}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
+      <body className="min-h-screen flex flex-col bg-white">
+        <NextIntlClientProvider messages={messages} locale={locale}>
+          <Navbar locale={locale} />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <CookieBanner />
+        </NextIntlClientProvider>
+      </body>
+    </html>
+  )
+}

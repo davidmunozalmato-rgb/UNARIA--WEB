@@ -1,0 +1,135 @@
+// Prisma Schema for Unaria
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum MemberStatus {
+  pending
+  active
+  inactive
+  cancelled
+}
+
+enum DonationType {
+  subscription
+  one_time
+}
+
+enum DonationStatus {
+  pending
+  completed
+  failed
+  refunded
+}
+
+enum DocumentType {
+  membership_form
+  gdpr_consent
+  payment_receipt
+  annual_report
+  transfer_proof
+}
+
+model Member {
+  id                   String       @id @default(cuid())
+  name                 String
+  surname              String
+  email                String       @unique
+  phone                String?
+  address              String?
+  city                 String?
+  postalCode           String?
+  country              String       @default("ES")
+  idNumber             String?
+  ibanEncrypted        String?
+  monthlyQuota         Float        @default(6)
+  status               MemberStatus @default(pending)
+  stripeCustomerId     String?      @unique
+  stripeSubscriptionId String?      @unique
+  gdprConsent          Boolean      @default(false)
+  gdprConsentAt        DateTime?
+  marketingConsent     Boolean      @default(false)
+  marketingConsentAt   DateTime?
+  preferredLocale      String       @default("ca")
+  consentIp            String?
+  donations            Donation[]
+  documents            Document[]
+  createdAt            DateTime     @default(now())
+  updatedAt            DateTime     @updatedAt
+
+  @@index([email])
+  @@index([status])
+}
+
+model Donation {
+  id                   String         @id @default(cuid())
+  donorName            String
+  donorEmail           String
+  amount               Float
+  currency             String         @default("EUR")
+  type                 DonationType
+  stripePaymentIntentId String?       @unique
+  stripeSessionId      String?        @unique
+  status               DonationStatus @default(pending)
+  locale               String         @default("ca")
+  memberId             String?
+  member               Member?        @relation(fields: [memberId], references: [id])
+  createdAt            DateTime       @default(now())
+
+  @@index([donorEmail])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model NgoTransfer {
+  id           String   @id @default(cuid())
+  ngoName      String
+  amount       Float
+  currency     String   @default("EUR")
+  transferDate DateTime
+  reference    String?
+  notes        String?
+  createdAt    DateTime @default(now())
+
+  @@index([transferDate])
+}
+
+model Document {
+  id          String       @id @default(cuid())
+  type        DocumentType
+  memberId    String?
+  member      Member?      @relation(fields: [memberId], references: [id])
+  description String
+  fileUrl     String?
+  metadata    Json?
+  createdAt   DateTime     @default(now())
+
+  @@index([memberId])
+  @@index([type])
+}
+
+model AdminUser {
+  id             String   @id @default(cuid())
+  email          String   @unique
+  passwordHash   String
+  name           String
+  preferredLocale String  @default("ca")
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model CookieConsent {
+  id              String   @id @default(cuid())
+  sessionId       String   @unique
+  technical       Boolean  @default(true)
+  analytics       Boolean  @default(false)
+  ip              String?
+  locale          String   @default("ca")
+  userAgent       String?
+  createdAt       DateTime @default(now())
+}
