@@ -9,7 +9,10 @@ const nextConfig = {
     serverComponentsExternalPackages: ['@prisma/client', 'bcryptjs'],
   },
   images: {
-    domains: ['unaria.org', 'images.unsplash.com'],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'unaria.org' },
+      { protocol: 'https', hostname: 'images.unsplash.com' },
+    ],
   },
   async headers() {
     return [
