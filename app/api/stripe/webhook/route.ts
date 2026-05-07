@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
 import prisma from '@/lib/prisma'
 import { sendWelcomeEmail, sendReceiptEmail } from '@/lib/email'
+import { appendPaymentRow } from '@/lib/sheets'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2023-10-16' })
 const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET!
@@ -67,6 +68,17 @@ export async function POST(request: NextRequest) {
             } catch (e) {
               console.error('Failed to send welcome email:', e)
             }
+            // Register in Google Sheets
+            await appendPaymentRow({
+              date: new Date().toLocaleString('ca-ES', { timeZone: 'Europe/Madrid' }),
+              type: 'Soci',
+              name: `${member.name} ${member.surname}`,
+              email: member.email,
+              amount: member.monthlyQuota,
+              currency: 'EUR',
+              status: 'Completat',
+              reference: session.id,
+            })
           }
         } else if (session.mode === 'payment') {
           // Complete donation
@@ -74,18 +86,32 @@ export async function POST(request: NextRequest) {
             where: { stripeSessionId: session.id },
             data: { status: 'completed', stripePaymentIntentId: session.payment_intent as string },
           })
+          const donorName = session.metadata?.donorName ?? 'Donant'
+          const donorEmail = session.customer_email!
+          const donorAmount = (session.amount_total ?? 0) / 100
           // Send receipt
           try {
             await sendReceiptEmail({
-              name: session.metadata?.donorName ?? 'Donant',
-              email: session.customer_email!,
-              amount: (session.amount_total ?? 0) / 100,
+              name: donorName,
+              email: donorEmail,
+              amount: donorAmount,
               type: 'one_time',
               locale,
             })
           } catch (e) {
             console.error('Failed to send receipt email:', e)
           }
+          // Register in Google Sheets
+          await appendPaymentRow({
+            date: new Date().toLocaleString('ca-ES', { timeZone: 'Europe/Madrid' }),
+            type: 'Donació puntual',
+            name: donorName,
+            email: donorEmail,
+            amount: donorAmount,
+            currency: 'EUR',
+            status: 'Completat',
+            reference: session.id,
+          })
         }
         break
       }
@@ -122,6 +148,17 @@ export async function POST(request: NextRequest) {
             } catch (e) {
               console.error('Failed to send receipt email:', e)
             }
+            // Register in Google Sheets
+            await appendPaymentRow({
+              date: new Date().toLocaleString('ca-ES', { timeZone: 'Europe/Madrid' }),
+              type: 'Quota mensual',
+              name: `${member.name} ${member.surname}`,
+              email: member.email,
+              amount: (invoice.amount_paid ?? 0) / 100,
+              currency: invoice.currency.toUpperCase(),
+              status: 'Completat',
+              reference: invoice.payment_intent as string ?? invoice.id,
+            })
           }
         }
         break
