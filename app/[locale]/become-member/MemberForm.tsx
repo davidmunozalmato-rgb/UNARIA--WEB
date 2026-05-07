@@ -106,6 +106,15 @@ export default function MemberForm({ locale }: { locale: string }) {
           >
             Tornar a l'inici
           </Link>
+          <div className="mt-6 p-4 bg-gray-50 rounded-xl text-left border border-gray-100">
+            <p className="text-xs text-gray-500 leading-relaxed">
+              Per cancel·lar la subscripció, envia un email a{' '}
+              <a href="mailto:contacte@unaria.org" className="text-brand-blue font-medium hover:underline">
+                contacte@unaria.org
+              </a>
+              {' '}i el gestionarem en menys de 48h.
+            </p>
+          </div>
         </div>
       </div>
     )
