@@ -39,7 +39,7 @@ export default function NewsArticlePage({ params: { locale, slug } }: PageProps)
   return (
     <main className="bg-white min-h-screen">
       {/* Hero image */}
-      <div className="relative w-full h-[420px] md:h-[520px] bg-gray-200">
+      <div className="relative w-full h-[240px] sm:h-[360px] md:h-[480px] bg-gray-200">
         <Image
           src={article.image}
           alt={article.imageAlt}
@@ -52,9 +52,9 @@ export default function NewsArticlePage({ params: { locale, slug } }: PageProps)
       </div>
 
       {/* Content */}
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 -mt-24 relative z-10">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 -mt-10 sm:-mt-20 relative z-10">
         {/* Card */}
-        <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12">
+        <div className="bg-white rounded-2xl shadow-xl p-5 sm:p-8 md:p-12">
           {/* Date */}
           <div className="flex items-center gap-2 text-sm text-gray-500 mb-4">
             <span className="font-semibold text-brand-blue">{article.date.day}</span>

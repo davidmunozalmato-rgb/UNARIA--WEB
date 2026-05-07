@@ -7,6 +7,7 @@
     "donate": "Donate",
     "transparency": "Transparency",
     "admin": "Administration",
+    "strategy": "Strategy",
     "language": "Language"
   },
   "hero": {
@@ -70,15 +71,15 @@
     "v3": "Rigour in selecting partner NGOs",
     "v4": "Meticulous respect for members' privacy",
     "foundersTitle": "The founders",
-    "f1Name": "Laura Sánchez",
+    "f1Name": "David Muñoz",
     "f1Role": "President",
-    "f1Bio": "Economist with 15 years of experience in the third sector. Has led international cooperation projects in Africa and Latin America.",
-    "f2Name": "Marc Torrent",
+    "f1Bio": "Founder and driving force behind Unaria. His vision and leadership have made it possible to build a transparent, impact-focused association. He believes that organised solidarity is the most efficient way to help, and works every day to make that a reality.",
+    "f2Name": "Dayana Alejandra Corrales",
     "f2Role": "Secretary",
-    "f2Bio": "Lawyer specialising in association law and NGOs. Ensures regulatory compliance and good governance at Unaria.",
-    "f3Name": "Núria Costa",
+    "f2Bio": "Co-founder of Unaria. With strong organisational skills and a genuine vocation for service, she oversees administrative management and internal communications. Her commitment ensures the association operates with rigour and transparency at all times.",
+    "f3Name": "Alex Muñoz",
     "f3Role": "Treasurer",
-    "f3Bio": "Auditor and accountant with experience in third-sector entities. Responsible for Unaria's financial transparency.",
+    "f3Bio": "Industrial engineer and co-founder of Unaria. His technical and analytical background is key to ensuring rigorous financial management, fund control and the long-term economic sustainability of the project.",
     "legalTitle": "Legal structure",
     "legalText": "Unaria is a non-profit association constituted under Law 4/2008, of 24 April, of Book Three of the Civil Code of Catalonia, relating to legal persons. Registered with the Associations Registry of the Generalitat de Catalunya.",
     "cifLabel": "Tax ID (CIF)",
@@ -164,6 +165,17 @@
     "reference": "Reference",
     "noTransfers": "No transfers recorded for this year.",
     "downloadReport": "Download report (PDF)"
+  },
+  "strategyPage": {
+    "title": "Our strategy",
+    "subtitle": "The strategic pillars that guide our social action",
+    "intro": "Unaria's approach is based on three fundamental strategic pillars to maximize the impact of every donation.",
+    "pillar1Title": "Rigorous selection",
+    "pillar1Desc": "We evaluate and select partner NGOs based on objective criteria of impact, financial efficiency, and transparency. We only collaborate with audited and highly recognized organizations.",
+    "pillar2Title": "Pooling of funds",
+    "pillar2Desc": "By channeling multiple small contributions into a single fund, we gain operational efficiency and impact capacity. This allows us to proportionally reduce management costs.",
+    "pillar3Title": "Zero superfluous costs",
+    "pillar3Desc": "Our commitment is to maintain a minimal structure. The board of directors is not remunerated and operating costs are reduced to the minimum necessary for operations and legal compliance."
   },
   "privacy": {
     "title": "Privacy Policy",

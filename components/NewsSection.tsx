@@ -1,26 +1,26 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
-import { articles, monthLabels, sectionTitles, readMoreLabels } from '@/lib/news'
+import { articles, monthLabels, sectionTitles, readMoreLabels, viewAllLabels } from '@/lib/news'
 
 export default function NewsSection({ locale }: { locale: string }) {
   const lang = ['ca', 'es', 'en', 'fr', 'de'].includes(locale) ? locale : 'ca'
   const monthMap = monthLabels[lang] ?? monthLabels.ca
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-14 sm:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
-        <div className="mb-10">
-          <h2 className="text-3xl font-extrabold text-gray-900 mb-2">
+        <div className="mb-8 sm:mb-10">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-2">
             {sectionTitles[lang]}
           </h2>
           <div className="w-12 h-1 bg-brand-blue rounded-full" />
         </div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {articles.map((article) => {
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
+          {articles.slice(0, 3).map((article) => {
             const monthLabel = monthMap[article.date.month] ?? article.date.month
             return (
               <article key={article.id} className="group flex flex-col">
@@ -67,6 +67,17 @@ export default function NewsSection({ locale }: { locale: string }) {
               </article>
             )
           })}
+        </div>
+        
+        {/* View All Button */}
+        <div className="mt-10 sm:mt-14 text-center">
+          <Link
+            href={`/${locale}/news`}
+            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-brand-blue font-bold text-sm rounded-xl border-2 border-brand-blue hover:bg-brand-blue hover:text-white transition-all shadow-sm"
+          >
+            {viewAllLabels[lang]}
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </div>
     </section>

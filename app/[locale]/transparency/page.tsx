@@ -1,4 +1,3 @@
-import { useTranslations } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import { TrendingUp, ArrowUpRight, ArrowDownRight } from 'lucide-react'
 import prisma from '@/lib/prisma'
@@ -37,7 +36,7 @@ async function getTransferData() {
 }
 
 export default async function TransparencyPage({ params: { locale } }: PageProps) {
-  const t = useTranslations('transparencyPage')
+  const t = await getTranslations({ locale, namespace: 'transparencyPage' })
   const { transfers, totalIncome, operatingCosts, totalTransferred } = await getTransferData()
 
   const currentYear = new Date().getFullYear()

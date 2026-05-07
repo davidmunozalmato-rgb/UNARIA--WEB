@@ -16,9 +16,9 @@ export default function AboutPage({ params: { locale } }: PageProps) {
   const t = useTranslations('about')
   const values = [t('v1'), t('v2'), t('v3'), t('v4')]
   const founders = [
-    { name: t('f1Name'), role: t('f1Role'), bio: t('f1Bio'), initials: 'LS' },
-    { name: t('f2Name'), role: t('f2Role'), bio: t('f2Bio'), initials: 'MT' },
-    { name: t('f3Name'), role: t('f3Role'), bio: t('f3Bio'), initials: 'NC' },
+    { name: t('f1Name'), role: t('f1Role'), bio: t('f1Bio'), initials: 'DM' },
+    { name: t('f2Name'), role: t('f2Role'), bio: t('f2Bio'), initials: 'DC' },
+    { name: t('f3Name'), role: t('f3Role'), bio: t('f3Bio'), initials: 'AM' },
   ]
 
   return (

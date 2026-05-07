@@ -1,8 +1,11 @@
+import React from 'react'
 import { useTranslations } from 'next-intl'
 import { getTranslations } from 'next-intl/server'
 import Link from 'next/link'
-import { ArrowRight, Shield, TrendingUp, Users, CheckCircle, Star, ArrowDownCircle } from 'lucide-react'
+import { ArrowRight, ArrowDownCircle, Shield, Target, Eye, Handshake, BarChart3 } from 'lucide-react'
 import NewsSection from '@/components/NewsSection'
+import ProjectsSection from '@/components/ProjectsSection'
+import AnimatedCounter from '@/components/AnimatedCounter'
 import type { Metadata } from 'next'
 
 interface PageProps {
@@ -59,206 +62,202 @@ function HeroSection({ locale }: { locale: string }) {
         </div>
       </div>
 
-      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/50 animate-bounce">
-        <ArrowDownCircle className="w-6 h-6" />
-      </div>
+      <a 
+        href="#projects"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/50 hover:text-white transition-colors animate-bounce cursor-pointer z-10"
+        aria-label="Anar a projectes"
+      >
+        <ArrowDownCircle className="w-8 h-8" />
+      </a>
     </section>
   )
 }
 
 
-function HowItWorksSection({ locale }: { locale: string }) {
-  const t = useTranslations('howItWorks')
-  const steps = [
-    {
-      number: '01',
-      title: t('step1Title'),
-      desc: t('step1Desc'),
-      color: 'bg-blue-50',
-      textColor: 'text-brand-blue',
-      icon: <Users className="w-6 h-6" />,
-    },
-    {
-      number: '02',
-      title: t('step2Title'),
-      desc: t('step2Desc'),
-      color: 'bg-teal-50',
-      textColor: 'text-brand-teal',
-      icon: <Shield className="w-6 h-6" />,
-    },
-    {
-      number: '03',
-      title: t('step3Title'),
-      desc: t('step3Desc'),
-      color: 'bg-green-50',
-      textColor: 'text-green-600',
-      icon: <TrendingUp className="w-6 h-6" />,
-    },
-  ]
+
+const objectiusData: Record<string, { title: string; subtitle: string; items: { icon: React.ReactNode; color: string; title: string; desc: string }[] }> = {
+  ca: {
+    title: 'Els nostres objectius',
+    subtitle: 'Unaria neix amb una missió clara: canalitzar la solidaritat col·lectiva cap a on més fa falta',
+    items: [
+      { icon: <Target className="w-7 h-7" />, color: 'bg-blue-50 text-brand-blue', title: 'Recaptació solidària', desc: 'Mobilitzar quotes mensuals de socis per generar un fons estable i previsible que permeti planificar l\'ajuda a llarg termini.' },
+      { icon: <Eye className="w-7 h-7" />, color: 'bg-teal-50 text-brand-teal', title: 'Transparència total', desc: 'Publicar anualment totes les transferències realitzades a ONGs, amb imports, destinataris i referències verificables.' },
+      { icon: <Handshake className="w-7 h-7" />, color: 'bg-purple-50 text-purple-600', title: 'Partenariat amb ONGs', desc: 'Col·laborar exclusivament amb entitats auditades, acreditades i amb historial demostrat d\'impacte social real.' },
+      { icon: <BarChart3 className="w-7 h-7" />, color: 'bg-green-50 text-green-600', title: 'Impacte mesurable', desc: 'Garantir que el 87% de cada euro recaptat arriba directament a projectes concrets, amb indicadors d\'impacte publicats.' },
+    ],
+  },
+  es: {
+    title: 'Nuestros objetivos',
+    subtitle: 'Unaria nace con una misión clara: canalizar la solidaridad colectiva hacia donde más se necesita',
+    items: [
+      { icon: <Target className="w-7 h-7" />, color: 'bg-blue-50 text-brand-blue', title: 'Recaudación solidaria', desc: 'Movilizar cuotas mensuales de socios para generar un fondo estable y previsible que permita planificar la ayuda a largo plazo.' },
+      { icon: <Eye className="w-7 h-7" />, color: 'bg-teal-50 text-brand-teal', title: 'Transparencia total', desc: 'Publicar anualmente todas las transferencias realizadas a ONGs, con importes, destinatarios y referencias verificables.' },
+      { icon: <Handshake className="w-7 h-7" />, color: 'bg-purple-50 text-purple-600', title: 'Asociación con ONGs', desc: 'Colaborar exclusivamente con entidades auditadas, acreditadas y con historial demostrado de impacto social real.' },
+      { icon: <BarChart3 className="w-7 h-7" />, color: 'bg-green-50 text-green-600', title: 'Impacto medible', desc: 'Garantizar que el 87% de cada euro recaudado llega directamente a proyectos concretos, con indicadores de impacto publicados.' },
+    ],
+  },
+  en: {
+    title: 'Our objectives',
+    subtitle: 'Unaria was born with a clear mission: channelling collective solidarity towards where it is needed most',
+    items: [
+      { icon: <Target className="w-7 h-7" />, color: 'bg-blue-50 text-brand-blue', title: 'Solidarity fundraising', desc: 'Mobilising monthly member fees to build a stable, predictable fund that enables long-term aid planning.' },
+      { icon: <Eye className="w-7 h-7" />, color: 'bg-teal-50 text-brand-teal', title: 'Full transparency', desc: 'Publishing annual reports of all NGO transfers, with amounts, recipients and verifiable references.' },
+      { icon: <Handshake className="w-7 h-7" />, color: 'bg-purple-50 text-purple-600', title: 'NGO partnerships', desc: 'Working exclusively with audited, accredited organisations with a proven track record of real social impact.' },
+      { icon: <BarChart3 className="w-7 h-7" />, color: 'bg-green-50 text-green-600', title: 'Measurable impact', desc: 'Ensuring 87% of every euro raised reaches concrete projects directly, with published impact indicators.' },
+    ],
+  },
+  fr: {
+    title: 'Nos objectifs',
+    subtitle: 'Unaria est née avec une mission claire : canaliser la solidarité collective là où elle est le plus nécessaire',
+    items: [
+      { icon: <Target className="w-7 h-7" />, color: 'bg-blue-50 text-brand-blue', title: 'Collecte solidaire', desc: 'Mobiliser les cotisations mensuelles des membres pour créer un fonds stable et prévisible permettant une aide à long terme.' },
+      { icon: <Eye className="w-7 h-7" />, color: 'bg-teal-50 text-brand-teal', title: 'Transparence totale', desc: 'Publier chaque année tous les transferts effectués aux ONG, avec montants, bénéficiaires et références vérifiables.' },
+      { icon: <Handshake className="w-7 h-7" />, color: 'bg-purple-50 text-purple-600', title: 'Partenariat avec les ONG', desc: 'Collaborer exclusivement avec des entités auditées, accréditées et ayant un bilan démontré d\'impact social réel.' },
+      { icon: <BarChart3 className="w-7 h-7" />, color: 'bg-green-50 text-green-600', title: 'Impact mesurable', desc: 'Garantir que 87 % de chaque euro collecté parvient directement à des projets concrets, avec des indicateurs publiés.' },
+    ],
+  },
+  de: {
+    title: 'Unsere Ziele',
+    subtitle: 'Unaria wurde mit einer klaren Mission gegründet: kollektive Solidarität dorthin zu leiten, wo sie am meisten gebraucht wird',
+    items: [
+      { icon: <Target className="w-7 h-7" />, color: 'bg-blue-50 text-brand-blue', title: 'Solidarische Spendensammlung', desc: 'Monatliche Mitgliedsbeiträge mobilisieren, um einen stabilen, planbaren Fonds für langfristige Hilfe aufzubauen.' },
+      { icon: <Eye className="w-7 h-7" />, color: 'bg-teal-50 text-brand-teal', title: 'Vollständige Transparenz', desc: 'Jährliche Veröffentlichung aller NGO-Überweisungen mit Beträgen, Empfängern und nachprüfbaren Referenzen.' },
+      { icon: <Handshake className="w-7 h-7" />, color: 'bg-purple-50 text-purple-600', title: 'NGO-Partnerschaften', desc: 'Ausschließlich mit geprüften, akkreditierten Organisationen zusammenarbeiten, die nachweislich soziale Wirkung erzielen.' },
+      { icon: <BarChart3 className="w-7 h-7" />, color: 'bg-green-50 text-green-600', title: 'Messbarer Einfluss', desc: '87 % jedes gesammelten Euros fließen direkt in konkrete Projekte, mit veröffentlichten Wirkungsindikatoren.' },
+    ],
+  },
+}
+
+function ObjectiusSection({ locale }: { locale: string }) {
+  const lang = ['ca', 'es', 'en', 'fr', 'de'].includes(locale) ? locale : 'ca'
+  const data = objectiusData[lang]
 
   return (
-    <section className="py-20 bg-brand-gray">
+    <section className="py-14 sm:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
-          <h2 className="section-title">{t('title')}</h2>
-          <p className="section-subtitle">{t('subtitle')}</p>
+        <div className="text-center mb-10 sm:mb-14">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-3">{data.title}</h2>
+          <p className="text-gray-500 max-w-2xl mx-auto text-base sm:text-lg">{data.subtitle}</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {steps.map((step, i) => (
-            <div key={i} className="relative">
-              {i < steps.length - 1 && (
-                <div className="hidden md:block absolute top-10 left-full w-full h-0.5 bg-gray-200 -translate-x-1/2 z-0" />
-              )}
-              <div className={`card relative z-10 text-center hover:shadow-md transition-shadow`}>
-                <div className={`w-14 h-14 ${step.color} rounded-2xl flex items-center justify-center mx-auto mb-4 ${step.textColor}`}>
-                  {step.icon}
-                </div>
-                <div className="text-xs font-bold text-gray-400 mb-2 tracking-wider">{step.number}</div>
-                <h3 className={`text-xl font-bold mb-3 ${step.textColor}`}>{step.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{step.desc}</p>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+          {data.items.map((item, i) => (
+            <div key={i} className="flex flex-col items-start p-5 sm:p-6 rounded-2xl border border-gray-100 hover:shadow-md transition-shadow bg-white">
+              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-5 ${item.color}`}>
+                {item.icon}
               </div>
+              <h3 className="font-bold text-gray-900 text-base mb-2">{item.title}</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
-
-        <div className="text-center mt-10">
-          <Link
-            href={`/${locale}/how-we-work`}
-            className="inline-flex items-center gap-2 text-brand-blue font-semibold hover:gap-3 transition-all"
-          >
-            Saber-ne més <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
       </div>
     </section>
   )
 }
 
-function TransparencyBar() {
-  const t = useTranslations('transparency')
-  const percentage = 87
-
-  return (
-    <section className="py-16 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="section-title">{t('title')}</h2>
-          <p className="section-subtitle mb-10">{t('subtitle')}</p>
-
-          <div className="bg-gray-100 rounded-full h-6 mb-4 overflow-hidden">
-            <div
-              className="h-full bg-gradient-to-r from-brand-teal to-brand-teal-dark rounded-full flex items-center justify-end pr-3 transition-all duration-1000"
-              style={{ width: `${percentage}%` }}
-            >
-              <span className="text-white text-xs font-bold">{percentage}%</span>
-            </div>
-          </div>
-
-          <div className="flex justify-between text-sm text-gray-600 mb-2">
-            <span>{t('operatingCosts')} (13%)</span>
-            <span className="font-semibold text-brand-teal">{percentage}% {t('barLabel')}</span>
-          </div>
-
-          <div className="mt-8 grid grid-cols-2 gap-6">
-            <div className="bg-gray-50 rounded-xl p-5 text-center">
-              <div className="text-2xl font-bold text-gray-400">13%</div>
-              <div className="text-sm text-gray-600 mt-1">{t('operatingCosts')}</div>
-            </div>
-            <div className="bg-teal-50 rounded-xl p-5 text-center">
-              <div className="text-2xl font-bold text-brand-teal">{percentage}%</div>
-              <div className="text-sm text-gray-600 mt-1">{t('transferredNgos')}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
+const destacatsData: Record<string, { title: string; subtitle: string; items: { stat: string; label: string; source: string; accent: string }[] }> = {
+  ca: {
+    title: 'Xifres que no podem ignorar',
+    subtitle: 'La realitat global que impulsa la missió d\'Unaria',
+    items: [
+      { stat: '117M', label: 'persones desplaçades forçosament al món', source: 'ACNUR 2024', accent: 'text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300' },
+      { stat: '733M', label: 'persones passen fam cada nit', source: 'FAO 2023', accent: 'text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-orange-300' },
+      { stat: '780M', label: 'persones sense accés a aigua potable', source: 'OMS / UNICEF', accent: 'text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300' },
+      { stat: '258M', label: 'infants sense escolaritzar', source: 'UNESCO 2023', accent: 'text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-purple-400' },
+    ],
+  },
+  es: {
+    title: 'Cifras que no podemos ignorar',
+    subtitle: 'La realidad global que impulsa la misión de Unaria',
+    items: [
+      { stat: '117M', label: 'personas desplazadas forzosamente en el mundo', source: 'ACNUR 2024', accent: 'text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300' },
+      { stat: '733M', label: 'personas pasan hambre cada noche', source: 'FAO 2023', accent: 'text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-orange-300' },
+      { stat: '780M', label: 'personas sin acceso a agua potable', source: 'OMS / UNICEF', accent: 'text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300' },
+      { stat: '258M', label: 'niños sin escolarizar', source: 'UNESCO 2023', accent: 'text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-purple-400' },
+    ],
+  },
+  en: {
+    title: 'Figures we cannot ignore',
+    subtitle: 'The global reality that drives Unaria\'s mission',
+    items: [
+      { stat: '117M', label: 'people forcibly displaced worldwide', source: 'UNHCR 2024', accent: 'text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300' },
+      { stat: '733M', label: 'people go to bed hungry every night', source: 'FAO 2023', accent: 'text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-orange-300' },
+      { stat: '780M', label: 'people without access to clean water', source: 'WHO / UNICEF', accent: 'text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300' },
+      { stat: '258M', label: 'children out of school', source: 'UNESCO 2023', accent: 'text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-purple-400' },
+    ],
+  },
+  fr: {
+    title: 'Des chiffres qu\'on ne peut ignorer',
+    subtitle: 'La réalité mondiale qui anime la mission d\'Unaria',
+    items: [
+      { stat: '117M', label: 'personnes déplacées de force dans le monde', source: 'UNHCR 2024', accent: 'text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300' },
+      { stat: '733M', label: 'personnes se couchent avec la faim chaque nuit', source: 'FAO 2023', accent: 'text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-orange-300' },
+      { stat: '780M', label: 'personnes sans accès à l\'eau potable', source: 'OMS / UNICEF', accent: 'text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300' },
+      { stat: '258M', label: 'enfants non scolarisés', source: 'UNESCO 2023', accent: 'text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-purple-400' },
+    ],
+  },
+  de: {
+    title: 'Zahlen, die wir nicht ignorieren können',
+    subtitle: 'Die globale Realität, die die Mission von Unaria antreibt',
+    items: [
+      { stat: '117M', label: 'Menschen weltweit zwangsvertrieben', source: 'UNHCR 2024', accent: 'text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300' },
+      { stat: '733M', label: 'Menschen gehen jeden Abend hungrig ins Bett', source: 'FAO 2023', accent: 'text-transparent bg-clip-text bg-gradient-to-r from-rose-400 to-orange-300' },
+      { stat: '780M', label: 'Menschen ohne Zugang zu sauberem Wasser', source: 'WHO / UNICEF', accent: 'text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300' },
+      { stat: '258M', label: 'Kinder ohne Schulbildung', source: 'UNESCO 2023', accent: 'text-transparent bg-clip-text bg-gradient-to-r from-fuchsia-400 to-purple-400' },
+    ],
+  },
 }
 
-function NgoSection() {
-  const t = useTranslations('ngos')
-  return (
-    <section className="py-20 bg-brand-gray">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
-          <h2 className="section-title">{t('title')}</h2>
-          <p className="section-subtitle">{t('subtitle')}</p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Cruz Roja */}
-          <div className="card hover:shadow-md transition-shadow">
-            <div className="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center mb-4 text-2xl">
-              🏥
-            </div>
-            <h3 className="font-bold text-gray-900 text-lg mb-2">{t('cruzRoja')}</h3>
-            <p className="text-gray-600 text-sm leading-relaxed">{t('cruzRojaDesc')}</p>
-            <div className="mt-4">
-              <span className="badge bg-red-50 text-red-700 text-xs">Soci actiu</span>
-            </div>
-          </div>
-
-          {/* Placeholder 2 */}
-          <div className="card border-dashed border-gray-300 hover:shadow-md transition-shadow">
-            <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mb-4 text-2xl">
-              🌍
-            </div>
-            <h3 className="font-bold text-gray-500 text-lg mb-2">{t('placeholder')}</h3>
-            <p className="text-gray-400 text-sm leading-relaxed">{t('placeholderDesc')}</p>
-          </div>
-
-          {/* Placeholder 3 */}
-          <div className="card border-dashed border-gray-300 hover:shadow-md transition-shadow">
-            <div className="w-16 h-16 bg-gray-100 rounded-2xl flex items-center justify-center mb-4 text-2xl">
-              💧
-            </div>
-            <h3 className="font-bold text-gray-500 text-lg mb-2">{t('placeholder')}</h3>
-            <p className="text-gray-400 text-sm leading-relaxed">{t('placeholderDesc')}</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-function TestimonialsSection() {
-  const t = useTranslations('testimonials')
-  const testimonials = [
-    { name: t('t1Name'), role: t('t1Role'), text: t('t1Text'), stars: 5 },
-    { name: t('t2Name'), role: t('t2Role'), text: t('t2Text'), stars: 5 },
-    { name: t('t3Name'), role: t('t3Role'), text: t('t3Text'), stars: 5 },
-  ]
+function DestacatsSection({ locale }: { locale: string }) {
+  const lang = ['ca', 'es', 'en', 'fr', 'de'].includes(locale) ? locale : 'ca'
+  const data = destacatsData[lang]
 
   return (
-    <section className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
-          <h2 className="section-title">{t('title')}</h2>
+    <section className="relative py-20 sm:py-32 bg-[#0a0f1c] overflow-hidden">
+      {/* Background Glows */}
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-brand-blue/20 rounded-full blur-[128px] opacity-50 mix-blend-screen pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-[128px] opacity-50 mix-blend-screen pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-14 sm:mb-20">
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70 mb-4 tracking-tight">
+            {data.title}
+          </h2>
+          <p className="text-gray-400 text-lg sm:text-xl max-w-2xl mx-auto font-medium">
+            {data.subtitle}
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonials.map((testimonial, i) => (
-            <div key={i} className="card hover:shadow-md transition-shadow">
-              <div className="flex gap-0.5 mb-4">
-                {Array.from({ length: testimonial.stars }).map((_, j) => (
-                  <Star key={j} className="w-4 h-4 fill-amber-400 text-amber-400" />
-                ))}
-              </div>
-              <p className="text-gray-700 text-sm leading-relaxed mb-5 italic">
-                "{testimonial.text}"
-              </p>
-              <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-brand-blue/10 rounded-full flex items-center justify-center text-brand-blue font-bold text-sm">
-                  {testimonial.name[0]}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          {data.items.map((item, i) => {
+            const value = parseInt(item.stat.replace(/\D/g, ''), 10)
+            const suffix = item.stat.replace(/\d/g, '')
+
+            return (
+              <div 
+                key={i} 
+                className="group relative bg-white/[0.02] border border-white/5 rounded-3xl p-8 text-center hover:bg-white/[0.04] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-sm overflow-hidden"
+              >
+                {/* Hover Glow Effect */}
+                <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                
+                <div className={`relative text-5xl sm:text-6xl font-black mb-4 tracking-tighter ${item.accent}`}>
+                  <AnimatedCounter end={value} suffix={suffix} duration={2500} />
                 </div>
-                <div>
-                  <div className="font-semibold text-gray-900 text-sm">{testimonial.name}</div>
-                  <div className="text-gray-400 text-xs">{testimonial.role}</div>
+                
+                <p className="relative text-white/80 text-base font-medium leading-relaxed mb-6">
+                  {item.label}
+                </p>
+                
+                <div className="relative inline-flex items-center justify-center px-3 py-1 rounded-full bg-white/5 border border-white/10">
+                  <span className="text-[10px] text-gray-400 font-bold tracking-widest uppercase">
+                    {item.source}
+                  </span>
                 </div>
               </div>
-            </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>
@@ -268,12 +267,12 @@ function TestimonialsSection() {
 function CtaSection({ locale }: { locale: string }) {
   const heroT = useTranslations('hero')
   return (
-    <section className="py-20 bg-gradient-to-br from-brand-blue to-brand-blue-light">
+    <section className="py-14 sm:py-20 bg-gradient-to-br from-brand-blue to-brand-blue-light">
       <div className="max-w-3xl mx-auto px-4 text-center">
-        <h2 className="text-3xl sm:text-4xl font-extrabold text-white mb-4">
+        <h2 className="text-2xl sm:text-4xl font-extrabold text-white mb-4">
           Preparat per marcar la diferència?
         </h2>
-        <p className="text-blue-100 text-lg mb-10">
+        <p className="text-blue-100 text-base sm:text-lg mb-8 sm:mb-10">
           Amb tan sols 6€/mes pots formar part de la comunitat Unaria i contribuir a un impacte real.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -300,11 +299,10 @@ export default function HomePage({ params: { locale } }: PageProps) {
   return (
     <>
       <HeroSection locale={locale} />
-      <HowItWorksSection locale={locale} />
-      <TransparencyBar />
-      <NgoSection />
+      <ObjectiusSection locale={locale} />
+      <ProjectsSection locale={locale} />
       <NewsSection locale={locale} />
-      <TestimonialsSection />
+      <DestacatsSection locale={locale} />
       <CtaSection locale={locale} />
     </>
   )

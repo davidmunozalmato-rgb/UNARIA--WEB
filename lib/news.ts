@@ -236,6 +236,102 @@ Wissenschaftliche Prognosen deuten darauf hin, dass ohne eine drastische Reduzie
 Die internationale Gemeinschaft beginnt die Dringlichkeit des Problems anzuerkennen. Mehrere Klimagipfel haben die Frage der Vertreibung erstmals auf ihre Agenden gesetzt, aber konkrete Zusagen zum Schutz der Betroffenen bleiben unzureichend.`,
     },
   },
+  {
+    id: 'education-crisis',
+    slug: 'education-crisis',
+    date: { day: '02', month: 'Mai', year: '2026', iso: '2026-05-02' },
+    image: 'https://images.unsplash.com/photo-1511629091441-ee46146481b6?w=1200&q=80',
+    imageAlt: 'Nens i nenes a una escola',
+    titles: {
+      ca: 'Més de 250 milions d\'infants continuen sense escolaritzar a tot el món',
+      es: 'Más de 250 millones de niños siguen sin escolarizar en todo el mundo',
+      en: 'Over 250 million children remain out of school worldwide',
+      fr: 'Plus de 250 millions d\'enfants restent non scolarisés dans le monde',
+      de: 'Über 250 Millionen Kinder gehen weltweit nicht zur Schule',
+    },
+    excerpts: {
+      ca: 'La pobresa, els conflictes i la manca d\'infraestructures limiten l\'accés a l\'educació bàsica, especialment per a les nenes en zones rurals.',
+      es: 'La pobreza, los conflictos y la falta de infraestructuras limitan el acceso a la educación básica, especialmente para las niñas en zonas rurales.',
+      en: 'Poverty, conflict and a lack of infrastructure limit access to basic education, particularly for girls in rural areas.',
+      fr: 'La pauvreté, les conflits et le manque d\'infrastructures limitent l\'accès à l\'éducation de base, en particulier pour les filles dans les zones rurales.',
+      de: 'Armut, Konflikte und mangelnde Infrastruktur schränken den Zugang zu Grundbildung ein, insbesondere für Mädchen in ländlichen Gebieten.',
+    },
+    bodies: {
+      ca: `Un recent informe posa de manifest l'estancament global en l'accés a l'educació. Segons dades internacionals, 258 milions d'infants i joves no assisteixen a l'escola, una xifra que gairebé no ha variat durant l'última dècada.
+      
+L'Àfrica subsahariana concentra la major part d'aquesta problemàtica, on gairebé un terç dels infants en edat de cursar primària no estan escolaritzats. Els motius són múltiples, incloent-hi els desplaçaments forçosos per conflictes, l'absència d'infraestructures educatives properes, el treball infantil derivat de l'extrema pobresa i normes socioculturals que discriminen les nenes.
+
+L'educació és un pilar fonamental per trencar el cicle de la pobresa i promoure el desenvolupament comunitari. Diverses ONGs treballen intensivament per proporcionar beques, construir escoles i oferir programes formatius adaptats a les necessitats de les comunitats més aïllades.`,
+      es: `Un reciente informe pone de manifiesto el estancamiento global en el acceso a la educación. Según datos internacionales, 258 millones de niños y jóvenes no asisten a la escuela, una cifra que apenas ha variado durante la última década.
+      
+El África subsahariana concentra la mayor parte de esta problemática, donde casi un tercio de los niños en edad de cursar primaria no están escolarizados. Los motivos son múltiples, incluyendo los desplazamientos forzosos por conflictos, la ausencia de infraestructuras educativas cercanas, el trabajo infantil derivado de la extrema pobreza y normas socioculturales que discriminan a las niñas.
+
+La educación es un pilar fundamental para romper el ciclo de la pobreza y promover el desarrollo comunitario. Varias ONGs trabajan intensamente para proporcionar becas, construir escuelas y ofrecer programas formativos adaptados a las necesidades de las comunidades más aisladas.`,
+      en: `A recent report highlights global stagnation in access to education. According to international data, 258 million children and young people do not attend school, a figure that has barely changed over the past decade.
+      
+Sub-Saharan Africa accounts for most of this problem, where nearly a third of primary-school-age children are out of school. The reasons are multiple, including forced displacement due to conflict, the lack of nearby educational infrastructure, child labour stemming from extreme poverty and socio-cultural norms that discriminate against girls.
+
+Education is a fundamental pillar for breaking the cycle of poverty and promoting community development. Several NGOs are working intensively to provide scholarships, build schools and offer training programmes adapted to the needs of the most isolated communities.`,
+      fr: `Un récent rapport souligne la stagnation mondiale de l'accès à l'éducation. Selon les données internationales, 258 millions d'enfants et de jeunes ne vont pas à l'école, un chiffre qui a à peine évolué au cours de la dernière décennie.
+      
+L'Afrique subsaharienne concentre la majeure partie de ce problème, où près d'un tiers des enfants en âge d'être à l'école primaire ne sont pas scolarisés. Les raisons sont multiples : déplacements forcés liés aux conflits, absence d'infrastructures éducatives à proximité, travail des enfants dû à l'extrême pauvreté et normes socioculturelles discriminantes à l'égard des filles.
+
+L'éducation est un pilier fondamental pour briser le cycle de la pauvreté et promouvoir le développement communautaire. Plusieurs ONG travaillent intensément pour fournir des bourses, construire des écoles et offrir des programmes de formation adaptés aux besoins des communautés les plus isolées.`,
+      de: `Ein aktueller Bericht zeigt eine weltweite Stagnation beim Zugang zu Bildung auf. Nach internationalen Daten besuchen 258 Millionen Kinder und Jugendliche keine Schule, eine Zahl, die sich im letzten Jahrzehnt kaum verändert hat.
+      
+Subsahara-Afrika ist am stärksten betroffen; dort geht fast ein Drittel der Kinder im Grundschulalter nicht zur Schule. Die Gründe sind vielfältig: gewaltsame Vertreibungen durch Konflikte, fehlende Bildungsinfrastruktur in der Nähe, Kinderarbeit aufgrund extremer Armut und soziokulturelle Normen, die Mädchen benachteiligen.
+
+Bildung ist ein zentraler Pfeiler, um den Kreislauf der Armut zu durchbrechen und die Entwicklung von Gemeinschaften zu fördern. Verschiedene NGOs arbeiten intensiv daran, Stipendien bereitzustellen, Schulen zu bauen und Bildungsprogramme anzubieten, die auf die Bedürfnisse der isoliertesten Gemeinden zugeschnitten sind.`
+    }
+  },
+  {
+    id: 'health-inequality',
+    slug: 'health-inequality',
+    date: { day: '24', month: 'Abr', year: '2026', iso: '2026-04-24' },
+    image: 'https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1200&q=80',
+    imageAlt: 'Centre mèdic rural',
+    titles: {
+      ca: 'La desigualtat en l\'accés sanitari costa milions de vides anualment',
+      es: 'La desigualdad en el acceso sanitario cuesta millones de vidas anualmente',
+      en: 'Health access inequality costs millions of lives annually',
+      fr: 'L\'inégalité d\'accès aux soins de santé coûte des millions de vies chaque année',
+      de: 'Ungleichheit beim Zugang zu Gesundheitsversorgung kostet jährlich Millionen Menschenleben',
+    },
+    excerpts: {
+      ca: 'Més de la meitat de la població mundial no té cobertura total en serveis sanitaris essencials, el que agreuja l\'impacte de malalties curables.',
+      es: 'Más de la mitad de la población mundial no tiene cobertura total en servicios sanitarios esenciales, lo que agrava el impacto de enfermedades curables.',
+      en: 'More than half the world\'s population lacks full coverage of essential health services, worsening the impact of curable diseases.',
+      fr: 'Plus de la moitié de la population mondiale n\'a pas une couverture totale des services de santé essentiels, ce qui aggrave l\'impact des maladies curables.',
+      de: 'Mehr als die Hälfte der Weltbevölkerung ist bei grundlegenden Gesundheitsdiensten nicht vollständig abgesichert, was die Auswirkungen heilbarer Krankheiten verschlimmert.',
+    },
+    bodies: {
+      ca: `Tot i els grans avenços en medicina durant les darreres dècades, l'accés equitatiu a tractaments i atenció bàsica continua sent un repte monumental. Organitzacions globals adverteixen que més de la meitat de la població mundial no pot accedir als serveis sanitaris necessaris sense patir dificultats econòmiques greus.
+      
+Les malalties prevenibles i tractables, com la malària, la tuberculosi o les infeccions respiratòries agudes, continuen causant estralls en països de rendes baixes a causa de la falta de diagnòstic i medicació adequada. En àrees rurals de Llatinoamèrica, Àfrica i el sud d'Àsia, l'absència de professionals mèdics agreuja aquesta vulnerabilitat.
+
+Reforçar els sistemes sanitaris locals, millorar l'abastiment de vacunes i donar suport a unitats mòbils de salut són accions crucials per reduir la mortalitat i construir societats més fortes i resilients.`,
+      es: `A pesar de los grandes avances en medicina durante las últimas décadas, el acceso equitativo a tratamientos y atención básica sigue siendo un reto monumental. Organizaciones globales advierten que más de la mitad de la población mundial no puede acceder a los servicios sanitarios necesarios sin sufrir graves dificultades económicas.
+      
+Enfermedades prevenibles y tratables, como la malaria, la tuberculosis o las infecciones respiratorias agudas, continúan causando estragos en países de rentas bajas debido a la falta de diagnóstico y medicación adecuada. En áreas rurales de Latinoamérica, África y el sur de Asia, la ausencia de profesionales médicos agrava esta vulnerabilidad.
+
+Reforzar los sistemas sanitarios locales, mejorar el abastecimiento de vacunas y apoyar unidades móviles de salud son acciones cruciales para reducir la mortalidad y construir sociedades más fuertes y resilientes.`,
+      en: `Despite major medical advances over recent decades, equitable access to treatment and basic care remains a monumental challenge. Global organisations warn that over half the world's population cannot access necessary health services without severe financial hardship.
+      
+Preventable and treatable diseases, such as malaria, tuberculosis and acute respiratory infections, continue to wreak havoc in low-income countries due to a lack of diagnosis and adequate medication. In rural areas of Latin America, Africa and South Asia, the shortage of medical professionals exacerbates this vulnerability.
+
+Strengthening local health systems, improving vaccine supply chains and supporting mobile health units are crucial actions to reduce mortality and build stronger, more resilient societies.`,
+      fr: `Malgré les grandes avancées médicales de ces dernières décennies, l'accès équitable aux traitements et aux soins de base reste un défi monumental. Les organisations mondiales avertissent que plus de la moitié de la population mondiale ne peut accéder aux services de santé nécessaires sans subir de graves difficultés financières.
+      
+Les maladies évitables et traitables, telles que le paludisme, la tuberculose et les infections respiratoires aiguës, continuent de faire des ravages dans les pays à faible revenu en raison du manque de diagnostic et de médicaments adéquats. Dans les zones rurales d'Amérique latine, d'Afrique et d'Asie du Sud, la pénurie de professionnels de santé aggrave cette vulnérabilité.
+
+Renforcer les systèmes de santé locaux, améliorer l'approvisionnement en vaccins et soutenir les unités de santé mobiles sont des actions cruciales pour réduire la mortalité et bâtir des sociétés plus fortes et plus résilientes.`,
+      de: `Trotz großer medizinischer Fortschritte in den letzten Jahrzehnten bleibt der gerechte Zugang zu Behandlungen und Grundversorgung eine monumentale Herausforderung. Globale Organisationen warnen, dass mehr als die Hälfte der Weltbevölkerung grundlegende Gesundheitsdienste nicht in Anspruch nehmen kann, ohne in schwere finanzielle Not zu geraten.
+      
+Vermeidbare und behandelbare Krankheiten wie Malaria, Tuberkulose und akute Atemwegsinfektionen richten in einkommensschwachen Ländern aufgrund fehlender Diagnosen und unzureichender Medikamente weiterhin verheerende Schäden an. In ländlichen Gebieten Lateinamerikas, Afrikas und Südasiens verschärft der Mangel an medizinischem Personal diese Verwundbarkeit.
+
+Die Stärkung lokaler Gesundheitssysteme, die Verbesserung der Impfstoffversorgung und die Unterstützung mobiler Gesundheitseinheiten sind entscheidende Maßnahmen, um die Sterblichkeit zu senken und stärkere, widerstandsfähigere Gesellschaften aufzubauen.`
+    }
+  }
 ]
 
 export function getArticleBySlug(slug: string): Article | undefined {
@@ -264,4 +360,12 @@ export const readMoreLabels: Record<string, string> = {
   en: 'Read more',
   fr: 'Lire plus',
   de: 'Mehr lesen',
+}
+
+export const viewAllLabels: Record<string, string> = {
+  ca: 'Veure totes les notícies',
+  es: 'Ver todas las noticias',
+  en: 'View all news',
+  fr: 'Voir toutes les actualités',
+  de: 'Alle Neuigkeiten ansehen',
 }
