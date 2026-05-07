@@ -19,22 +19,22 @@ export default function NewsSection({ locale }: { locale: string }) {
         </div>
 
         {/* Cards grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
+        <div className="flex flex-col sm:grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8">
           {articles.slice(0, 3).map((article) => {
             const monthLabel = monthMap[article.date.month] ?? article.date.month
             return (
-              <article key={article.id} className="group flex flex-col">
-                {/* Image with date badge */}
-                <div className="relative overflow-hidden rounded-xl aspect-[4/3] bg-gray-100">
+              <article key={article.id} className="group flex flex-row sm:flex-col gap-3 sm:gap-0">
+                {/* Image */}
+                <div className="relative overflow-hidden rounded-xl flex-shrink-0 w-28 h-28 sm:w-full sm:aspect-[4/3] sm:h-auto bg-gray-100">
                   <Image
                     src={article.image}
                     alt={article.imageAlt}
                     fill
                     className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    sizes="(max-width: 768px) 100vw, 33vw"
+                    sizes="(max-width: 640px) 112px, (max-width: 768px) 50vw, 33vw"
                   />
-                  {/* Date badge */}
-                  <div className="absolute top-3 right-3 bg-white rounded-lg shadow-md px-3 py-2 text-center min-w-[52px]">
+                  {/* Date badge — only on desktop */}
+                  <div className="hidden sm:block absolute top-3 right-3 bg-white rounded-lg shadow-md px-3 py-2 text-center min-w-[52px]">
                     <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide leading-none">
                       {monthLabel}
                     </div>
@@ -47,20 +47,24 @@ export default function NewsSection({ locale }: { locale: string }) {
                 </div>
 
                 {/* Content */}
-                <div className="flex flex-col flex-1 pt-5">
-                  <h3 className="text-lg font-bold text-gray-900 leading-snug mb-3 group-hover:text-brand-blue transition-colors">
+                <div className="flex flex-col flex-1 sm:pt-4">
+                  {/* Mobile date */}
+                  <span className="sm:hidden text-xs text-gray-400 mb-1">
+                    {article.date.day} {monthLabel} {article.date.year}
+                  </span>
+                  <h3 className="text-sm sm:text-lg font-bold text-gray-900 leading-snug mb-1 sm:mb-3 group-hover:text-brand-blue transition-colors line-clamp-2">
                     {article.titles[lang]}
                   </h3>
-                  <p className="text-sm text-gray-600 leading-relaxed flex-1">
+                  <p className="hidden sm:block text-sm text-gray-600 leading-relaxed flex-1">
                     {article.excerpts[lang]}
                   </p>
-                  <div className="mt-4 pt-4 border-t border-gray-100">
+                  <div className="mt-auto pt-2 sm:pt-4 sm:border-t sm:border-gray-100">
                     <Link
                       href={`/${locale}/news/${article.slug}`}
-                      className="inline-flex items-center gap-1.5 text-brand-blue font-semibold text-sm hover:gap-2.5 transition-all"
+                      className="inline-flex items-center gap-1.5 text-brand-blue font-semibold text-xs sm:text-sm hover:gap-2.5 transition-all"
                     >
                       {readMoreLabels[lang]}
-                      <ArrowRight className="w-4 h-4" />
+                      <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                     </Link>
                   </div>
                 </div>

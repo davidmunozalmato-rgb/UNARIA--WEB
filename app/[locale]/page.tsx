@@ -39,32 +39,33 @@ function HeroSection({ locale }: { locale: string }) {
         <div className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-brand-teal blur-3xl" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-28">
-        <div className="max-w-3xl">
-          <div className="inline-flex items-center gap-2 bg-white/10 text-white/90 px-4 py-2 rounded-full text-sm font-medium mb-6 border border-white/20">
-            <Shield className="w-4 h-4" />
-            {t('badge')}
+      <div className="relative max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 py-12 sm:py-20 lg:py-28">
+        <div className="max-w-3xl mx-auto sm:mx-0 text-center sm:text-left">
+          <div className="inline-flex items-center gap-2 bg-white/10 text-white/80 px-3 py-1.5 rounded-full text-xs font-medium mb-5 border border-white/20">
+            <Shield className="w-3 h-3 flex-shrink-0" />
+            <span className="sm:hidden">Registrada a Catalunya</span>
+            <span className="hidden sm:inline">{t('badge')}</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-6">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4 sm:mb-6">
             {t('title')}
           </h1>
 
-          <p className="text-lg sm:text-xl text-blue-100 mb-10 leading-relaxed max-w-2xl">
+          <p className="text-sm sm:text-xl text-blue-100 mb-7 sm:mb-10 leading-relaxed max-w-2xl mx-auto sm:mx-0">
             {t('subtitle')}
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col gap-3 sm:flex-row sm:gap-4">
             <Link
               href={`/${locale}/become-member`}
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-brand-teal text-white font-bold text-lg rounded-xl hover:bg-brand-teal-dark transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-8 sm:py-4 bg-brand-teal text-white font-bold text-base sm:text-lg rounded-xl hover:bg-brand-teal-dark transition-all shadow-lg"
             >
               {t('ctaMember')}
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </Link>
             <Link
               href={`/${locale}/donate`}
-              className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 text-white font-bold text-lg rounded-xl hover:bg-white/20 transition-all border border-white/30"
+              className="inline-flex items-center justify-center gap-2 px-6 py-3.5 sm:px-8 sm:py-4 bg-white/10 text-white font-bold text-base sm:text-lg rounded-xl hover:bg-white/20 transition-all border border-white/30"
             >
               {t('ctaDonate')}
             </Link>
@@ -72,9 +73,9 @@ function HeroSection({ locale }: { locale: string }) {
         </div>
       </div>
 
-      <a 
+      <a
         href="#projects"
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 text-white/50 hover:text-white transition-colors animate-bounce cursor-pointer z-10"
+        className="hidden sm:block absolute bottom-6 left-1/2 -translate-x-1/2 text-white/50 hover:text-white transition-colors animate-bounce cursor-pointer z-10"
         aria-label="Anar a projectes"
       >
         <ArrowDownCircle className="w-8 h-8" />
@@ -150,14 +151,14 @@ function ObjectiusSection({ locale }: { locale: string }) {
           <p className="text-gray-500 max-w-2xl mx-auto text-base sm:text-lg">{data.subtitle}</p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           {data.items.map((item, i) => (
-            <div key={i} className="flex flex-col items-start p-5 sm:p-6 rounded-2xl border border-gray-100 hover:shadow-md transition-shadow bg-white">
-              <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-5 ${item.color}`}>
-                {item.icon}
+            <div key={i} className="flex flex-col items-start p-4 sm:p-6 rounded-2xl border border-gray-100 hover:shadow-md transition-shadow bg-white">
+              <div className={`w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl flex-shrink-0 flex items-center justify-center mb-3 sm:mb-5 ${item.color}`}>
+                <span className="scale-75 sm:scale-100">{item.icon}</span>
               </div>
-              <h3 className="font-bold text-gray-900 text-base mb-2">{item.title}</h3>
-              <p className="text-sm text-gray-500 leading-relaxed" style={{ textAlign: 'justify' }}>{item.desc}</p>
+              <h3 className="font-bold text-gray-900 text-sm sm:text-base mb-1 sm:mb-2 leading-snug">{item.title}</h3>
+              <p className="text-[11px] sm:text-sm text-gray-500 leading-relaxed line-clamp-3 sm:line-clamp-none sm:text-justify">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -230,38 +231,37 @@ function DestacatsSection({ locale }: { locale: string }) {
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-[128px] opacity-50 mix-blend-screen pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14 sm:mb-20">
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70 mb-4 tracking-tight">
+        <div className="text-center mb-10 sm:mb-20">
+          <h2 className="text-2xl sm:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-white to-white/70 mb-3 sm:mb-4 tracking-tight">
             {data.title}
           </h2>
-          <p className="text-gray-400 text-lg sm:text-xl max-w-2xl mx-auto font-medium">
+          <p className="text-gray-400 text-base sm:text-xl max-w-2xl mx-auto font-medium">
             {data.subtitle}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8">
           {data.items.map((item, i) => {
             const value = parseInt(item.stat.replace(/\D/g, ''), 10)
             const suffix = item.stat.replace(/\d/g, '')
 
             return (
-              <div 
-                key={i} 
-                className="group relative bg-white/[0.02] border border-white/5 rounded-3xl p-8 text-center hover:bg-white/[0.04] transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] backdrop-blur-sm overflow-hidden"
+              <div
+                key={i}
+                className="group relative bg-white/[0.02] border border-white/5 rounded-2xl sm:rounded-3xl p-4 sm:p-8 text-center hover:bg-white/[0.04] transition-all duration-500 backdrop-blur-sm overflow-hidden"
               >
-                {/* Hover Glow Effect */}
                 <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                
-                <div className={`relative text-5xl sm:text-6xl font-black mb-4 tracking-tighter ${item.accent}`}>
+
+                <div className={`relative text-3xl sm:text-5xl lg:text-6xl font-black mb-2 sm:mb-4 tracking-tighter ${item.accent}`}>
                   <AnimatedCounter end={value} suffix={suffix} duration={2500} />
                 </div>
-                
-                <p className="relative text-white/80 text-base font-medium leading-relaxed mb-6">
+
+                <p className="relative text-white/80 text-xs sm:text-base font-medium leading-snug sm:leading-relaxed mb-3 sm:mb-6">
                   {item.label}
                 </p>
-                
-                <div className="relative inline-flex items-center justify-center px-3 py-1 rounded-full bg-white/5 border border-white/10">
-                  <span className="text-[10px] text-gray-400 font-bold tracking-widest uppercase">
+
+                <div className="relative inline-flex items-center justify-center px-2 sm:px-3 py-1 rounded-full bg-white/5 border border-white/10">
+                  <span className="text-[9px] sm:text-[10px] text-gray-400 font-bold tracking-widest uppercase">
                     {item.source}
                   </span>
                 </div>

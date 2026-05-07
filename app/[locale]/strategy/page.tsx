@@ -553,53 +553,57 @@ export default async function StrategyPage({ params: { locale } }: PageProps) {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero */}
-      <section className="bg-gradient-to-br from-brand-blue via-brand-blue to-brand-blue-light py-20 sm:py-28">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="inline-flex items-center gap-2 bg-white/10 text-white/90 px-4 py-2 rounded-full text-sm font-medium mb-6 border border-white/20">
-            <Shield className="w-4 h-4" />
+      <section className="relative bg-gradient-to-br from-brand-blue via-brand-blue to-brand-blue-light overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-10 right-10 w-72 h-72 rounded-full bg-white blur-3xl" />
+          <div className="absolute bottom-0 left-10 w-56 h-56 rounded-full bg-brand-teal blur-3xl" />
+        </div>
+        <div className="relative max-w-5xl mx-auto px-5 sm:px-8 py-12 sm:py-24 text-center sm:text-left">
+          <div className="inline-flex items-center gap-2 bg-white/10 text-white/80 px-3 py-1.5 rounded-full text-xs font-medium mb-5 border border-white/20">
+            <Shield className="w-3.5 h-3.5" />
             {data.badge}
           </div>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-white mb-5 leading-tight">
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-white mb-4 leading-tight">
             {data.title}
           </h1>
-          <p className="text-blue-100 text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed">
+          <p className="text-sm sm:text-xl text-blue-100 max-w-2xl leading-relaxed">
             {data.subtitle}
           </p>
         </div>
       </section>
 
       {/* Pillars */}
-      <section className="py-16 sm:py-24">
+      <section className="py-8 sm:py-20">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="space-y-8 sm:space-y-10">
+          <div className="space-y-3 sm:space-y-8">
             {data.pillars.map((pillar, i) => (
               <div
                 key={i}
-                className={`rounded-2xl border ${pillar.border} bg-white shadow-sm hover:shadow-md transition-shadow overflow-hidden`}
+                className={`rounded-2xl border ${pillar.border} bg-white shadow-sm overflow-hidden`}
               >
-                <div className="flex flex-col sm:flex-row">
-                  {/* Left accent bar + number */}
-                  <div className={`${pillar.bg} flex sm:flex-col items-center sm:items-center justify-between sm:justify-start gap-4 sm:gap-0 px-6 py-5 sm:px-8 sm:py-8 sm:w-36 flex-shrink-0`}>
-                    <div className={`${pillar.accent} ${pillar.bg} w-12 h-12 rounded-xl flex items-center justify-center`}>
-                      {pillar.icon}
+                <div className="flex flex-row sm:flex-row">
+                  {/* Left accent bar */}
+                  <div className={`${pillar.bg} flex flex-col items-center justify-center gap-2 px-3 sm:px-8 py-5 sm:py-8 w-16 sm:w-36 flex-shrink-0`}>
+                    <div className={`w-9 h-9 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center ${pillar.accent} ${pillar.bg}`}>
+                      <span className="scale-75 sm:scale-100">{pillar.icon}</span>
                     </div>
-                    <span className={`text-4xl sm:text-5xl font-extrabold ${pillar.accent} opacity-20 sm:mt-4`}>
+                    <span className={`text-2xl sm:text-5xl font-extrabold ${pillar.accent} opacity-20`}>
                       {pillar.number}
                     </span>
                   </div>
 
                   {/* Content */}
-                  <div className="p-6 sm:p-8 flex-1">
-                    <h2 className="text-xl sm:text-2xl font-extrabold text-gray-900 mb-1">
+                  <div className="p-4 sm:p-8 flex-1 min-w-0">
+                    <h2 className="text-base sm:text-2xl font-extrabold text-gray-900 mb-0.5 sm:mb-1 leading-snug">
                       {pillar.title}
                     </h2>
-                    <p className={`text-sm font-semibold ${pillar.accent} mb-5`}>
+                    <p className={`text-xs sm:text-sm font-semibold ${pillar.accent} mb-3 sm:mb-5`}>
                       {pillar.subtitle}
                     </p>
-                    <ul className="space-y-3">
+                    <ul className="space-y-2 sm:space-y-3">
                       {pillar.points.map((point, j) => (
-                        <li key={j} className="flex items-start gap-3 text-gray-600 text-sm leading-relaxed">
-                          <span className={`mt-1 w-2 h-2 rounded-full flex-shrink-0 ${pillar.bg} border-2 ${pillar.border}`} />
+                        <li key={j} className="flex items-start gap-2 sm:gap-3 text-gray-600 text-xs sm:text-sm leading-relaxed">
+                          <span className={`mt-1.5 w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full flex-shrink-0 border-2 ${pillar.border}`} />
                           {point}
                         </li>
                       ))}

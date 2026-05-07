@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
 import { Menu, X, Heart } from 'lucide-react'
 import LanguageSwitcher from './LanguageSwitcher'
@@ -12,6 +13,7 @@ interface NavbarProps {
 
 export default function Navbar({ locale }: NavbarProps) {
   const t = useTranslations('nav')
+  const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
 
@@ -25,6 +27,7 @@ export default function Navbar({ locale }: NavbarProps) {
     { href: `/${locale}`, label: t('home') },
     { href: `/${locale}/about`, label: t('about') },
     { href: `/${locale}/how-we-work`, label: t('howWeWork') },
+    { href: `/${locale}/strategy`, label: t('strategy') },
     { href: `/${locale}/transparency`, label: t('transparency') },
   ]
 
@@ -51,15 +54,22 @@ export default function Navbar({ locale }: NavbarProps) {
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-1">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="px-3 py-2 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-50 hover:text-brand-blue transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {links.map((link) => {
+              const isActive = pathname === link.href
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+                    isActive
+                      ? 'text-brand-blue font-semibold border-b-2 border-brand-blue rounded-none pb-1.5'
+                      : 'text-gray-700 hover:bg-gray-50 hover:text-brand-blue'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              )
+            })}
           </div>
 
           {/* Desktop CTA + Language */}
@@ -97,16 +107,23 @@ export default function Navbar({ locale }: NavbarProps) {
       {mobileOpen && (
         <div className="md:hidden bg-white border-t border-gray-100 shadow-lg">
           <div className="px-4 py-3 space-y-1">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className="block px-3 py-2.5 text-sm font-medium text-gray-700 rounded-lg hover:bg-gray-50 hover:text-brand-blue"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {links.map((link) => {
+              const isActive = pathname === link.href
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className={`block px-3 py-2.5 text-sm font-medium rounded-lg transition-colors ${
+                    isActive
+                      ? 'bg-blue-50 text-brand-blue font-semibold border-l-2 border-brand-blue'
+                      : 'text-gray-700 hover:bg-gray-50 hover:text-brand-blue'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              )
+            })}
             <div className="pt-2 pb-1 space-y-2 border-t border-gray-100 mt-2">
               <Link
                 href={`/${locale}/donate`}
