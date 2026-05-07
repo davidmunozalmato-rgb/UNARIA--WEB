@@ -253,19 +253,24 @@ export default function MemberForm({ locale }: { locale: string }) {
                 <h2 className="text-base font-extrabold text-gray-900 mb-4">{t('paymentTitle')}</h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-4">
                   {[
-                    { value: 'sepa', icon: Building, label: t('paymentSepa') },
-                    { value: 'card', icon: CreditCard, label: t('paymentCard') },
-                  ].map(({ value, icon: Icon, label }) => (
+                    { value: 'sepa', icon: Building, label: t('paymentSepa'), recommended: true },
+                    { value: 'card', icon: CreditCard, label: t('paymentCard'), recommended: false },
+                  ].map(({ value, icon: Icon, label, recommended }) => (
                     <button
                       key={value}
                       type="button"
                       onClick={() => setValue('paymentMethod', value as 'sepa' | 'card')}
-                      className={`p-4 rounded-xl border-2 flex items-center gap-3 transition-all text-left ${
+                      className={`relative p-4 rounded-xl border-2 flex items-center gap-3 transition-all text-left ${
                         paymentMethod === value
                           ? 'border-brand-blue bg-blue-50'
                           : 'border-gray-200 hover:border-brand-blue bg-white'
                       }`}
                     >
+                      {recommended && (
+                        <span className="absolute -top-2.5 left-3 bg-brand-teal text-white text-[10px] font-bold px-2 py-0.5 rounded-full">
+                          Recomanat
+                        </span>
+                      )}
                       <Icon className={`w-5 h-5 flex-shrink-0 ${paymentMethod === value ? 'text-brand-blue' : 'text-gray-400'}`} />
                       <span className={`font-semibold text-sm ${paymentMethod === value ? 'text-brand-blue' : 'text-gray-700'}`}>
                         {label}
