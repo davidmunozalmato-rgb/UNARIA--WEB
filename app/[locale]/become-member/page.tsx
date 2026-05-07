@@ -1,4 +1,5 @@
 import { getTranslations } from 'next-intl/server'
+import { Suspense } from 'react'
 import MemberForm from './MemberForm'
 import type { Metadata } from 'next'
 
@@ -33,5 +34,9 @@ export async function generateMetadata({ params: { locale } }: PageProps): Promi
 }
 
 export default function BecomeMemberPage({ params: { locale } }: PageProps) {
-  return <MemberForm locale={locale} />
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-brand-gray" />}>
+      <MemberForm locale={locale} />
+    </Suspense>
+  )
 }

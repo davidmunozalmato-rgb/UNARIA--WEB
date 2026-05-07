@@ -1,4 +1,5 @@
 import { getTranslations } from 'next-intl/server'
+import { Suspense } from 'react'
 import DonateForm from './DonateForm'
 import type { Metadata } from 'next'
 
@@ -33,5 +34,9 @@ export async function generateMetadata({ params: { locale } }: PageProps): Promi
 }
 
 export default function DonatePage({ params: { locale } }: PageProps) {
-  return <DonateForm locale={locale} />
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-brand-gray" />}>
+      <DonateForm locale={locale} />
+    </Suspense>
+  )
 }
