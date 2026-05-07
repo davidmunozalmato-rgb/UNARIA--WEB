@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, ArrowLeft } from 'lucide-react'
+import { ArrowRight } from 'lucide-react'
 import { getTranslations } from 'next-intl/server'
 import { articles, sectionTitles, monthLabels, readMoreLabels } from '@/lib/news'
 import type { Metadata } from 'next'
@@ -22,23 +22,22 @@ export default function NewsPage({ params: { locale } }: PageProps) {
   const monthMap = monthLabels[lang] ?? monthLabels.ca
 
   return (
-    <div className="bg-white min-h-screen">
-      {/* Hero Header */}
-      <section className="bg-gray-50 py-16 sm:py-24 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <Link href={`/${locale}`} className="inline-flex items-center gap-2 text-gray-500 hover:text-brand-blue font-medium mb-6 transition-colors">
-            <ArrowLeft className="w-4 h-4" />
-            {lang === 'ca' ? 'Tornar a l\'inici' : lang === 'es' ? 'Volver al inicio' : lang === 'en' ? 'Back to home' : lang === 'fr' ? 'Retour à l\'accueil' : 'Zurück zur Startseite'}
-          </Link>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-4">
+    <div className="min-h-screen">
+      {/* Hero */}
+      <section className="relative bg-gradient-to-br from-brand-blue via-brand-blue to-brand-blue-light overflow-hidden">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute top-10 right-10 w-72 h-72 rounded-full bg-white blur-3xl" />
+          <div className="absolute bottom-0 left-10 w-56 h-56 rounded-full bg-brand-teal blur-3xl" />
+        </div>
+        <div className="relative max-w-5xl mx-auto px-5 sm:px-8 py-14 sm:py-24 text-center sm:text-left">
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-white mb-4 leading-tight">
             {sectionTitles[lang]}
           </h1>
-          <div className="w-16 h-1.5 bg-brand-blue rounded-full mx-auto mb-6" />
         </div>
       </section>
 
       {/* News Grid */}
-      <section className="py-14 sm:py-20">
+      <section className="py-14 sm:py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 sm:gap-10">
             {articles.map((article) => {

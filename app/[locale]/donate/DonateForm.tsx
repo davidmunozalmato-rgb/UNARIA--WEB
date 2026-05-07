@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
+import { useSearchParams } from 'next/navigation'
 import { Lock, Loader2, Heart, ArrowRight, CheckCircle } from 'lucide-react'
 import Link from 'next/link'
 
@@ -9,6 +10,16 @@ const AMOUNT_OPTIONS = [10, 25, 50, 100, 200]
 
 export default function DonateForm({ locale }: { locale: string }) {
   const t = useTranslations('donate')
+  const searchParams = useSearchParams()
+  const [showSuccess, setShowSuccess] = useState(false)
+  const [returnEmail, setReturnEmail] = useState('')
+
+  useEffect(() => {
+    if (searchParams.get('success') === '1') {
+      setReturnEmail(searchParams.get('email') ?? '')
+      setShowSuccess(true)
+    }
+  }, [searchParams])
   const [selectedAmount, setSelectedAmount] = useState(25)
   const [customAmount, setCustomAmount] = useState(false)
   const [customValue, setCustomValue] = useState('')
@@ -49,6 +60,29 @@ export default function DonateForm({ locale }: { locale: string }) {
     } finally {
       setLoading(false)
     }
+  }
+
+  if (showSuccess) {
+    return (
+      <div className="min-h-screen bg-brand-gray flex items-center justify-center p-4">
+        <div className="bg-white rounded-2xl max-w-md w-full text-center py-12 px-8 shadow-sm border border-gray-100">
+          <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <CheckCircle className="w-10 h-10 text-green-600" />
+          </div>
+          <h2 className="text-2xl font-extrabold text-gray-900 mb-3">{t('successTitle') || 'Gràcies per la teva donació!'}</h2>
+          <p className="text-gray-600 text-sm leading-relaxed mb-2">
+            {t('successText') || 'Hem rebut el teu pagament correctament.'}
+          </p>
+          {returnEmail && <p className="text-gray-500 text-xs mb-6">{returnEmail}</p>}
+          <Link
+            href={`/${locale}`}
+            className="inline-flex items-center gap-2 mt-4 px-6 py-3 bg-brand-blue text-white font-bold rounded-xl hover:bg-brand-blue-dark transition-all"
+          >
+            Tornar a l'inici
+          </Link>
+        </div>
+      </div>
+    )
   }
 
   return (

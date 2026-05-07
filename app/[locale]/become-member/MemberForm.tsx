@@ -1,7 +1,8 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useTranslations } from 'next-intl'
+import { useSearchParams } from 'next/navigation'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -30,11 +31,19 @@ type MemberFormData = z.infer<typeof memberSchema>
 
 export default function MemberForm({ locale }: { locale: string }) {
   const t = useTranslations('becomeMember')
+  const searchParams = useSearchParams()
   const [step, setStep] = useState<'form' | 'confirm' | 'success'>('form')
   const [customQuota, setCustomQuota] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [submittedEmail, setSubmittedEmail] = useState('')
+
+  useEffect(() => {
+    if (searchParams.get('success') === '1') {
+      setSubmittedEmail(searchParams.get('email') ?? '')
+      setStep('success')
+    }
+  }, [searchParams])
 
   const {
     register,

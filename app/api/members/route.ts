@@ -71,44 +71,83 @@ export async function POST(request: NextRequest) {
     let checkoutUrl: string | undefined
 
     if (data.paymentMethod === 'card') {
-      // Create Stripe Checkout session for subscription
       const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000'
       const stripeLocale = getStripeLocale(data.locale)
+      
+      checkoutUrl = `/${data.locale}/mock-checkout?amount=${data.monthlyQuota}&email=${encodeURIComponent(data.email)}&type=member`
 
-      // Create price dynamically
-      const price = await stripe.prices.create({
-        currency: 'eur',
-        unit_amount: Math.round(data.monthlyQuota * 100),
-        recurring: { interval: 'month' },
-        product_data: { name: `Quota soci Unaria – ${data.monthlyQuota}€/mes` },
-      })
+      if (process.env.STRIPE_SECRET_KEY !== 'sk_test_placeholder') {
+        // Create price dynamically
+        const price = await stripe.prices.create({
+          currency: 'eur',
+          unit_amount: Math.round(data.monthlyQuota * 100),
+          recurring: { interval: 'month' },
+          product_data: { name: `Quota soci Unaria – ${data.monthlyQuota}€/mes` },
+        })
 
-      const session = await stripe.checkout.sessions.create({
-        mode: 'subscription',
-        payment_method_types: ['card'],
-        line_items: [{ price: price.id, quantity: 1 }],
-        customer_email: data.email,
-        locale: stripeLocale,
-        success_url: `${appUrl}/${data.locale}/become-member?success=1&email=${encodeURIComponent(data.email)}`,
-        cancel_url: `${appUrl}/${data.locale}/become-member`,
-        metadata: {
-          name: data.name,
-          surname: data.surname,
-          idNumber: data.idNumber,
-          phone: data.phone || '',
-          address: data.address || '',
-          city: data.city || '',
-          postalCode: data.postalCode || '',
-          gdprMarketing: String(data.gdprMarketing),
-          locale: data.locale,
-          ip,
-        },
-      })
+        const session = await stripe.checkout.sessions.create({
+          mode: 'subscription',
+          payment_method_types: ['card'],
+          line_items: [{ price: price.id, quantity: 1 }],
+          customer_email: data.email,
+          locale: stripeLocale,
+          success_url: `${appUrl}/${data.locale}/become-member?success=1&email=${encodeURIComponent(data.email)}`,
+          cancel_url: `${appUrl}/${data.locale}/become-member`,
+          metadata: {
+            name: data.name,
+            surname: data.surname,
+            idNumber: data.idNumber,
+            phone: data.phone || '',
+            address: data.address || '',
+            city: data.city || '',
+            postalCode: data.postalCode || '',
+            gdprMarketing: String(data.gdprMarketing),
+            locale: data.locale,
+            ip,
+          },
+        })
 
-      checkoutUrl = session.url!
+        checkoutUrl = session.url!
+      }
 
-      // Create pending member record
-      await prisma.member.create({
+      try {
+        // Create pending member record
+        await prisma.member.create({
+          data: {
+            name: data.name,
+            surname: data.surname,
+            email: data.email,
+            phone: data.phone,
+            address: data.address,
+            city: data.city,
+            postalCode: data.postalCode,
+            idNumber: data.idNumber,
+            monthlyQuota: data.monthlyQuota,
+            status: 'pending',
+            gdprConsent: true,
+            gdprConsentAt: new Date(),
+            marketingConsent: data.gdprMarketing,
+            marketingConsentAt: data.gdprMarketing ? new Date() : undefined,
+            preferredLocale: data.locale,
+            consentIp: ip,
+          },
+        })
+      } catch (dbError) {
+        console.warn('Could not save member to database (is it running?):', dbError)
+        if (process.env.STRIPE_SECRET_KEY !== 'sk_test_placeholder') {
+          throw dbError
+        }
+      }
+
+      return NextResponse.json({ checkoutUrl })
+    }
+
+    // SEPA flow: create member directly
+    const ibanEncrypted = encrypt(data.iban!)
+
+    let memberId = 'mock_member_id'
+    try {
+      const member = await prisma.member.create({
         data: {
           name: data.name,
           surname: data.surname,
@@ -118,6 +157,7 @@ export async function POST(request: NextRequest) {
           city: data.city,
           postalCode: data.postalCode,
           idNumber: data.idNumber,
+          ibanEncrypted,
           monthlyQuota: data.monthlyQuota,
           status: 'pending',
           gdprConsent: true,
@@ -128,34 +168,13 @@ export async function POST(request: NextRequest) {
           consentIp: ip,
         },
       })
-
-      return NextResponse.json({ checkoutUrl })
+      memberId = member.id
+    } catch (dbError) {
+      console.warn('Could not save SEPA member to database (is it running?):', dbError)
+      if (process.env.STRIPE_SECRET_KEY !== 'sk_test_placeholder') {
+        throw dbError
+      }
     }
-
-    // SEPA flow: create member directly
-    const ibanEncrypted = encrypt(data.iban!)
-
-    const member = await prisma.member.create({
-      data: {
-        name: data.name,
-        surname: data.surname,
-        email: data.email,
-        phone: data.phone,
-        address: data.address,
-        city: data.city,
-        postalCode: data.postalCode,
-        idNumber: data.idNumber,
-        ibanEncrypted,
-        monthlyQuota: data.monthlyQuota,
-        status: 'pending',
-        gdprConsent: true,
-        gdprConsentAt: new Date(),
-        marketingConsent: data.gdprMarketing,
-        marketingConsentAt: data.gdprMarketing ? new Date() : undefined,
-        preferredLocale: data.locale,
-        consentIp: ip,
-      },
-    })
 
     // Send welcome email (best-effort)
     try {
@@ -169,7 +188,7 @@ export async function POST(request: NextRequest) {
       console.error('Failed to send welcome email:', e)
     }
 
-    return NextResponse.json({ success: true, memberId: member.id })
+    return NextResponse.json({ success: true, memberId })
   } catch (err: any) {
     console.error('Member creation error:', err)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
