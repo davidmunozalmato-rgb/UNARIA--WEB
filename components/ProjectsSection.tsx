@@ -22,11 +22,11 @@ export default function ProjectsSection({ locale }: { locale: string }) {
         </div>
 
         {/* Grid */}
-        <div className="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-8">
+        <div className="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
           {displayedProjects.map((project) => (
-            <div key={project.id} className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow flex flex-row sm:flex-col">
+            <div key={project.id} className="group flex flex-row sm:flex-col gap-3 sm:gap-0 bg-white sm:rounded-2xl sm:overflow-hidden sm:shadow-sm sm:hover:shadow-lg sm:transition-shadow">
               {/* Image */}
-              <div className="relative w-28 flex-shrink-0 sm:w-full sm:h-52 overflow-hidden bg-gray-100">
+              <div className="relative flex-shrink-0 w-28 h-28 rounded-xl sm:w-full sm:h-52 sm:rounded-none overflow-hidden bg-gray-100">
                 <Image
                   src={project.image}
                   alt={project.imageAlt[lang]}
@@ -37,30 +37,41 @@ export default function ProjectsSection({ locale }: { locale: string }) {
               </div>
 
               {/* Content */}
-              <div className="flex flex-col flex-1 p-3 sm:p-5">
-                <span className={`inline-block text-xs font-bold px-2 py-1 rounded-full mb-2 self-start ${project.entityColor}`}>
+              <div className="flex flex-col flex-1 sm:p-5">
+                <span className={`inline-block text-xs font-bold px-2 py-1 rounded-full mb-1.5 self-start ${project.entityColor}`}>
                   {project.entity}
                 </span>
-                <h3 className="font-bold text-gray-900 text-sm sm:text-base leading-snug mb-1 sm:mb-2 group-hover:text-brand-blue transition-colors">
+                <h3 className="font-bold text-gray-900 text-sm sm:text-base leading-snug mb-1 sm:mb-2 group-hover:text-brand-blue transition-colors line-clamp-2">
                   {project.titles[lang]}
                 </h3>
-                <p className="text-xs sm:text-sm text-gray-500 leading-relaxed flex-1 line-clamp-2 sm:line-clamp-none">
+                <p className="hidden sm:block text-sm text-gray-500 leading-relaxed flex-1">
                   {project.descs[lang]}
                 </p>
-                <div className="mt-3 sm:mt-5 flex flex-col sm:flex-col gap-1.5 sm:gap-2">
+                <div className="mt-auto pt-2 sm:pt-4 sm:border-t sm:border-gray-100">
+                  {/* Mobile: simple link like news */}
                   <Link
                     href={`/${locale}/become-member`}
-                    className="inline-flex items-center gap-1.5 w-full justify-center px-3 py-2 sm:py-2.5 bg-brand-blue text-white font-semibold text-xs sm:text-sm rounded-xl hover:bg-blue-900 transition-colors"
+                    className="sm:hidden inline-flex items-center gap-1.5 text-brand-blue font-semibold text-xs hover:gap-2.5 transition-all"
                   >
                     {memberLabels[lang]}
                     <ArrowRight className="w-3.5 h-3.5" />
                   </Link>
-                  <Link
-                    href={`/${locale}/donate`}
-                    className="inline-flex items-center gap-1.5 w-full justify-center px-3 py-2 sm:py-2.5 bg-white text-brand-teal border border-brand-teal font-semibold text-xs sm:text-sm rounded-xl hover:bg-brand-teal hover:text-white transition-colors"
-                  >
-                    {donateLabels[lang]}
-                  </Link>
+                  {/* Desktop: full buttons */}
+                  <div className="hidden sm:flex flex-col gap-2">
+                    <Link
+                      href={`/${locale}/become-member`}
+                      className="inline-flex items-center gap-1.5 w-full justify-center px-3 py-2.5 bg-brand-blue text-white font-semibold text-sm rounded-xl hover:bg-blue-900 transition-colors"
+                    >
+                      {memberLabels[lang]}
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                    <Link
+                      href={`/${locale}/donate`}
+                      className="inline-flex items-center gap-1.5 w-full justify-center px-3 py-2.5 bg-white text-brand-teal border border-brand-teal font-semibold text-sm rounded-xl hover:bg-brand-teal hover:text-white transition-colors"
+                    >
+                      {donateLabels[lang]}
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
