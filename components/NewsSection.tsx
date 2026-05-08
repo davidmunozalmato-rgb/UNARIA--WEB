@@ -19,55 +19,85 @@ export default function NewsSection({ locale }: { locale: string }) {
         </div>
 
         {/* Cards grid */}
-        <div className="flex flex-col sm:grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8">
+        <div className="flex flex-col sm:grid sm:grid-cols-2 md:grid-cols-3 gap-0 sm:gap-8 divide-y divide-gray-100 sm:divide-y-0">
           {articles.slice(0, 3).map((article) => {
             const monthLabel = monthMap[article.date.month] ?? article.date.month
             return (
-              <article key={article.id} className="group flex flex-row sm:flex-col gap-3 sm:gap-0">
-                {/* Image */}
-                <div className="relative overflow-hidden rounded-xl flex-shrink-0 w-28 h-28 sm:w-full sm:aspect-[4/3] sm:h-auto bg-gray-100">
-                  <Image
-                    src={article.image}
-                    alt={article.imageAlt}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    sizes="(max-width: 640px) 112px, (max-width: 768px) 50vw, 33vw"
-                  />
-                  {/* Date badge — only on desktop */}
-                  <div className="hidden sm:block absolute top-3 right-3 bg-white rounded-lg shadow-md px-3 py-2 text-center min-w-[52px]">
-                    <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide leading-none">
-                      {monthLabel}
-                    </div>
-                    <div className="text-2xl font-extrabold text-brand-blue leading-tight">
-                      {article.date.day}
-                    </div>
-                    <div className="w-5 h-px bg-brand-blue mx-auto my-1" />
-                    <div className="text-xs text-gray-400 leading-none">{article.date.year}</div>
+              <article key={article.id} className="group py-5 sm:py-0 first:pt-0 last:pb-0 sm:first:pt-0 sm:last:pb-0">
+
+                {/* ── MOBILE: imatge gran + badge data al costat ── */}
+                <div className="sm:hidden flex gap-3 mb-3">
+                  {/* Imatge gran */}
+                  <div className="relative flex-1 h-44 rounded-xl overflow-hidden bg-gray-100">
+                    <Image
+                      src={article.image}
+                      alt={article.imageAlt}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 640px) 75vw"
+                    />
+                  </div>
+                  {/* Badge data estil Cruz Roja */}
+                  <div className="flex-shrink-0 flex flex-col items-center justify-center bg-white border border-gray-100 rounded-xl px-2.5 py-3 w-16 text-center shadow-sm">
+                    <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide leading-tight">{monthLabel}</span>
+                    <div className="w-8 h-px bg-gray-200 my-1.5" />
+                    <span className="text-2xl font-extrabold text-brand-blue leading-none">{article.date.day}</span>
+                    <div className="w-8 h-px bg-gray-200 my-1.5" />
+                    <span className="text-[10px] text-gray-400 leading-none">{article.date.year}</span>
                   </div>
                 </div>
 
-                {/* Content */}
-                <div className="flex flex-col flex-1 sm:pt-4">
-                  {/* Mobile date */}
-                  <span className="sm:hidden text-xs text-gray-400 mb-1">
-                    {article.date.day} {monthLabel} {article.date.year}
-                  </span>
-                  <h3 className="text-sm sm:text-lg font-bold text-gray-900 leading-snug mb-1 sm:mb-3 group-hover:text-brand-blue transition-colors line-clamp-2">
+                {/* ── MOBILE: títol + extract + link ── */}
+                <div className="sm:hidden">
+                  <h3 className="text-lg font-bold text-gray-900 leading-snug mb-2 group-hover:text-brand-blue transition-colors">
                     {article.titles[lang]}
                   </h3>
-                  <p className="hidden sm:block text-sm text-gray-600 leading-relaxed flex-1">
+                  <p className="text-sm text-gray-600 leading-relaxed mb-3 line-clamp-3">
                     {article.excerpts[lang]}
                   </p>
-                  <div className="mt-auto pt-2 sm:pt-4 sm:border-t sm:border-gray-100">
+                  <Link
+                    href={`/${locale}/news/${article.slug}`}
+                    className="inline-flex items-center gap-1.5 text-brand-blue font-semibold text-sm hover:gap-2.5 transition-all"
+                  >
+                    {readMoreLabels[lang]}
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+
+                {/* ── DESKTOP: layout original ── */}
+                <div className="hidden sm:block">
+                  <div className="relative overflow-hidden rounded-xl w-full aspect-[4/3] bg-gray-100 mb-4">
+                    <Image
+                      src={article.image}
+                      alt={article.imageAlt}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 768px) 50vw, 33vw"
+                    />
+                    <div className="absolute top-3 right-3 bg-white rounded-lg shadow-md px-3 py-2 text-center min-w-[52px]">
+                      <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide leading-none">{monthLabel}</div>
+                      <div className="text-2xl font-extrabold text-brand-blue leading-tight">{article.date.day}</div>
+                      <div className="w-5 h-px bg-brand-blue mx-auto my-1" />
+                      <div className="text-xs text-gray-400 leading-none">{article.date.year}</div>
+                    </div>
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 leading-snug mb-3 group-hover:text-brand-blue transition-colors line-clamp-2">
+                    {article.titles[lang]}
+                  </h3>
+                  <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                    {article.excerpts[lang]}
+                  </p>
+                  <div className="pt-4 border-t border-gray-100">
                     <Link
                       href={`/${locale}/news/${article.slug}`}
-                      className="inline-flex items-center gap-1.5 text-brand-blue font-semibold text-xs sm:text-sm hover:gap-2.5 transition-all"
+                      className="inline-flex items-center gap-1.5 text-brand-blue font-semibold text-sm hover:gap-2.5 transition-all"
                     >
                       {readMoreLabels[lang]}
-                      <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                      <ArrowRight className="w-4 h-4" />
                     </Link>
                   </div>
                 </div>
+
               </article>
             )
           })}
