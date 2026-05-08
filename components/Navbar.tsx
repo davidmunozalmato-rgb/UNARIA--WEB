@@ -40,20 +40,17 @@ export default function Navbar({ locale }: NavbarProps) {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link
-            href={`/${locale}`}
-            className="flex items-center gap-2 font-bold text-xl text-brand-blue"
-          >
+
+        {/* ── DESKTOP header ── */}
+        <div className="hidden md:flex items-center justify-between h-16">
+          <Link href={`/${locale}`} className="flex items-center gap-2 font-bold text-xl text-brand-blue">
             <div className="w-8 h-8 bg-brand-blue rounded-lg flex items-center justify-center">
               <Heart className="w-4 h-4 text-white fill-white" />
             </div>
             <span>Unaria</span>
           </Link>
 
-          {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-1">
+          <div className="flex items-center gap-1">
             {links.map((link) => {
               const isActive = pathname === link.href
               return (
@@ -72,8 +69,7 @@ export default function Navbar({ locale }: NavbarProps) {
             })}
           </div>
 
-          {/* Desktop CTA + Language */}
-          <div className="hidden md:flex items-center gap-2">
+          <div className="flex items-center gap-2">
             <LanguageSwitcher currentLocale={locale} />
             <Link
               href={`/${locale}/donate`}
@@ -88,19 +84,34 @@ export default function Navbar({ locale }: NavbarProps) {
               {t('becomeMember')}
             </Link>
           </div>
-
-          {/* Mobile hamburger */}
-          <div className="md:hidden flex items-center gap-2">
-            <LanguageSwitcher currentLocale={locale} />
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="p-2 rounded-lg text-gray-700 hover:bg-gray-100"
-              aria-label="Toggle menu"
-            >
-              {mobileOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
         </div>
+
+        {/* ── MOBILE header: logo centrat ── */}
+        <div className="md:hidden flex items-center h-16 relative">
+          {/* Spacer esquerra igual d'amplada que el botó dret */}
+          <div className="w-10" />
+
+          {/* Logo centrat absolutament */}
+          <Link
+            href={`/${locale}`}
+            className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 font-bold text-xl text-brand-blue"
+          >
+            <div className="w-8 h-8 bg-brand-blue rounded-lg flex items-center justify-center">
+              <Heart className="w-4 h-4 text-white fill-white" />
+            </div>
+            <span>Unaria</span>
+          </Link>
+
+          {/* Hamburger a la dreta */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="ml-auto p-2 rounded-lg text-gray-700 hover:bg-gray-100"
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+
       </div>
 
       {/* Mobile menu */}
@@ -139,6 +150,9 @@ export default function Navbar({ locale }: NavbarProps) {
               >
                 {t('becomeMember')}
               </Link>
+              <div className="flex justify-center pt-1">
+                <LanguageSwitcher currentLocale={locale} />
+              </div>
             </div>
           </div>
         </div>
