@@ -170,7 +170,7 @@ export default function MemberForm({ locale }: { locale: string }) {
                       key={q}
                       type="button"
                       onClick={() => { setValue('monthlyQuota', q); setCustomQuota(false) }}
-                      className={`relative py-3 rounded-xl font-bold transition-all border-2 text-sm ${
+                      className={`relative py-3.5 rounded-xl font-bold transition-all border-2 text-sm ${
                         quota === q && !customQuota
                           ? 'bg-brand-blue text-white border-brand-blue shadow-md scale-105'
                           : 'bg-white text-gray-700 border-gray-200 hover:border-brand-blue'

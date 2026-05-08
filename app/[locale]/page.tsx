@@ -51,7 +51,7 @@ function HeroSection({ locale }: { locale: string }) {
             {t('title')}
           </h1>
 
-          <p className="text-sm sm:text-xl text-blue-100 mb-7 sm:mb-10 leading-relaxed max-w-2xl mx-auto sm:mx-0">
+          <p className="text-base sm:text-xl text-blue-100 mb-7 sm:mb-10 leading-relaxed max-w-2xl mx-auto sm:mx-0">
             {t('subtitle')}
           </p>
 
@@ -151,14 +151,14 @@ function ObjectiusSection({ locale }: { locale: string }) {
           <p className="text-gray-500 max-w-2xl mx-auto text-base sm:text-lg">{data.subtitle}</p>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {data.items.map((item, i) => (
-            <div key={i} className="flex flex-col items-start p-4 sm:p-6 rounded-2xl border border-gray-100 hover:shadow-md transition-shadow bg-white">
-              <div className={`w-10 h-10 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl flex-shrink-0 flex items-center justify-center mb-3 sm:mb-5 ${item.color}`}>
-                <span className="scale-75 sm:scale-100">{item.icon}</span>
+            <div key={i} className="flex flex-col items-start p-5 sm:p-6 rounded-2xl border border-gray-100 hover:shadow-md transition-shadow bg-white">
+              <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl flex-shrink-0 flex items-center justify-center mb-4 sm:mb-5 ${item.color}`}>
+                {item.icon}
               </div>
-              <h3 className="font-bold text-gray-900 text-sm sm:text-base mb-1 sm:mb-2 leading-snug">{item.title}</h3>
-              <p className="text-[11px] sm:text-sm text-gray-500 leading-relaxed line-clamp-3 sm:line-clamp-none sm:text-justify">{item.desc}</p>
+              <h3 className="font-bold text-gray-900 text-base mb-2 leading-snug">{item.title}</h3>
+              <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -261,7 +261,7 @@ function DestacatsSection({ locale }: { locale: string }) {
                 </p>
 
                 <div className="relative inline-flex items-center justify-center px-2 sm:px-3 py-1 rounded-full bg-white/5 border border-white/10">
-                  <span className="text-[9px] sm:text-[10px] text-gray-400 font-bold tracking-widest uppercase">
+                  <span className="text-[11px] sm:text-xs text-gray-400 font-bold tracking-widest uppercase">
                     {item.source}
                   </span>
                 </div>
