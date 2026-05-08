@@ -38,12 +38,12 @@ export default function NewsSection({ locale }: { locale: string }) {
                     />
                   </div>
                   {/* Badge data estil Cruz Roja */}
-                  <div className="flex-shrink-0 flex flex-col items-center justify-center bg-white border border-gray-100 rounded-xl px-2.5 py-3 w-16 text-center shadow-sm">
-                    <span className="text-[10px] font-semibold text-gray-400 uppercase tracking-wide leading-tight">{monthLabel}</span>
-                    <div className="w-8 h-px bg-gray-200 my-1.5" />
-                    <span className="text-2xl font-extrabold text-brand-blue leading-none">{article.date.day}</span>
-                    <div className="w-8 h-px bg-gray-200 my-1.5" />
-                    <span className="text-[10px] text-gray-400 leading-none">{article.date.year}</span>
+                  <div className="flex-shrink-0 self-stretch flex flex-col items-center justify-around bg-white border border-gray-200 rounded-xl px-2.5 w-16 text-center shadow-sm">
+                    <span className="text-[11px] font-semibold text-gray-500 uppercase tracking-wide leading-tight">{monthLabel}</span>
+                    <div className="w-8 h-px bg-gray-300" />
+                    <span className="text-3xl font-extrabold text-brand-blue leading-none">{article.date.day}</span>
+                    <div className="w-8 h-px bg-gray-300" />
+                    <span className="text-[11px] text-gray-400 leading-none">{article.date.year}</span>
                   </div>
                 </div>
 
