@@ -10,28 +10,62 @@ interface PageProps {
 
 export const dynamic = 'force-dynamic'
 
-const transparencyDescriptions: Record<string, string> = {
-  ca: 'Consulta on va cada euro d\'Unaria: totes les transferències a ONG, imports i referències verificables.',
-  es: 'Consulta adónde va cada euro de Unaria: todas las transferencias a ONG, importes y referencias verificables.',
-  en: 'See where every euro from Unaria goes: all NGO transfers, amounts and verifiable references.',
-  fr: 'Consultez où va chaque euro d\'Unaria : tous les transferts aux ONG, montants et références vérifiables.',
-  de: 'Erfahren Sie, wohin jeder Euro von Unaria fließt: alle NGO-Überweisungen, Beträge und nachprüfbare Referenzen.',
+const TRANSPARENCY_META: Record<string, { title: string; description: string; ogTitle: string; ogDescription: string; twitterTitle: string; twitterDescription: string }> = {
+  ca: {
+    title: 'Transparència total: on van els teus diners | Unaria',
+    description: 'Veu en temps real quant ha recaptat Unaria, quant ha destinat a ONG i quant han costat les operacions. Memòria anual disponible.',
+    ogTitle: 'On van realment els teus diners a Unaria | Transparència Total',
+    ogDescription: 'Dades reals en temps real: % destinat a ONG, costos operatius, llista de transferències a Cruz Roja. Unaria publica-ho tot, sempre.',
+    twitterTitle: 'Transparència total | On van els teus diners | Unaria',
+    twitterDescription: 'Veu en temps real el percentatge que arriba a Cruz Roja. Dades reals, no promeses.',
+  },
+  es: {
+    title: 'Transparencia total: dónde va tu dinero | Unaria',
+    description: 'Ve en tiempo real cuánto ha recaudado Unaria, cuánto ha destinado a ONG y cuánto han costado las operaciones. Memoria anual disponible.',
+    ogTitle: 'Dónde va realmente tu dinero en Unaria | Transparencia Total',
+    ogDescription: 'Datos reales en tiempo real: % destinado a ONG, costes operativos, lista de transferencias a Cruz Roja. Unaria lo publica todo, siempre.',
+    twitterTitle: 'Transparencia total | Dónde va tu dinero | Unaria',
+    twitterDescription: 'Ve en tiempo real el porcentaje que llega a Cruz Roja. Datos reales, no promesas.',
+  },
+  en: {
+    title: 'Full transparency: where your money goes | Unaria',
+    description: 'See in real time how much Unaria has raised, how much has gone to NGOs and what operations have cost. Annual report available.',
+    ogTitle: 'Where your money really goes at Unaria | Full Transparency',
+    ogDescription: 'Real-time data: % sent to NGOs, operating costs, list of transfers to Cruz Roja. Unaria publishes everything, always.',
+    twitterTitle: 'Full transparency | Where your money goes | Unaria',
+    twitterDescription: 'See in real time the percentage reaching Cruz Roja. Real data, not promises.',
+  },
+  fr: {
+    title: 'Transparence totale : où va votre argent | Unaria',
+    description: 'Voyez en temps réel combien Unaria a collecté, combien a été destiné aux ONG et combien les opérations ont coûté. Rapport annuel disponible.',
+    ogTitle: 'Où va vraiment votre argent chez Unaria | Transparence Totale',
+    ogDescription: 'Données en temps réel : % destiné aux ONG, coûts opérationnels, liste des virements à Cruz Roja. Unaria publie tout, toujours.',
+    twitterTitle: 'Transparence totale | Où va votre argent | Unaria',
+    twitterDescription: 'Voyez en temps réel le pourcentage qui arrive à Cruz Roja. Données réelles, pas des promesses.',
+  },
+  de: {
+    title: 'Vollständige Transparenz: Wo Ihr Geld hingeht | Unaria',
+    description: 'Sehen Sie in Echtzeit, wie viel Unaria gesammelt hat, wie viel an NGOs gegangen ist und was der Betrieb gekostet hat. Jahresbericht verfügbar.',
+    ogTitle: 'Wo Ihr Geld bei Unaria wirklich hingeht | Vollständige Transparenz',
+    ogDescription: 'Echtzeit-Daten: % an NGOs weitergeleitet, Betriebskosten, Liste der Überweisungen an Cruz Roja. Unaria veröffentlicht alles, immer.',
+    twitterTitle: 'Vollständige Transparenz | Wo Ihr Geld hingeht | Unaria',
+    twitterDescription: 'Sehen Sie in Echtzeit den Prozentsatz, der Cruz Roja erreicht. Echte Daten, keine Versprechen.',
+  },
 }
 
 export async function generateMetadata({ params: { locale } }: PageProps): Promise<Metadata> {
-  const t = await getTranslations({ locale, namespace: 'transparencyPage' })
-  const description = transparencyDescriptions[locale] ?? transparencyDescriptions.ca
+  const m = TRANSPARENCY_META[locale] ?? TRANSPARENCY_META.ca
   return {
-    title: t('title'),
-    description,
+    title: m.title,
+    description: m.description,
     openGraph: {
-      title: `${t('title')} | Unaria`,
-      description,
+      title: m.ogTitle,
+      description: m.ogDescription,
       url: `/${locale}/transparency`,
     },
     twitter: {
-      title: `${t('title')} | Unaria`,
-      description,
+      title: m.twitterTitle,
+      description: m.twitterDescription,
     },
   }
 }
@@ -82,12 +116,6 @@ export default async function TransparencyPage({ params: { locale } }: PageProps
       icon: <TrendingUp className="w-5 h-5" />,
       color: 'text-brand-teal bg-teal-50',
     },
-    {
-      label: t('percentage'),
-      value: `${percentage}%`,
-      icon: <TrendingUp className="w-5 h-5" />,
-      color: 'text-green-600 bg-green-50',
-    },
   ]
 
   return (
@@ -132,7 +160,6 @@ export default async function TransparencyPage({ params: { locale } }: PageProps
           <div className="max-w-2xl mx-auto bg-brand-gray rounded-2xl p-5 sm:p-6">
             <div className="flex justify-between text-sm font-semibold text-gray-700 mb-2">
               <span>{t('transferredNgos')}</span>
-              <span className="text-brand-teal font-extrabold">{percentage}%</span>
             </div>
             <div className="bg-gray-200 rounded-full h-4 overflow-hidden">
               <div
@@ -141,7 +168,7 @@ export default async function TransparencyPage({ params: { locale } }: PageProps
               />
             </div>
             <p className="text-xs text-gray-500 mt-2 text-center">
-              {t('operatingCosts')}: {100 - percentage}%
+              {t('operatingCosts')}
             </p>
           </div>
         </div>

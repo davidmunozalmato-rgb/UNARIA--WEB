@@ -1,6 +1,5 @@
 import React from 'react'
 import { useTranslations } from 'next-intl'
-import { getTranslations } from 'next-intl/server'
 import Link from 'next/link'
 import { ArrowRight, ArrowDownCircle, Shield, Target, Eye, Handshake, BarChart3 } from 'lucide-react'
 import NewsSection from '@/components/NewsSection'
@@ -12,20 +11,62 @@ interface PageProps {
   params: { locale: string }
 }
 
+const HOME_META: Record<string, { title: string; description: string; ogTitle: string; ogDescription: string; twitterTitle: string; twitterDescription: string }> = {
+  ca: {
+    title: 'Fes-te soci i genera impacte a ONG | Unaria Barcelona',
+    description: 'Unaria canalitza les teves quotes mensuals a ONG com Cruz Roja. Des de 6€/mes. 100% transparent. Cancel·la quan vulguis.',
+    ogTitle: 'La manera més transparent de donar a ONG | Unaria Barcelona',
+    ogDescription: 'Unaria és l\'associació barcelonina on pots fer-te soci des de 6€/mes. Tot l\'excedent va a ONG. Sabràs exactament on van els teus diners.',
+    twitterTitle: 'La manera més transparent de donar a ONG | Unaria',
+    twitterDescription: 'Des de 6€/mes. 100% transparent. Cancel·la quan vulguis. Unaria canalitza les teves quotes a Cruz Roja i altres ONG.',
+  },
+  es: {
+    title: 'Hazte socio y genera impacto en ONG | Unaria Barcelona',
+    description: 'Unaria canaliza tus cuotas mensuales a ONG como Cruz Roja. Desde 6€/mes. 100% transparente. Cancela cuando quieras.',
+    ogTitle: 'La forma más transparente de donar a ONG | Unaria Barcelona',
+    ogDescription: 'Unaria es la asociación barcelonesa donde puedes hacerte socio desde 6€/mes. Todo el excedente va a ONG. Sabrás exactamente dónde van tu dinero.',
+    twitterTitle: 'La forma más transparente de donar a ONG | Unaria',
+    twitterDescription: 'Desde 6€/mes. 100% transparente. Cancela cuando quieras. Unaria canaliza tus cuotas a Cruz Roja y otras ONG.',
+  },
+  en: {
+    title: 'Join & create social impact through NGOs | Unaria Barcelona',
+    description: 'Unaria channels your monthly membership to NGOs like Cruz Roja. From €6/month. 100% transparent. Cancel anytime.',
+    ogTitle: 'The most transparent way to donate to NGOs in Barcelona | Unaria',
+    ogDescription: 'Unaria is Barcelona\'s association where you can become a member from €6/month. All surplus goes to NGOs. You\'ll know exactly where your money goes.',
+    twitterTitle: 'The most transparent way to donate to NGOs | Unaria',
+    twitterDescription: 'From €6/month. 100% transparent. Cancel anytime. Unaria channels your fees to Cruz Roja and other NGOs.',
+  },
+  fr: {
+    title: 'Adhérez et générez un impact social | Unaria Barcelone',
+    description: 'Unaria canalise vos cotisations mensuelles vers des ONG comme Cruz Roja. Dès 6€/mois. 100% transparent. Résiliez quand vous voulez.',
+    ogTitle: 'La façon la plus transparente de donner à des ONG | Unaria Barcelone',
+    ogDescription: 'Unaria est l\'association barcelonaise où vous pouvez adhérer dès 6€/mois. Tout l\'excédent va aux ONG. Vous saurez exactement où va votre argent.',
+    twitterTitle: 'La façon la plus transparente de donner à des ONG | Unaria',
+    twitterDescription: 'Dès 6€/mois. 100% transparent. Résiliez quand vous voulez. Unaria canalise vos cotisations vers Cruz Roja et d\'autres ONG.',
+  },
+  de: {
+    title: 'Mitglied werden und NGOs unterstützen | Unaria Barcelona',
+    description: 'Unaria leitet Ihre monatlichen Beiträge an NGOs wie Cruz Roja weiter. Ab 6€/Monat. 100% transparent. Jederzeit kündbar.',
+    ogTitle: 'Die transparenteste Art, NGOs in Barcelona zu unterstützen | Unaria',
+    ogDescription: 'Unaria ist Barcelonas Verein, dem Sie ab 6€/Monat beitreten können. Der gesamte Überschuss geht an NGOs. Sie wissen genau, wohin Ihr Geld geht.',
+    twitterTitle: 'Die transparenteste Art, NGOs zu unterstützen | Unaria',
+    twitterDescription: 'Ab 6€/Monat. 100% transparent. Jederzeit kündbar. Unaria leitet Ihre Beiträge an Cruz Roja und andere NGOs weiter.',
+  },
+}
+
 export async function generateMetadata({ params: { locale } }: PageProps): Promise<Metadata> {
-  const t = await getTranslations({ locale, namespace: 'hero' })
-  const description = t('subtitle')
+  const m = HOME_META[locale] ?? HOME_META.ca
   return {
-    title: 'Unaria – Solidaritat Organitzada',
-    description,
+    title: m.title,
+    description: m.description,
     openGraph: {
-      title: 'Unaria – Solidaritat Organitzada',
-      description,
+      title: m.ogTitle,
+      description: m.ogDescription,
       url: `/${locale}`,
     },
     twitter: {
-      title: 'Unaria – Solidaritat Organitzada',
-      description,
+      title: m.twitterTitle,
+      description: m.twitterDescription,
     },
   }
 }
@@ -94,7 +135,7 @@ const objectiusData: Record<string, { title: string; subtitle: string; items: { 
       { icon: <Target className="w-7 h-7" />, color: 'bg-blue-50 text-brand-blue', title: 'Recaptació solidària', desc: 'Mobilitzar quotes mensuals de socis per generar un fons estable i previsible que permeti planificar l\'ajuda a llarg termini.' },
       { icon: <Eye className="w-7 h-7" />, color: 'bg-teal-50 text-brand-teal', title: 'Transparència total', desc: 'Publicar anualment totes les transferències realitzades a ONGs, amb imports, destinataris i referències verificables.' },
       { icon: <Handshake className="w-7 h-7" />, color: 'bg-purple-50 text-purple-600', title: 'Partenariat amb ONGs', desc: 'Col·laborar exclusivament amb entitats auditades, acreditades i amb historial demostrat d\'impacte social real.' },
-      { icon: <BarChart3 className="w-7 h-7" />, color: 'bg-green-50 text-green-600', title: 'Impacte mesurable', desc: 'Garantir que el 87% de cada euro recaptat arriba directament a projectes concrets, amb indicadors d\'impacte publicats.' },
+      { icon: <BarChart3 className="w-7 h-7" />, color: 'bg-green-50 text-green-600', title: 'Impacte mesurable', desc: 'Garantir que el superàvit de cada euro recaptat arriba directament a projectes concrets, amb indicadors d\'impacte publicats.' },
     ],
   },
   es: {
@@ -104,7 +145,7 @@ const objectiusData: Record<string, { title: string; subtitle: string; items: { 
       { icon: <Target className="w-7 h-7" />, color: 'bg-blue-50 text-brand-blue', title: 'Recaudación solidaria', desc: 'Movilizar cuotas mensuales de socios para generar un fondo estable y previsible que permita planificar la ayuda a largo plazo.' },
       { icon: <Eye className="w-7 h-7" />, color: 'bg-teal-50 text-brand-teal', title: 'Transparencia total', desc: 'Publicar anualmente todas las transferencias realizadas a ONGs, con importes, destinatarios y referencias verificables.' },
       { icon: <Handshake className="w-7 h-7" />, color: 'bg-purple-50 text-purple-600', title: 'Asociación con ONGs', desc: 'Colaborar exclusivamente con entidades auditadas, acreditadas y con historial demostrado de impacto social real.' },
-      { icon: <BarChart3 className="w-7 h-7" />, color: 'bg-green-50 text-green-600', title: 'Impacto medible', desc: 'Garantizar que el 87% de cada euro recaudado llega directamente a proyectos concretos, con indicadores de impacto publicados.' },
+      { icon: <BarChart3 className="w-7 h-7" />, color: 'bg-green-50 text-green-600', title: 'Impacto medible', desc: 'Garantizar que el superávit de cada euro recaudado llega directamente a proyectos concretos, con indicadores de impacto publicados.' },
     ],
   },
   en: {
@@ -114,7 +155,7 @@ const objectiusData: Record<string, { title: string; subtitle: string; items: { 
       { icon: <Target className="w-7 h-7" />, color: 'bg-blue-50 text-brand-blue', title: 'Solidarity fundraising', desc: 'Mobilising monthly member fees to build a stable, predictable fund that enables long-term aid planning.' },
       { icon: <Eye className="w-7 h-7" />, color: 'bg-teal-50 text-brand-teal', title: 'Full transparency', desc: 'Publishing annual reports of all NGO transfers, with amounts, recipients and verifiable references.' },
       { icon: <Handshake className="w-7 h-7" />, color: 'bg-purple-50 text-purple-600', title: 'NGO partnerships', desc: 'Working exclusively with audited, accredited organisations with a proven track record of real social impact.' },
-      { icon: <BarChart3 className="w-7 h-7" />, color: 'bg-green-50 text-green-600', title: 'Measurable impact', desc: 'Ensuring 87% of every euro raised reaches concrete projects directly, with published impact indicators.' },
+      { icon: <BarChart3 className="w-7 h-7" />, color: 'bg-green-50 text-green-600', title: 'Measurable impact', desc: 'Ensuring the surplus of every euro raised reaches concrete projects directly, with published impact indicators.' },
     ],
   },
   fr: {
@@ -124,7 +165,7 @@ const objectiusData: Record<string, { title: string; subtitle: string; items: { 
       { icon: <Target className="w-7 h-7" />, color: 'bg-blue-50 text-brand-blue', title: 'Collecte solidaire', desc: 'Mobiliser les cotisations mensuelles des membres pour créer un fonds stable et prévisible permettant une aide à long terme.' },
       { icon: <Eye className="w-7 h-7" />, color: 'bg-teal-50 text-brand-teal', title: 'Transparence totale', desc: 'Publier chaque année tous les transferts effectués aux ONG, avec montants, bénéficiaires et références vérifiables.' },
       { icon: <Handshake className="w-7 h-7" />, color: 'bg-purple-50 text-purple-600', title: 'Partenariat avec les ONG', desc: 'Collaborer exclusivement avec des entités auditées, accréditées et ayant un bilan démontré d\'impact social réel.' },
-      { icon: <BarChart3 className="w-7 h-7" />, color: 'bg-green-50 text-green-600', title: 'Impact mesurable', desc: 'Garantir que 87 % de chaque euro collecté parvient directement à des projets concrets, avec des indicateurs publiés.' },
+      { icon: <BarChart3 className="w-7 h-7" />, color: 'bg-green-50 text-green-600', title: 'Impact mesurable', desc: 'Garantir que le surplus de chaque euro collecté parvient directement à des projets concrets, avec des indicateurs publiés.' },
     ],
   },
   de: {
@@ -134,7 +175,7 @@ const objectiusData: Record<string, { title: string; subtitle: string; items: { 
       { icon: <Target className="w-7 h-7" />, color: 'bg-blue-50 text-brand-blue', title: 'Solidarische Spendensammlung', desc: 'Monatliche Mitgliedsbeiträge mobilisieren, um einen stabilen, planbaren Fonds für langfristige Hilfe aufzubauen.' },
       { icon: <Eye className="w-7 h-7" />, color: 'bg-teal-50 text-brand-teal', title: 'Vollständige Transparenz', desc: 'Jährliche Veröffentlichung aller NGO-Überweisungen mit Beträgen, Empfängern und nachprüfbaren Referenzen.' },
       { icon: <Handshake className="w-7 h-7" />, color: 'bg-purple-50 text-purple-600', title: 'NGO-Partnerschaften', desc: 'Ausschließlich mit geprüften, akkreditierten Organisationen zusammenarbeiten, die nachweislich soziale Wirkung erzielen.' },
-      { icon: <BarChart3 className="w-7 h-7" />, color: 'bg-green-50 text-green-600', title: 'Messbarer Einfluss', desc: '87 % jedes gesammelten Euros fließen direkt in konkrete Projekte, mit veröffentlichten Wirkungsindikatoren.' },
+      { icon: <BarChart3 className="w-7 h-7" />, color: 'bg-green-50 text-green-600', title: 'Messbarer Einfluss', desc: 'Sicherstellen, dass der Überschuss jedes gesammelten Euros direkt in konkrete Projekte fließt, mit veröffentlichten Wirkungsindikatoren.' },
     ],
   },
 }
@@ -151,14 +192,16 @@ function ObjectiusSection({ locale }: { locale: string }) {
           <p className="text-gray-500 max-w-2xl mx-auto text-base sm:text-lg">{data.subtitle}</p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           {data.items.map((item, i) => (
-            <div key={i} className="flex flex-col items-start p-5 sm:p-6 rounded-2xl border border-gray-100 hover:shadow-md transition-shadow bg-white">
-              <div className={`w-12 h-12 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl flex-shrink-0 flex items-center justify-center mb-4 sm:mb-5 ${item.color}`}>
+            <div key={i} className="flex flex-row sm:flex-col items-start gap-3 sm:gap-0 p-4 sm:p-6 rounded-2xl border border-gray-100 hover:shadow-md transition-shadow bg-white">
+              <div className={`w-11 h-11 sm:w-14 sm:h-14 flex-shrink-0 rounded-xl sm:rounded-2xl flex items-center justify-center sm:mb-5 ${item.color}`}>
                 {item.icon}
               </div>
-              <h3 className="font-bold text-gray-900 text-base mb-2 leading-snug">{item.title}</h3>
-              <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
+              <div className="flex flex-col">
+                <h3 className="font-bold text-gray-900 text-sm sm:text-base mb-1 sm:mb-2 leading-snug">{item.title}</h3>
+                <p className="text-xs sm:text-sm text-gray-500 leading-relaxed">{item.desc}</p>
+              </div>
             </div>
           ))}
         </div>

@@ -51,11 +51,10 @@ export default async function AdminReportsPage({ params: { locale } }: PageProps
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {[
             { label: 'Ingressos totals', value: formatCurrency(totalIncome, 'EUR', locale), note: 'Donacions i quotes rebudes' },
-            { label: 'Costos operatius', value: formatCurrency(operatingCosts, 'EUR', locale), note: `${totalIncome > 0 ? (100 - Number(percentage)).toFixed(1) : 0}% dels ingressos` },
-            { label: 'Transferit a ONG', value: formatCurrency(totalTransferred, 'EUR', locale), note: `${percentage}% dels ingressos` },
+            { label: 'Costos operatius', value: formatCurrency(operatingCosts, 'EUR', locale), note: 'Despeses de funcionament' },
+            { label: 'Transferit a ONG', value: formatCurrency(totalTransferred, 'EUR', locale), note: 'Superàvit transferit' },
             { label: 'Socis actius', value: String(activeMembers), note: `de ${totalMembers} total` },
             { label: 'Socis pendents', value: String(pendingMembers), note: 'Pendents de verificació' },
-            { label: '% destinat a ONG', value: `${percentage}%`, note: 'Objectiu: >85%' },
           ].map((item, i) => (
             <div key={i} className="bg-gray-50 rounded-xl p-4">
               <div className="text-sm text-gray-500 mb-1">{item.label}</div>
@@ -79,7 +78,6 @@ export default async function AdminReportsPage({ params: { locale } }: PageProps
 
 3. DESTINACIÓ DE FONS A ONG
    Total transferit a ONG: ${formatCurrency(totalTransferred, 'EUR', 'ca')}
-   Percentatge: ${percentage}% dels ingressos
 
 4. SOCIS
    Socis actius a 31/12/${year}: ${activeMembers}

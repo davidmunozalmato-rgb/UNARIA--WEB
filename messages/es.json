@@ -25,7 +25,7 @@
   },
   "howItWorks": {
     "title": "Cómo funciona Unaria",
-    "subtitle": "Un modelo transparente, sostenible y 100% orientado al impacto social",
+    "subtitle": "Un modelo transparente, sostenible y orientado al máximo impacto social",
     "step1Title": "Recaudación",
     "step1Desc": "Los socios aportan cuotas mensuales desde 6€. Cada céntimo queda registrado y auditado.",
     "step2Title": "Gestión responsable",
@@ -99,7 +99,15 @@
     "step3Detail": "Cada trimestre transferimos el superávit a las ONG seleccionadas. Lo publicamos todo: importes, fechas y referencia bancaria.",
     "importantTitle": "Importante: eres socio de Unaria, no de Cruz Roja",
     "importantText": "La relación contractual es entre tú y Unaria. Unaria, como entidad, realiza donaciones a las ONG colaboradoras. Esto tiene implicaciones fiscales y legales importantes que explicamos en nuestro aviso legal.",
-    "diagramTitle": "Diagrama de flujo"
+    "diagramTitle": "Diagrama de flujo",
+    "diagramMembers": "Socios",
+    "diagramFund": "Fondo colectivo",
+    "diagramNGO": "Fondo para las ONG",
+    "stepLabel": "Paso",
+    "ctaTitle": "¿Listo para unirte?",
+    "ctaText": "Desde 6€/mes formas parte de un movimiento solidario con impacto real y transparente.",
+    "ctaMember": "Hazte socio",
+    "ctaDonate": "Haz una donación"
   },
   "becomeMember": {
     "title": "Hazte socio de Unaria",
@@ -134,7 +142,9 @@
     "required": "Campo obligatorio",
     "invalidEmail": "Correo electrónico no válido",
     "invalidIban": "IBAN no válido",
-    "processingCard": "Serás redirigido al formulario de pago seguro de Stripe"
+    "processingCard": "Serás redirigido al formulario de pago seguro de Stripe",
+    "stepForm": "Datos",
+    "stepConfirm": "Confirmación"
   },
   "donate": {
     "title": "Haz una donación",
@@ -181,7 +191,7 @@
     "title": "Política de Privacidad",
     "lastUpdated": "Última actualización: {date}",
     "responsibleTitle": "1. Responsable del tratamiento",
-    "responsibleText": "UNARIA, Asociación sin ánimo de lucro. CIF: (en trámite). Domicilio social: Barcelona, Cataluña. Correo electrónico: privacidad@unaria.org",
+    "responsibleText": "UNARIA, Asociación sin ánimo de lucro. CIF: (en trámite). Domicilio social: Barcelona, Cataluña. Correo electrónico: unariabcn@gmail.com",
     "purposeTitle": "2. Finalidad del tratamiento",
     "purposeText": "Los datos personales facilitados se utilizan para: (a) gestionar la condición de socio/a y las cuotas correspondientes; (b) tramitar donaciones puntuales; (c) enviar comunicaciones relacionadas con la actividad de Unaria (si se dispone de consentimiento); (d) cumplir las obligaciones legales y fiscales. Unaria NO cede sus datos a las ONG colaboradoras. La relación de las ONG es única y exclusivamente con Unaria como entidad.",
     "legalBasisTitle": "3. Base legitimadora",
@@ -189,7 +199,7 @@
     "retentionTitle": "4. Plazo de conservación",
     "retentionText": "Los datos se conservan mientras dure la relación asociativa y, posteriormente, durante los plazos legalmente exigibles (mínimo 5 años para documentación contable).",
     "rightsTitle": "5. Derechos",
-    "rightsText": "Puede ejercer los derechos de acceso, rectificación, supresión, limitación, portabilidad y oposición escribiendo a privacidad@unaria.org, adjuntando copia de su documento de identidad. Tiene derecho a presentar reclamación ante la Agencia Española de Protección de Datos (www.aepd.es).",
+    "rightsText": "Puede ejercer los derechos de acceso, rectificación, supresión, limitación, portabilidad y oposición escribiendo a unariabcn@gmail.com, adjuntando copia de su documento de identidad. Tiene derecho a presentar reclamación ante la Agencia Española de Protección de Datos (www.aepd.es).",
     "ibanTitle": "6. Seguridad del IBAN",
     "ibanText": "Los datos bancarios (IBAN) se almacenan cifrados con AES-256 y nunca se transmiten en claro. Únicamente se utilizan para procesar la domiciliación SEPA autorizada.",
     "cookiesTitle": "7. Cookies",
@@ -198,7 +208,7 @@
   "legal": {
     "title": "Aviso Legal",
     "ownerTitle": "1. Titular del sitio web",
-    "ownerText": "UNARIA, Asociación sin ánimo de lucro. CIF: (en trámite). Domicilio social: Barcelona, Cataluña. Correo electrónico de contacto: contacto@unaria.org",
+    "ownerText": "UNARIA, Asociación sin ánimo de lucro. CIF: (en trámite). Domicilio social: Barcelona, Cataluña. Correo electrónico de contacto: unariabcn@gmail.com",
     "conditionsTitle": "2. Condiciones de uso",
     "conditionsText": "El acceso y uso de este sitio web implica la plena aceptación de las presentes condiciones. Unaria se reserva el derecho de modificar los contenidos del sitio web sin previo aviso.",
     "ipTitle": "3. Propiedad intelectual",

@@ -1,0 +1,12 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/winback",
+      "schedule": "0 10 * * *"
+    },
+    {
+      "path": "/api/cron/annual",
+      "schedule": "0 9 1 1 *"
+    }
+  ]
+}

@@ -8,22 +8,56 @@ interface PageProps {
   params: { locale: string }
 }
 
-const aboutDescriptions: Record<string, string> = {
-  ca: 'Coneix l\'equip fundador d\'Unaria, la nostra missió i els valors que ens guien.',
-  es: 'Conoce al equipo fundador de Unaria, nuestra misión y los valores que nos guían.',
-  en: 'Meet the founding team behind Unaria, our mission and the values that guide us.',
-  fr: 'Découvrez l\'équipe fondatrice d\'Unaria, notre mission et les valeurs qui nous guident.',
-  de: 'Lernen Sie das Gründungsteam von Unaria kennen, unsere Mission und unsere Werte.',
+const ABOUT_META: Record<string, { title: string; description: string; ogTitle: string; ogDescription: string; twitterTitle: string; twitterDescription: string }> = {
+  ca: {
+    title: 'Qui som | L\'equip d\'Unaria Barcelona | Unaria',
+    description: 'Unaria és una associació sense ànim de lucre constituïda a Barcelona. Coneix l\'equip fundador, la nostra missió i els nostres valors.',
+    ogTitle: 'Qui som | Unaria — l\'associació solidaria de Barcelona',
+    ogDescription: 'Fundada a Barcelona per professionals compromesos. Registre d\'associacions. AEPD. Pagaments via Stripe. Descobreix qui hi ha darrere d\'Unaria.',
+    twitterTitle: 'Qui som | Unaria Barcelona',
+    twitterDescription: 'Associació sense ànim de lucre fundada a Barcelona. Coneix l\'equip i la missió.',
+  },
+  es: {
+    title: 'Quiénes somos | El equipo de Unaria Barcelona | Unaria',
+    description: 'Unaria es una asociación sin ánimo de lucro constituida en Barcelona. Conoce el equipo fundador, nuestra misión y nuestros valores.',
+    ogTitle: 'Quiénes somos | Unaria — la asociación solidaria de Barcelona',
+    ogDescription: 'Fundada en Barcelona por profesionales comprometidos. Registro de asociaciones. AEPD. Pagos vía Stripe. Descubre quién está detrás de Unaria.',
+    twitterTitle: 'Quiénes somos | Unaria Barcelona',
+    twitterDescription: 'Asociación sin ánimo de lucro fundada en Barcelona. Conoce el equipo y la misión.',
+  },
+  en: {
+    title: 'About us | The Unaria team in Barcelona | Unaria',
+    description: 'Unaria is a non-profit association founded in Barcelona. Meet the founding team, our mission and our values.',
+    ogTitle: 'About Unaria | Barcelona\'s transparent solidarity association',
+    ogDescription: 'Founded in Barcelona by committed professionals. Official registry. AEPD compliant. Stripe payments. Find out who is behind Unaria.',
+    twitterTitle: 'About Unaria | Barcelona',
+    twitterDescription: 'Non-profit association founded in Barcelona. Meet the team and mission.',
+  },
+  fr: {
+    title: 'Qui sommes-nous | L\'équipe d\'Unaria Barcelone | Unaria',
+    description: 'Unaria est une association sans but lucratif fondée à Barcelone. Découvrez l\'équipe fondatrice, notre mission et nos valeurs.',
+    ogTitle: 'Qui sommes-nous | Unaria — l\'association solidaire de Barcelone',
+    ogDescription: 'Fondée à Barcelone par des professionnels engagés. Registre officiel. Conforme RGPD. Paiements via Stripe. Découvrez qui est derrière Unaria.',
+    twitterTitle: 'Qui sommes-nous | Unaria Barcelone',
+    twitterDescription: 'Association sans but lucratif fondée à Barcelone. Découvrez l\'équipe et la mission.',
+  },
+  de: {
+    title: 'Über uns | Das Unaria-Team in Barcelona | Unaria',
+    description: 'Unaria ist ein gemeinnütziger Verein, der in Barcelona gegründet wurde. Lernen Sie das Gründungsteam, unsere Mission und unsere Werte kennen.',
+    ogTitle: 'Über Unaria | Barcelonas transparenter Solidaritätsverein',
+    ogDescription: 'In Barcelona von engagierten Fachleuten gegründet. Offizielles Register. DSGVO-konform. Stripe-Zahlungen. Erfahren Sie, wer hinter Unaria steckt.',
+    twitterTitle: 'Über Unaria | Barcelona',
+    twitterDescription: 'Gemeinnütziger Verein in Barcelona gegründet. Lernen Sie das Team und die Mission kennen.',
+  },
 }
 
 export async function generateMetadata({ params: { locale } }: PageProps): Promise<Metadata> {
-  const t = await getTranslations({ locale, namespace: 'about' })
-  const description = aboutDescriptions[locale] ?? aboutDescriptions.ca
+  const m = ABOUT_META[locale] ?? ABOUT_META.ca
   return {
-    title: t('title'),
-    description,
-    openGraph: { title: `${t('title')} | Unaria`, description, url: `/${locale}/about` },
-    twitter: { title: `${t('title')} | Unaria`, description },
+    title: m.title,
+    description: m.description,
+    openGraph: { title: m.ogTitle, description: m.ogDescription, url: `/${locale}/about` },
+    twitter: { title: m.twitterTitle, description: m.twitterDescription },
   }
 }
 

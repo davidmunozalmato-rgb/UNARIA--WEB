@@ -24,6 +24,7 @@ export default function CookieBanner() {
       maxAge: 60 * 60 * 24 * 365,
       path: '/',
     })
+    window.gtag?.('consent', 'update', { analytics_storage: 'granted' })
     setVisible(false)
   }
 
@@ -32,6 +33,7 @@ export default function CookieBanner() {
       maxAge: 60 * 60 * 24 * 365,
       path: '/',
     })
+    window.gtag?.('consent', 'update', { analytics_storage: analytics ? 'granted' : 'denied' })
     setVisible(false)
   }
 

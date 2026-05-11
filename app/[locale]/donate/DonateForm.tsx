@@ -106,7 +106,7 @@ export default function DonateForm({ locale }: { locale: string }) {
       {/* ── TRUST STRIP ── */}
       <div className="bg-white border-b border-gray-100 py-3 px-5">
         <div className="max-w-lg mx-auto flex flex-wrap items-center justify-center gap-4 text-xs text-gray-500">
-          {['87% va a ONG', 'Pagament segur', 'Sense comissions'].map((item) => (
+          {['Màxim impacte', 'Pagament segur', 'Sense comissions'].map((item) => (
             <span key={item} className="flex items-center gap-1.5">
               <CheckCircle className="w-3.5 h-3.5 text-brand-teal flex-shrink-0" />
               {item}

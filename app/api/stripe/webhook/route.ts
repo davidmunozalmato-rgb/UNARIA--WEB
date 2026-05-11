@@ -1,7 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server'
 import Stripe from 'stripe'
+import { randomBytes } from 'crypto'
 import prisma from '@/lib/prisma'
-import { sendWelcomeEmail, sendReceiptEmail, sendAdminPaymentNotification } from '@/lib/email'
+import {
+  sendWelcomeEmail,
+  sendReceiptEmail,
+  sendMonthlyReceiptEmail,
+  sendPaymentFailedEmail,
+  sendCancellationEmail,
+  sendReferralJoinedEmail,
+  sendAdminPaymentNotification,
+} from '@/lib/email'
 import { appendPaymentRow } from '@/lib/sheets'
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, { apiVersion: '2023-10-16' })
@@ -35,14 +44,34 @@ export async function POST(request: NextRequest) {
             where: { email: session.customer_email! },
           })
           if (member) {
+            const referralCode = member.referralCode ?? randomBytes(4).toString('hex').toUpperCase()
             await prisma.member.update({
               where: { id: member.id },
               data: {
                 status: 'active',
                 stripeCustomerId: session.customer as string,
                 stripeSubscriptionId: session.subscription as string,
+                referralCode,
               },
             })
+            // Notify referrer if this member was referred
+            if (member.referredBy) {
+              const referrer = await prisma.member.findFirst({
+                where: { referralCode: member.referredBy },
+              })
+              if (referrer) {
+                try {
+                  await sendReferralJoinedEmail({
+                    referrerName: referrer.name,
+                    referrerEmail: referrer.email,
+                    locale: referrer.preferredLocale,
+                    newMemberName: member.name,
+                  })
+                } catch (e) {
+                  console.error('Failed to send referral email:', e)
+                }
+              }
+            }
             // Record donation
             await prisma.donation.create({
               data: {
@@ -64,6 +93,7 @@ export async function POST(request: NextRequest) {
                 email: member.email,
                 quota: member.monthlyQuota,
                 locale,
+                memberId: member.id,
               })
             } catch (e) {
               console.error('Failed to send welcome email:', e)
@@ -160,15 +190,15 @@ export async function POST(request: NextRequest) {
               },
             })
             try {
-              await sendReceiptEmail({
+              await sendMonthlyReceiptEmail({
                 name: member.name,
                 email: member.email,
                 amount: (invoice.amount_paid ?? 0) / 100,
-                type: 'subscription',
                 locale: member.preferredLocale,
+                memberId: member.id,
               })
             } catch (e) {
-              console.error('Failed to send receipt email:', e)
+              console.error('Failed to send monthly receipt email:', e)
             }
             // Register in Google Sheets
             await appendPaymentRow({
@@ -188,10 +218,47 @@ export async function POST(request: NextRequest) {
 
       case 'customer.subscription.deleted': {
         const subscription = event.data.object as Stripe.Subscription
-        await prisma.member.updateMany({
+        const cancelledMember = await prisma.member.findFirst({
           where: { stripeSubscriptionId: subscription.id },
-          data: { status: 'cancelled' },
         })
+        if (cancelledMember && !cancelledMember.cancelledAt) {
+          // cancelledAt already set means the API already handled it — skip duplicate email
+          await prisma.member.update({
+            where: { id: cancelledMember.id },
+            data: { status: 'cancelled', cancelledAt: new Date() },
+          })
+          try {
+            await sendCancellationEmail({
+              name: cancelledMember.name,
+              email: cancelledMember.email,
+              locale: cancelledMember.preferredLocale,
+            })
+          } catch (e) {
+            console.error('Failed to send cancellation email:', e)
+          }
+        }
+        break
+      }
+
+      case 'invoice.payment_failed': {
+        const failedInvoice = event.data.object as Stripe.Invoice
+        if (failedInvoice.subscription) {
+          const failedMember = await prisma.member.findFirst({
+            where: { stripeSubscriptionId: failedInvoice.subscription as string },
+          })
+          if (failedMember) {
+            try {
+              await sendPaymentFailedEmail({
+                name: failedMember.name,
+                email: failedMember.email,
+                amount: (failedInvoice.amount_due ?? 0) / 100,
+                locale: failedMember.preferredLocale,
+              })
+            } catch (e) {
+              console.error('Failed to send payment failed email:', e)
+            }
+          }
+        }
         break
       }
 

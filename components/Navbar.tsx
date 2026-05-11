@@ -1,10 +1,11 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
-import { Menu, X, Heart } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import LanguageSwitcher from './LanguageSwitcher'
 
 interface NavbarProps {
@@ -43,11 +44,16 @@ export default function Navbar({ locale }: NavbarProps) {
 
         {/* ── DESKTOP header ── */}
         <div className="hidden md:flex items-center justify-between h-16">
-          <Link href={`/${locale}`} className="flex items-center gap-2 font-bold text-xl text-brand-blue">
-            <div className="w-8 h-8 bg-brand-blue rounded-lg flex items-center justify-center">
-              <Heart className="w-4 h-4 text-white fill-white" />
-            </div>
-            <span>Unaria</span>
+          <Link href={`/${locale}`} className="flex items-center gap-2.5">
+            <Image
+              src="/images/logo-icon.png"
+              alt=""
+              width={36}
+              height={36}
+              className="h-9 w-9 object-contain"
+              priority
+            />
+            <span className="text-xl font-bold text-[#1a2e4a]">Unaria</span>
           </Link>
 
           <div className="flex items-center gap-1">
@@ -94,12 +100,17 @@ export default function Navbar({ locale }: NavbarProps) {
           {/* Logo centrat absolutament */}
           <Link
             href={`/${locale}`}
-            className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2 font-bold text-xl text-brand-blue"
+            className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2"
           >
-            <div className="w-8 h-8 bg-brand-blue rounded-lg flex items-center justify-center">
-              <Heart className="w-4 h-4 text-white fill-white" />
-            </div>
-            <span>Unaria</span>
+            <Image
+              src="/images/logo-icon.png"
+              alt=""
+              width={32}
+              height={32}
+              className="h-8 w-8 object-contain"
+              priority
+            />
+            <span className="text-lg font-bold text-[#1a2e4a]">Unaria</span>
           </Link>
 
           {/* Hamburger a la dreta */}

@@ -17,7 +17,7 @@ const staticRoutes = [
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? 'https://unaria.org'
+  const appUrl = 'https://unaria.org'
 
   const entries: MetadataRoute.Sitemap = []
 

@@ -36,6 +36,7 @@ export default function MemberForm({ locale }: { locale: string }) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [submittedEmail, setSubmittedEmail] = useState('')
+  const referredBy = searchParams.get('ref') ?? undefined
 
   useEffect(() => {
     if (searchParams.get('success') === '1') {
@@ -71,7 +72,7 @@ export default function MemberForm({ locale }: { locale: string }) {
       const res = await fetch('/api/members', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...data, locale }),
+        body: JSON.stringify({ ...data, locale, referredBy }),
       })
       const json = await res.json()
 
@@ -109,8 +110,8 @@ export default function MemberForm({ locale }: { locale: string }) {
           <div className="mt-6 p-4 bg-gray-50 rounded-xl text-left border border-gray-100">
             <p className="text-xs text-gray-500 leading-relaxed">
               Per cancel·lar la subscripció, envia un email a{' '}
-              <a href="mailto:contacte@unaria.org" className="text-brand-blue font-medium hover:underline">
-                contacte@unaria.org
+              <a href="mailto:unariabcn@gmail.com" className="text-brand-blue font-medium hover:underline">
+                unariabcn@gmail.com
               </a>
               {' '}i el gestionarem en menys de 48h.
             </p>

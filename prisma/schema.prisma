@@ -12,6 +12,7 @@ enum MemberStatus {
   pending
   active
   inactive
+  paused
   cancelled
 }
 
@@ -57,6 +58,11 @@ model Member {
   marketingConsentAt   DateTime?
   preferredLocale      String       @default("ca")
   consentIp            String?
+  referralCode         String?      @unique
+  referredBy           String?
+  pausedUntil          DateTime?
+  cancelledAt          DateTime?
+  winbackEmailSentAt   DateTime?
   donations            Donation[]
   documents            Document[]
   createdAt            DateTime     @default(now())
@@ -64,6 +70,7 @@ model Member {
 
   @@index([email])
   @@index([status])
+  @@index([referralCode])
 }
 
 model Donation {

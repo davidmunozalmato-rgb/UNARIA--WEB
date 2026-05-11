@@ -25,7 +25,7 @@
   },
   "howItWorks": {
     "title": "Comment fonctionne Unaria",
-    "subtitle": "Un modèle transparent, durable et 100% orienté vers l'impact social",
+    "subtitle": "Un modèle transparent, durable et orienté vers l'impact social maximum",
     "step1Title": "Collecte",
     "step1Desc": "Les membres versent des cotisations mensuelles à partir de 6€. Chaque centime est enregistré et audité.",
     "step2Title": "Gestion responsable",
@@ -99,7 +99,15 @@
     "step3Detail": "Chaque trimestre, nous transférons le surplus aux ONG sélectionnées. Nous publions tout : montants, dates et références bancaires.",
     "importantTitle": "Important : vous êtes membre d'Unaria, pas de la Cruz Roja",
     "importantText": "La relation contractuelle est entre vous et Unaria. Unaria, en tant qu'entité, effectue des dons aux ONG partenaires. Cela a des implications fiscales et juridiques importantes expliquées dans nos mentions légales.",
-    "diagramTitle": "Diagramme de flux"
+    "diagramTitle": "Diagramme de flux",
+    "diagramMembers": "Membres",
+    "diagramFund": "Fonds collectif",
+    "diagramNGO": "Fonds pour les ONG",
+    "stepLabel": "Étape",
+    "ctaTitle": "Prêt à rejoindre ?",
+    "ctaText": "À partir de 6€/mois, vous faites partie d'un mouvement solidaire à impact réel et transparent.",
+    "ctaMember": "Devenir membre",
+    "ctaDonate": "Faire un don"
   },
   "becomeMember": {
     "title": "Devenir membre d'Unaria",
@@ -134,7 +142,9 @@
     "required": "Ce champ est obligatoire",
     "invalidEmail": "Adresse e-mail invalide",
     "invalidIban": "IBAN invalide",
-    "processingCard": "Vous serez redirigé vers le formulaire de paiement sécurisé Stripe"
+    "processingCard": "Vous serez redirigé vers le formulaire de paiement sécurisé Stripe",
+    "stepForm": "Données",
+    "stepConfirm": "Confirmation"
   },
   "donate": {
     "title": "Faire un don",
@@ -181,7 +191,7 @@
     "title": "Politique de Confidentialité",
     "lastUpdated": "Dernière mise à jour : {date}",
     "responsibleTitle": "1. Responsable du traitement",
-    "responsibleText": "UNARIA, Association à but non lucratif. NIF : (en cours). Siège social : Barcelone, Catalogne. E-mail : confidentialite@unaria.org",
+    "responsibleText": "UNARIA, Association à but non lucratif. NIF : (en cours). Siège social : Barcelone, Catalogne. E-mail : unariabcn@gmail.com",
     "purposeTitle": "2. Finalités du traitement",
     "purposeText": "Les données personnelles fournies sont utilisées pour : (a) gérer l'adhésion et les cotisations correspondantes ; (b) traiter les dons ponctuels ; (c) envoyer des communications liées aux activités d'Unaria (avec consentement) ; (d) respecter les obligations légales et fiscales. Unaria NE cède PAS vos données aux ONG partenaires. La relation des ONG est uniquement et exclusivement avec Unaria en tant qu'entité.",
     "legalBasisTitle": "3. Base légale",
@@ -189,7 +199,7 @@
     "retentionTitle": "4. Durée de conservation",
     "retentionText": "Les données sont conservées pendant la durée de la relation associative et, ensuite, pendant les délais légalement requis (minimum 5 ans pour la documentation comptable).",
     "rightsTitle": "5. Vos droits",
-    "rightsText": "Vous pouvez exercer vos droits d'accès, de rectification, d'effacement, de limitation, de portabilité et d'opposition en écrivant à confidentialite@unaria.org, en joignant une copie de votre pièce d'identité. Vous avez le droit de déposer une plainte auprès de l'Agence Espagnole de Protection des Données (www.aepd.es).",
+    "rightsText": "Vous pouvez exercer vos droits d'accès, de rectification, d'effacement, de limitation, de portabilité et d'opposition en écrivant à unariabcn@gmail.com, en joignant une copie de votre pièce d'identité. Vous avez le droit de déposer une plainte auprès de l'Agence Espagnole de Protection des Données (www.aepd.es).",
     "ibanTitle": "6. Sécurité de l'IBAN",
     "ibanText": "Les coordonnées bancaires (IBAN) sont stockées chiffrées avec AES-256 et ne sont jamais transmises en clair. Elles sont utilisées uniquement pour traiter le prélèvement SEPA autorisé.",
     "cookiesTitle": "7. Cookies",
@@ -198,7 +208,7 @@
   "legal": {
     "title": "Mentions Légales",
     "ownerTitle": "1. Propriétaire du site web",
-    "ownerText": "UNARIA, Association à but non lucratif. NIF : (en cours). Siège social : Barcelone, Catalogne. E-mail de contact : contact@unaria.org",
+    "ownerText": "UNARIA, Association à but non lucratif. NIF : (en cours). Siège social : Barcelone, Catalogne. E-mail de contact : unariabcn@gmail.com",
     "conditionsTitle": "2. Conditions d'utilisation",
     "conditionsText": "L'accès et l'utilisation de ce site web implique l'acceptation pleine et entière des présentes conditions. Unaria se réserve le droit de modifier le contenu du site web sans préavis.",
     "ipTitle": "3. Propriété intellectuelle",

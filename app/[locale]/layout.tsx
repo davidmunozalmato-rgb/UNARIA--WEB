@@ -7,6 +7,7 @@ import { locales } from '@/i18n'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import CookieBanner from '@/components/CookieBanner'
+import ExitIntentPopup from '@/components/ExitIntentPopup'
 import type { Metadata } from 'next'
 
 interface LocaleLayoutProps {
@@ -37,8 +38,12 @@ export async function generateMetadata({ params: { locale } }: LocaleLayoutProps
       card: 'summary_large_image',
     },
     alternates: {
-      canonical: `/${locale}`,
       languages: Object.fromEntries(locales.map((l) => [l, `/${l}`])),
+    },
+    icons: {
+      icon: '/images/logo-icon.png',
+      shortcut: '/images/logo-icon.png',
+      apple: '/images/logo-icon.png',
     },
   }
 }
@@ -54,6 +59,7 @@ export default async function LocaleLayout({ children, params: { locale } }: Loc
       <main className="flex-1 w-full">{children}</main>
       <Footer />
       <CookieBanner />
+      <ExitIntentPopup locale={locale} />
     </NextIntlClientProvider>
   )
 }

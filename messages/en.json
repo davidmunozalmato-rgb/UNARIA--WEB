@@ -25,7 +25,7 @@
   },
   "howItWorks": {
     "title": "How Unaria works",
-    "subtitle": "A transparent, sustainable model 100% focused on social impact",
+    "subtitle": "A transparent, sustainable model focused on maximum social impact",
     "step1Title": "Collection",
     "step1Desc": "Members contribute monthly fees from €6. Every cent is recorded and audited.",
     "step2Title": "Responsible management",
@@ -99,7 +99,15 @@
     "step3Detail": "Every quarter we transfer the surplus to selected NGOs. We publish everything: amounts, dates and bank references.",
     "importantTitle": "Important: you are a member of Unaria, not of Cruz Roja",
     "importantText": "The contractual relationship is between you and Unaria. Unaria, as an entity, makes donations to partner NGOs. This has important legal and tax implications explained in our legal notice.",
-    "diagramTitle": "Flow diagram"
+    "diagramTitle": "Flow diagram",
+    "diagramMembers": "Members",
+    "diagramFund": "Collective fund",
+    "diagramNGO": "Fund for NGOs",
+    "stepLabel": "Step",
+    "ctaTitle": "Ready to join?",
+    "ctaText": "From €6/month you become part of a solidarity movement with real, transparent impact.",
+    "ctaMember": "Become a member",
+    "ctaDonate": "Make a donation"
   },
   "becomeMember": {
     "title": "Become a member of Unaria",
@@ -134,7 +142,9 @@
     "required": "This field is required",
     "invalidEmail": "Invalid email address",
     "invalidIban": "Invalid IBAN",
-    "processingCard": "You will be redirected to Stripe's secure payment form"
+    "processingCard": "You will be redirected to Stripe's secure payment form",
+    "stepForm": "Details",
+    "stepConfirm": "Confirmation"
   },
   "donate": {
     "title": "Make a donation",
@@ -181,7 +191,7 @@
     "title": "Privacy Policy",
     "lastUpdated": "Last updated: {date}",
     "responsibleTitle": "1. Data controller",
-    "responsibleText": "UNARIA, Non-profit association. Tax ID (CIF): (pending). Registered address: Barcelona, Catalonia. Email: privacy@unaria.org",
+    "responsibleText": "UNARIA, Non-profit association. Tax ID (CIF): (pending). Registered address: Barcelona, Catalonia. Email: unariabcn@gmail.com",
     "purposeTitle": "2. Purposes of processing",
     "purposeText": "Personal data provided is used to: (a) manage membership and corresponding fees; (b) process one-time donations; (c) send communications related to Unaria's activities (where consent exists); (d) comply with legal and tax obligations. Unaria does NOT share your data with partner NGOs. The NGOs' relationship is solely and exclusively with Unaria as an entity.",
     "legalBasisTitle": "3. Legal basis",
@@ -189,7 +199,7 @@
     "retentionTitle": "4. Retention period",
     "retentionText": "Data is retained for the duration of the membership and, subsequently, for legally required periods (minimum 5 years for accounting records).",
     "rightsTitle": "5. Your rights",
-    "rightsText": "You may exercise your rights of access, rectification, erasure, restriction, portability and objection by writing to privacy@unaria.org, attaching a copy of your identity document. You have the right to lodge a complaint with the Spanish Data Protection Agency (www.aepd.es).",
+    "rightsText": "You may exercise your rights of access, rectification, erasure, restriction, portability and objection by writing to unariabcn@gmail.com, attaching a copy of your identity document. You have the right to lodge a complaint with the Spanish Data Protection Agency (www.aepd.es).",
     "ibanTitle": "6. IBAN security",
     "ibanText": "Bank details (IBAN) are stored encrypted with AES-256 and are never transmitted in plaintext. They are used solely to process the authorised SEPA direct debit.",
     "cookiesTitle": "7. Cookies",
@@ -198,7 +208,7 @@
   "legal": {
     "title": "Legal Notice",
     "ownerTitle": "1. Website owner",
-    "ownerText": "UNARIA, Non-profit association. Tax ID (CIF): (pending). Registered address: Barcelona, Catalonia. Contact email: contact@unaria.org",
+    "ownerText": "UNARIA, Non-profit association. Tax ID (CIF): (pending). Registered address: Barcelona, Catalonia. Contact email: unariabcn@gmail.com",
     "conditionsTitle": "2. Terms of use",
     "conditionsText": "Accessing and using this website implies full acceptance of these terms. Unaria reserves the right to modify website content without prior notice.",
     "ipTitle": "3. Intellectual property",

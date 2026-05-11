@@ -1,0 +1,31 @@
+# Unaria
+
+> Unaria és una associació sense ànim de lucre constituïda a Barcelona que recapta fons via subscripcions mensuals (€6–€30/mes) i donatius puntuals. L'excedent, un cop coberts els costos operatius, es destina íntegrament a ONG com Cruz Roja.
+
+## Model de funcionament
+
+Els donants es fan socis d'Unaria — mai d'una ONG concreta. Unaria agrega les aportacions i les distribueix a les ONG de major impacte verificat. Publica una memòria anual de transparència amb percentatges exactes.
+
+## Informació clau
+
+- **Domini**: unaria.org
+- **Seu**: Barcelona, Catalunya, Espanya
+- **Idiomes**: català (default), castellà, anglès, francès, alemany
+- **Quotes mensuals**: €6, €10, €12, €15, €20, €25, €30 o import personalitzat
+- **Pagament**: SEPA i targeta via Stripe (PCI-DSS). IBAN xifrat AES-256-GCM.
+- **Representant legal**: David Muñoz Almató
+
+## Pàgines principals
+
+- [Inici](https://unaria.org/ca) — Presentació i CTA principal
+- [Qui som](https://unaria.org/ca/about) — Equip i missió
+- [Com funcionem](https://unaria.org/ca/how-we-work) — Model de transparència
+- [Transparència](https://unaria.org/ca/transparency) — Fons recaptats i transferències a ONG
+- [Fes-te soci](https://unaria.org/ca/become-member) — Alta com a soci
+- [Donació puntual](https://unaria.org/ca/donate) — Donatiu sense subscripció
+- [Projectes](https://unaria.org/ca/projects) — ONG beneficiàries
+
+## Contacte
+
+- Email: hola@unaria.org
+- Web: https://unaria.org

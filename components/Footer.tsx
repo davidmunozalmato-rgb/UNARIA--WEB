@@ -29,8 +29,8 @@ export default function Footer() {
             </div>
             <div className="mt-2 flex items-center gap-2 text-gray-400 text-sm">
               <Mail className="w-4 h-4 flex-shrink-0" />
-              <a href="mailto:contacte@unaria.org" className="hover:text-white transition-colors">
-                contacte@unaria.org
+              <a href="mailto:unariabcn@gmail.com" className="hover:text-white transition-colors">
+                unariabcn@gmail.com
               </a>
             </div>
           </div>

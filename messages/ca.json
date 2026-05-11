@@ -25,7 +25,7 @@
   },
   "howItWorks": {
     "title": "Com funciona Unaria",
-    "subtitle": "Un model transparent, sostenible i 100% orientat a l'impacte social",
+    "subtitle": "Un model transparent, sostenible i orientat al màxim impacte social",
     "step1Title": "Recaptació",
     "step1Desc": "Els socis aporten quotes mensuals a partir de 6€. Cada cèntim queda registrat i auditat.",
     "step2Title": "Gestió responsable",
@@ -99,7 +99,15 @@
     "step3Detail": "Cada trimestre transferim el superàvit a les ONG seleccionades. Ho publiquem tot: imports, dates i referència bancària.",
     "importantTitle": "Important: ets soci d'Unaria, no de la Creu Roja",
     "importantText": "La relació contractual és entre tu i Unaria. Unaria, com a entitat, fa donacions a les ONG col·laboradores. Això té implicacions fiscals i legals importants que expliquem en el nostre avís legal.",
-    "diagramTitle": "Diagrama de flux"
+    "diagramTitle": "Diagrama de flux",
+    "diagramMembers": "Socis",
+    "diagramFund": "Fons col·lectiu",
+    "diagramNGO": "Fons per a les ONG",
+    "stepLabel": "Pas",
+    "ctaTitle": "Preparat per unir-te?",
+    "ctaText": "Des de 6€/mes formes part d'un moviment solidari amb impacte real i transparent.",
+    "ctaMember": "Fes-te soci",
+    "ctaDonate": "Fes una donació"
   },
   "becomeMember": {
     "title": "Fes-te soci d'Unaria",
@@ -134,7 +142,9 @@
     "required": "Camp obligatori",
     "invalidEmail": "Correu electrònic no vàlid",
     "invalidIban": "IBAN no vàlid",
-    "processingCard": "Seràs redirigit al formulari de pagament segur de Stripe"
+    "processingCard": "Seràs redirigit al formulari de pagament segur de Stripe",
+    "stepForm": "Dades",
+    "stepConfirm": "Confirmació"
   },
   "donate": {
     "title": "Fes una donació",
@@ -181,7 +191,7 @@
     "title": "Política de Privacitat",
     "lastUpdated": "Darrera actualització: {date}",
     "responsibleTitle": "1. Responsable del tractament",
-    "responsibleText": "UNARIA, Associació sense ànim de lucre. CIF: (en tràmit). Domicili social: Barcelona, Catalunya. Correu electrònic: privacitat@unaria.org",
+    "responsibleText": "UNARIA, Associació sense ànim de lucre. CIF: (en tràmit). Domicili social: Barcelona, Catalunya. Correu electrònic: unariabcn@gmail.com",
     "purposeTitle": "2. Finalitat del tractament",
     "purposeText": "Les dades personals facilitades s'utilitzen per a: (a) gestionar la condició de soci/a i les quotes corresponents; (b) tramitar donacions puntuals; (c) enviar comunicacions relacionades amb l'activitat d'Unaria (si es disposa de consentiment); (d) complir les obligacions legals i fiscals. Unaria NO cedeix les vostres dades a les ONG col·laboradores. La relació de les ONG és única i exclusivament amb Unaria com a entitat.",
     "legalBasisTitle": "3. Base legitimadora",
@@ -189,7 +199,7 @@
     "retentionTitle": "4. Termini de conservació",
     "retentionText": "Les dades es conserven mentre duri la relació associativa i, posteriorment, durant els terminis legalment exigibles (mínim 5 anys per a documentació comptable).",
     "rightsTitle": "5. Drets",
-    "rightsText": "Podeu exercir els drets d'accés, rectificació, supressió, limitació, portabilitat i oposició escrivint a privacitat@unaria.org, adjuntant còpia del vostre document d'identitat. Teniu dret a presentar reclamació davant l'Agència Espanyola de Protecció de Dades (www.aepd.es).",
+    "rightsText": "Podeu exercir els drets d'accés, rectificació, supressió, limitació, portabilitat i oposició escrivint a unariabcn@gmail.com, adjuntant còpia del vostre document d'identitat. Teniu dret a presentar reclamació davant l'Agència Espanyola de Protecció de Dades (www.aepd.es).",
     "ibanTitle": "6. Seguretat de l'IBAN",
     "ibanText": "Les dades bancàries (IBAN) s'emmagatzemen xifrades amb AES-256 i mai es transmeten en clar. Únicament s'utilitzen per processar la domiciliació SEPA autoritzada.",
     "cookiesTitle": "7. Galetes",
@@ -198,7 +208,7 @@
   "legal": {
     "title": "Avís Legal",
     "ownerTitle": "1. Titular del lloc web",
-    "ownerText": "UNARIA, Associació sense ànim de lucre. CIF: (en tràmit). Domicili social: Barcelona, Catalunya. Correu electrònic de contacte: contacte@unaria.org",
+    "ownerText": "UNARIA, Associació sense ànim de lucre. CIF: (en tràmit). Domicili social: Barcelona, Catalunya. Correu electrònic de contacte: unariabcn@gmail.com",
     "conditionsTitle": "2. Condicions d'ús",
     "conditionsText": "L'accés i ús d'aquest lloc web implica l'acceptació plena de les presents condicions. Unaria es reserva el dret de modificar els continguts del lloc web sense previ avís.",
     "ipTitle": "3. Propietat intel·lectual",

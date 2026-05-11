@@ -20,6 +20,7 @@ const memberSchema = z.object({
   gdprRequired: z.boolean(),
   gdprMarketing: z.boolean(),
   locale: z.string().default('ca'),
+  referredBy: z.string().optional(),
 })
 
 export async function POST(request: NextRequest) {
@@ -121,6 +122,7 @@ export async function POST(request: NextRequest) {
           marketingConsentAt: data.gdprMarketing ? new Date() : undefined,
           preferredLocale: data.locale,
           consentIp: ip,
+          referredBy: data.referredBy ?? null,
         },
       })
     } catch (dbError) {
