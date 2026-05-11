@@ -5,6 +5,7 @@ import { ArrowRight, ArrowDownCircle, Shield, Target, Eye, Handshake, BarChart3 
 import NewsSection from '@/components/NewsSection'
 import ProjectsSection from '@/components/ProjectsSection'
 import AnimatedCounter from '@/components/AnimatedCounter'
+import { JsonLd } from '@/components/JsonLd'
 import type { Metadata } from 'next'
 
 interface PageProps {
@@ -348,9 +349,71 @@ function CtaSection({ locale }: { locale: string }) {
   )
 }
 
+const nonprofitSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'NGO',
+  '@id': 'https://unaria.org/#organization',
+  name: 'Unaria',
+  alternateName: ['Associació Unaria', 'Asociación Unaria'],
+  url: 'https://unaria.org',
+  logo: {
+    '@type': 'ImageObject',
+    url: 'https://unaria.org/images/logo.png',
+    width: 200,
+    height: 60,
+  },
+  description: 'Unaria és una associació sense ànim de lucre constituïda a Barcelona que canalitza les quotes dels socis vers ONG com Cruz Roja. 100% transparent.',
+  foundingDate: '2024',
+  founder: { '@type': 'Person', name: 'David Muñoz Almató' },
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Barcelona',
+    addressRegion: 'Catalunya',
+    addressCountry: 'ES',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer support',
+    email: 'hola@unaria.org',
+    availableLanguage: ['Catalan', 'Spanish', 'English', 'French', 'German'],
+  },
+  sameAs: [
+    'https://www.instagram.com/unaria.cat',
+    'https://www.tiktok.com/@unaria.cat',
+    'https://www.linkedin.com/company/unaria',
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Quotes de soci',
+    itemListElement: [6, 10, 12, 15, 20, 25, 30].map((price) => ({
+      '@type': 'Offer',
+      price: price.toFixed(2),
+      priceCurrency: 'EUR',
+      priceSpecification: {
+        '@type': 'UnitPriceSpecification',
+        price: price.toFixed(2),
+        priceCurrency: 'EUR',
+        unitCode: 'MON',
+      },
+    })),
+  },
+}
+
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': 'https://unaria.org/#website',
+  url: 'https://unaria.org',
+  name: 'Unaria',
+  description: 'Associació solidaria de Barcelona. Canalitzem quotes mensuals a ONG de forma 100% transparent.',
+  inLanguage: ['ca', 'es', 'en', 'fr', 'de'],
+  publisher: { '@id': 'https://unaria.org/#organization' },
+}
+
 export default function HomePage({ params: { locale } }: PageProps) {
   return (
     <>
+      <JsonLd data={{ '@context': 'https://schema.org', '@graph': [nonprofitSchema, websiteSchema] }} />
       <HeroSection locale={locale} />
       <ObjectiusSection locale={locale} />
       <ProjectsSection locale={locale} />

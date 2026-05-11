@@ -1,5 +1,6 @@
 import { Suspense } from 'react'
 import MemberForm from './MemberForm'
+import { JsonLd } from '@/components/JsonLd'
 import type { Metadata } from 'next'
 
 interface PageProps {
@@ -66,10 +67,35 @@ export async function generateMetadata({ params: { locale } }: PageProps): Promi
   }
 }
 
+const memberSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': 'https://unaria.org/become-member#service',
+  name: 'Subscripció de soci Unaria',
+  description: 'Quota mensual recurrent que canalitza fons a ONG com Cruz Roja. Cancel·lació lliure en qualsevol moment.',
+  provider: { '@id': 'https://unaria.org/#organization' },
+  offers: [6, 10, 12, 15, 20, 25, 30].map((price) => ({
+    '@type': 'Offer',
+    name: `Quota ${price}€/mes`,
+    price: price.toFixed(2),
+    priceCurrency: 'EUR',
+    priceSpecification: {
+      '@type': 'UnitPriceSpecification',
+      price: price.toFixed(2),
+      priceCurrency: 'EUR',
+      unitCode: 'MON',
+      unitText: 'mes',
+    },
+  })),
+}
+
 export default function BecomeMemberPage({ params: { locale } }: PageProps) {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-brand-gray" />}>
-      <MemberForm locale={locale} />
-    </Suspense>
+    <>
+      <JsonLd data={memberSchema} />
+      <Suspense fallback={<div className="min-h-screen bg-brand-gray" />}>
+        <MemberForm locale={locale} />
+      </Suspense>
+    </>
   )
 }

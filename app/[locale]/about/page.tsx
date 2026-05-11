@@ -1,5 +1,4 @@
 import { useTranslations } from 'next-intl'
-import { getTranslations } from 'next-intl/server'
 import { CheckCircle, Building, Users, Heart, Target, Shield, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import type { Metadata } from 'next'

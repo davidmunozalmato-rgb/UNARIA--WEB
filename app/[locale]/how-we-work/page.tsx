@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl'
-import { getTranslations } from 'next-intl/server'
 import { ArrowRight, AlertCircle, Users, PiggyBank, Heart, ChevronDown } from 'lucide-react'
 import Link from 'next/link'
+import { JsonLd } from '@/components/JsonLd'
 import type { Metadata } from 'next'
 
 interface PageProps {
@@ -61,6 +61,119 @@ export async function generateMetadata({ params: { locale } }: PageProps): Promi
   }
 }
 
+type FaqItem = { q: string; a: string }
+
+const FAQ_ITEMS: Record<string, FaqItem[]> = {
+  ca: [
+    { q: 'Què és Unaria exactament?', a: 'Unaria és una associació sense ànim de lucre constituïda a Barcelona. Els socis paguen una quota mensual (des de 6€/mes) i Unaria destina l\'excedent, un cop coberts els costos operatius, íntegrament a ONG com Cruz Roja.' },
+    { q: 'On van exactament els meus diners?', a: 'Les teves quotes van a Unaria. Unaria dedueix els costos operatius (sous, tecnologia, assegurances) i transfereix l\'excedent íntegrament a ONG com Cruz Roja. La pàgina de transparència mostra el percentatge exacte en temps real.' },
+    { q: 'Puc cancel·lar quan vulgui?', a: 'Sí. Pots cancel·lar la teva subscripció amb un sol clic des del teu perfil, en qualsevol moment, sense trucades ni formularis. Abans de cancel·lar, t\'oferirem la possibilitat de fer una pausa d\'un mes.' },
+    { q: 'És segur donar les meves dades bancàries?', a: 'Sí. El pagament es processa via Stripe (certificació PCI-DSS), les dades SEPA es xifren amb AES-256, i mai tenim accés directe al teu número de compte complet. Unaria compleix el RGPD i està registrada a l\'AEPD.' },
+    { q: 'Quant percentatge arriba realment a les ONG?', a: 'El percentatge varia en funció dels ingressos totals i els costos operatius del mes. Pots veure el percentatge exacte en temps real a la pàgina de transparència. Unaria publica la memòria anual completa.' },
+    { q: 'Per quines ONG destina Unaria els fons?', a: 'Actualment, Unaria destina els fons principalment a Cruz Roja Española. A mesura que creixem, ampliarem la llista d\'ONG partners. La llista actualitzada és sempre visible a la pàgina de transparència.' },
+    { q: 'Quina diferència hi ha entre Unaria i Cruz Roja?', a: 'Cruz Roja és una ONG directa que opera programes propis. Unaria és una associació intermediària que canalitza fons a Cruz Roja amb transparència total sobre com es distribueixen.' },
+    { q: 'Com sé que Unaria és legítima?', a: 'Unaria està registrada al Registre d\'Associacions de Catalunya, compleix el RGPD (registrada a l\'AEPD), i els pagaments es processen via Stripe (PCI-DSS). El representant legal és David Muñoz Almató (DNI 39444468C).' },
+  ],
+  es: [
+    { q: '¿Qué es Unaria exactamente?', a: 'Unaria es una asociación sin ánimo de lucro constituida en Barcelona. Los socios pagan una cuota mensual (desde 6€/mes) y Unaria destina el excedente, una vez cubiertos los costes operativos, íntegramente a ONG como Cruz Roja.' },
+    { q: '¿Adónde va exactamente mi dinero?', a: 'Tus cuotas van a Unaria. Unaria deduce los costes operativos (sueldos, tecnología, seguros) y transfiere el excedente íntegramente a ONG como Cruz Roja. La página de transparencia muestra el porcentaje exacto en tiempo real.' },
+    { q: '¿Puedo cancelar cuando quiera?', a: 'Sí. Puedes cancelar tu suscripción con un solo clic desde tu perfil, en cualquier momento, sin llamadas ni formularios. Antes de cancelar, te ofreceremos la posibilidad de hacer una pausa de un mes.' },
+    { q: '¿Es seguro dar mis datos bancarios?', a: 'Sí. El pago se procesa vía Stripe (certificación PCI-DSS), los datos SEPA se cifran con AES-256, y nunca tenemos acceso directo a tu número de cuenta completo. Unaria cumple el RGPD y está registrada en la AEPD.' },
+    { q: '¿Qué porcentaje llega realmente a las ONG?', a: 'El porcentaje varía según los ingresos totales y los costes operativos del mes. Puedes ver el porcentaje exacto en tiempo real en la página de transparencia. Unaria publica la memoria anual completa.' },
+    { q: '¿A qué ONG destina Unaria los fondos?', a: 'Actualmente, Unaria destina los fondos principalmente a Cruz Roja Española. A medida que crecemos, ampliaremos la lista de ONG partners.' },
+    { q: '¿Cuál es la diferencia entre Unaria y Cruz Roja?', a: 'Cruz Roja es una ONG directa que opera programas propios. Unaria es una asociación intermediaria que canaliza fondos a Cruz Roja con transparencia total.' },
+    { q: '¿Cómo sé que Unaria es legítima?', a: 'Unaria está registrada en el Registro de Asociaciones de Cataluña, cumple el RGPD (registrada en la AEPD), y los pagos se procesan vía Stripe (PCI-DSS). El representante legal es David Muñoz Almató.' },
+  ],
+  en: [
+    { q: 'What exactly is Unaria?', a: 'Unaria is a non-profit association founded in Barcelona. Members pay a monthly fee (from €6/month) and Unaria passes the surplus, after covering operating costs, entirely to NGOs like Cruz Roja.' },
+    { q: 'Where exactly does my money go?', a: 'Your fees go to Unaria. Unaria deducts operating costs (salaries, technology, insurance) and transfers the surplus entirely to NGOs like Cruz Roja. The transparency page shows the exact percentage in real time.' },
+    { q: 'Can I cancel whenever I want?', a: 'Yes. You can cancel your subscription with a single click from your profile, at any time, without calls or forms. Before cancelling, we\'ll offer you the option to pause for one month.' },
+    { q: 'Is it safe to give my bank details?', a: 'Yes. Payment is processed via Stripe (PCI-DSS certified), SEPA data is encrypted with AES-256, and we never have direct access to your full account number. Unaria is GDPR compliant and registered with the AEPD.' },
+    { q: 'What percentage actually reaches the NGOs?', a: 'The percentage varies depending on total income and operating costs. You can see the exact percentage in real time on the transparency page. Unaria publishes the full annual report.' },
+    { q: 'Which NGOs does Unaria fund?', a: 'Currently, Unaria primarily channels funds to Cruz Roja Española. As we grow, we\'ll expand our list of partner NGOs.' },
+    { q: 'What\'s the difference between Unaria and Cruz Roja?', a: 'Cruz Roja is a direct NGO that runs its own programmes. Unaria is an intermediary association that channels funds to Cruz Roja with full transparency.' },
+    { q: 'How do I know Unaria is legitimate?', a: 'Unaria is registered with the Catalonia Associations Registry, is GDPR compliant (registered with AEPD), and payments are processed via Stripe (PCI-DSS). Legal representative: David Muñoz Almató.' },
+  ],
+  fr: [
+    { q: 'Qu\'est-ce qu\'Unaria exactement?', a: 'Unaria est une association sans but lucratif fondée à Barcelone. Les membres paient une cotisation mensuelle (à partir de 6€/mois) et Unaria reverse l\'excédent, après déduction des coûts opérationnels, intégralement à des ONG comme Cruz Roja.' },
+    { q: 'Où va exactement mon argent?', a: 'Vos cotisations vont à Unaria. Unaria déduit les coûts opérationnels et transfère l\'excédent intégralement aux ONG. La page de transparence affiche le pourcentage exact en temps réel.' },
+    { q: 'Puis-je annuler quand je veux?', a: 'Oui. Vous pouvez annuler votre abonnement en un seul clic depuis votre profil, à tout moment, sans appels ni formulaires.' },
+    { q: 'Est-il sûr de donner mes coordonnées bancaires?', a: 'Oui. Le paiement est traité via Stripe (certifié PCI-DSS), les données SEPA sont chiffrées avec AES-256. Unaria est conforme au RGPD.' },
+    { q: 'Quel pourcentage arrive vraiment aux ONG?', a: 'Le pourcentage varie selon les revenus totaux et les coûts opérationnels. Vous pouvez voir le pourcentage exact en temps réel sur la page de transparence.' },
+    { q: 'Quelles ONG Unaria finance-t-elle?', a: 'Actuellement, Unaria destine les fonds principalement à Cruz Roja Española.' },
+    { q: 'Quelle est la différence entre Unaria et Cruz Roja?', a: 'Cruz Roja est une ONG directe. Unaria est une association intermédiaire qui canalise des fonds vers Cruz Roja avec une transparence totale.' },
+    { q: 'Comment savoir qu\'Unaria est légitime?', a: 'Unaria est enregistrée au Registre des Associations de Catalogne, est conforme au RGPD et les paiements sont traités via Stripe (PCI-DSS).' },
+  ],
+  de: [
+    { q: 'Was genau ist Unaria?', a: 'Unaria ist ein gemeinnütziger Verein aus Barcelona. Mitglieder zahlen einen monatlichen Beitrag (ab 6€/Monat) und Unaria leitet den Überschuss, nach Abzug der Betriebskosten, vollständig an NGOs wie Cruz Roja weiter.' },
+    { q: 'Wohin geht mein Geld genau?', a: 'Ihre Beiträge gehen an Unaria. Unaria zieht Betriebskosten ab und überweist den Überschuss vollständig an NGOs wie Cruz Roja. Die Transparenzseite zeigt den genauen Prozentsatz in Echtzeit.' },
+    { q: 'Kann ich jederzeit kündigen?', a: 'Ja. Sie können Ihr Abonnement mit einem einzigen Klick aus Ihrem Profil heraus jederzeit kündigen, ohne Anrufe oder Formulare.' },
+    { q: 'Ist es sicher, meine Bankdaten anzugeben?', a: 'Ja. Die Zahlung wird über Stripe (PCI-DSS-zertifiziert) abgewickelt, SEPA-Daten werden mit AES-256 verschlüsselt. Unaria ist DSGVO-konform.' },
+    { q: 'Welcher Prozentsatz erreicht die NGOs wirklich?', a: 'Der Prozentsatz variiert je nach Gesamteinnahmen und Betriebskosten. Den genauen Prozentsatz sehen Sie in Echtzeit auf der Transparenzseite.' },
+    { q: 'Welche NGOs finanziert Unaria?', a: 'Derzeit leitet Unaria Gelder hauptsächlich an Cruz Roja Española weiter.' },
+    { q: 'Was ist der Unterschied zwischen Unaria und Cruz Roja?', a: 'Cruz Roja ist eine direkte NGO. Unaria ist ein Vermittlungsverein, der Gelder mit vollständiger Transparenz an Cruz Roja weiterleitet.' },
+    { q: 'Woher weiß ich, dass Unaria legitim ist?', a: 'Unaria ist im katalanischen Vereinsregister eingetragen, DSGVO-konform und Zahlungen werden über Stripe (PCI-DSS) abgewickelt.' },
+  ],
+}
+
+const HOW_TO_STEPS: Record<string, { name: string; text: string }[]> = {
+  ca: [
+    { name: 'Escull la teva quota mensual', text: 'Selecciona la quota mensual que millor s\'adapti a les teves possibilitats: 6, 10, 12, 15, 20, 25 o 30€/mes.' },
+    { name: 'Omple les teves dades', text: 'Introdueix el teu nom, cognoms, email i adreça. Totes les dades es tracten d\'acord amb el RGPD.' },
+    { name: 'Configura el pagament', text: 'Escull entre domiciliació bancària SEPA o pagament amb targeta. El primer cobrament es realitza en el moment de l\'alta.' },
+  ],
+  es: [
+    { name: 'Elige tu cuota mensual', text: 'Selecciona la cuota mensual que mejor se adapte a tus posibilidades: 6, 10, 12, 15, 20, 25 o 30€/mes.' },
+    { name: 'Rellena tus datos', text: 'Introduce tu nombre, apellidos, email y dirección. Todos los datos se tratan según el RGPD.' },
+    { name: 'Configura el pago', text: 'Elige entre domiciliación bancaria SEPA o pago con tarjeta. El primer cargo se realiza en el momento del alta.' },
+  ],
+  en: [
+    { name: 'Choose your monthly fee', text: 'Select the monthly fee that best suits your budget: €6, 10, 12, 15, 20, 25 or 30/month.' },
+    { name: 'Fill in your details', text: 'Enter your name, surname, email and address. All data is processed in accordance with GDPR.' },
+    { name: 'Set up payment', text: 'Choose between SEPA direct debit or card payment. The first charge is made at the time of sign-up.' },
+  ],
+  fr: [
+    { name: 'Choisissez votre cotisation mensuelle', text: 'Sélectionnez la cotisation mensuelle qui vous convient : 6, 10, 12, 15, 20, 25 ou 30€/mois.' },
+    { name: 'Remplissez vos coordonnées', text: 'Entrez votre nom, prénom, email et adresse. Toutes les données sont traitées conformément au RGPD.' },
+    { name: 'Configurez le paiement', text: 'Choisissez entre prélèvement SEPA ou paiement par carte. Le premier prélèvement est effectué lors de l\'inscription.' },
+  ],
+  de: [
+    { name: 'Wählen Sie Ihren monatlichen Beitrag', text: 'Wählen Sie den Monatsbeitrag, der am besten zu Ihnen passt: 6, 10, 12, 15, 20, 25 oder 30€/Monat.' },
+    { name: 'Geben Sie Ihre Daten ein', text: 'Tragen Sie Ihren Namen, Nachnamen, E-Mail und Adresse ein. Alle Daten werden gemäß DSGVO verarbeitet.' },
+    { name: 'Zahlung einrichten', text: 'Wählen Sie zwischen SEPA-Lastschrift oder Kartenzahlung. Die erste Abbuchung erfolgt bei der Anmeldung.' },
+  ],
+}
+
+function buildHowWeWorkSchema(locale: string) {
+  const faqItems = FAQ_ITEMS[locale] ?? FAQ_ITEMS.ca
+  const steps = HOW_TO_STEPS[locale] ?? HOW_TO_STEPS.ca
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'FAQPage',
+        mainEntity: faqItems.map(({ q, a }) => ({
+          '@type': 'Question',
+          name: q,
+          acceptedAnswer: { '@type': 'Answer', text: a },
+        })),
+      },
+      {
+        '@type': 'HowTo',
+        name: steps[0]?.name ? 'Fer-se soci d\'Unaria' : 'Become an Unaria member',
+        totalTime: 'PT3M',
+        estimatedCost: { '@type': 'MonetaryAmount', currency: 'EUR', value: '6' },
+        step: steps.map((s, i) => ({
+          '@type': 'HowToStep',
+          position: i + 1,
+          name: s.name,
+          text: s.text,
+        })),
+      },
+    ],
+  }
+}
+
 export default function HowWeWorkPage({ params: { locale } }: PageProps) {
   const t = useTranslations('howWeWorkPage')
 
@@ -95,6 +208,8 @@ export default function HowWeWorkPage({ params: { locale } }: PageProps) {
   ]
 
   return (
+    <>
+      <JsonLd data={buildHowWeWorkSchema(locale)} />
     <div className="min-h-screen">
 
       {/* ── HERO ── */}
@@ -237,5 +352,6 @@ export default function HowWeWorkPage({ params: { locale } }: PageProps) {
       </section>
 
     </div>
+    </>
   )
 }
