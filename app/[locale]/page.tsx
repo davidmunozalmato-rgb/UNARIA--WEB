@@ -378,8 +378,8 @@ const nonprofitSchema = {
     availableLanguage: ['Catalan', 'Spanish', 'English', 'French', 'German'],
   },
   sameAs: [
-    'https://www.instagram.com/unaria.cat',
-    'https://www.tiktok.com/@unaria.cat',
+    'https://www.instagram.com/unariabcn',
+    'https://www.facebook.com/unariabcn',
     'https://www.linkedin.com/company/unaria',
   ],
   hasOfferCatalog: {
