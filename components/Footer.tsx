@@ -32,6 +32,7 @@ export default function Footer() {
               <a href="mailto:unariabcn@gmail.com" className="hover:text-white transition-colors">
                 unariabcn@gmail.com
               </a>
+            </div>
             <div className="mt-2 flex items-center gap-2 text-gray-400 text-sm">
               <Instagram className="w-4 h-4 flex-shrink-0" />
               <a href="https://instagram.com/unariabcn" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
