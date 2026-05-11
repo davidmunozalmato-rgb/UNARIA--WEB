@@ -32,13 +32,16 @@ export default function Footer() {
               <a href="mailto:unariabcn@gmail.com" className="hover:text-white transition-colors">
                 unariabcn@gmail.com
               </a>
-            </div>
-            <div className="mt-4 flex items-center gap-4">
-              <a href="https://facebook.com/unariabcn" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                <Facebook className="w-5 h-5" />
+            <div className="mt-2 flex items-center gap-2 text-gray-400 text-sm">
+              <Instagram className="w-4 h-4 flex-shrink-0" />
+              <a href="https://instagram.com/unariabcn" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                @unariabcn
               </a>
-              <a href="https://instagram.com/unariabcn" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-white transition-colors">
-                <Instagram className="w-5 h-5" />
+            </div>
+            <div className="mt-2 flex items-center gap-2 text-gray-400 text-sm">
+              <Facebook className="w-4 h-4 flex-shrink-0" />
+              <a href="https://facebook.com/unariabcn" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                Unaria BCN
               </a>
             </div>
           </div>
