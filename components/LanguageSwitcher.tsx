@@ -6,7 +6,7 @@ import { setCookie } from 'cookies-next'
 import { ChevronDown } from 'lucide-react'
 
 const languages = [
-  { code: 'ca', label: 'Català', flag: 'https://flagcdn.com/w40/es-ct.png', short: 'CA' },
+  { code: 'ca', label: 'Català', flag: '/images/flag-ca.svg', short: 'CA' },
   { code: 'es', label: 'Castellano', flag: 'https://flagcdn.com/w40/es.png', short: 'ES' },
   { code: 'en', label: 'English', flag: 'https://flagcdn.com/w40/gb.png', short: 'EN' },
   { code: 'fr', label: 'Français', flag: 'https://flagcdn.com/w40/fr.png', short: 'FR' },
