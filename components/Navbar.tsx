@@ -55,7 +55,7 @@ export default function Navbar({ locale }: NavbarProps) {
   ]
 
   const transparencyLinks = [
-    { href: `/${locale}/transparency`, label: t('transparency'), icon: BarChart2 },
+    { href: `/${locale}/transparency`, label: t('transparencyReports'), icon: BarChart2 },
     { href: `/${locale}/transparency/map`, label: t('impactMap'), icon: Globe },
     { href: `/${locale}/transparency/own-projects`, label: t('ownProjects'), icon: FolderOpen },
   ]
@@ -227,7 +227,7 @@ export default function Navbar({ locale }: NavbarProps) {
                 onClick={toggleTransparencyMobile}
                 className={`flex items-center justify-between w-full px-3 py-2.5 text-sm font-medium rounded-lg transition-colors ${
                   isTransparencyActive
-                    ? 'bg-blue-50 text-brand-blue font-semibold border-l-2 border-brand-blue'
+                    ? 'text-brand-blue font-semibold border-l-2 border-brand-blue bg-gray-50'
                     : 'text-gray-700 hover:bg-gray-50 hover:text-brand-blue'
                 }`}
               >
