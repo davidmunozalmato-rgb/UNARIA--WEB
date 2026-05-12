@@ -15,7 +15,7 @@
   },
   "hero": {
     "title": "Together we transform lives through solidarity",
-    "subtitle": "Unaria is a non-profit association that channels its members' contributions to the NGOs generating the most impact.",
+    "subtitle": "Unaria is a non-profit association that channels funds towards the highest-impact NGOs and develops its own direct action projects in vulnerable areas.",
     "ctaMember": "Become a member",
     "ctaDonate": "Make a donation",
     "badge": "Registered with the Catalan Associations Registry"
@@ -34,7 +34,7 @@
     "step2Title": "Responsible management",
     "step2Desc": "Unaria covers only the minimum operating costs strictly necessary to function.",
     "step3Title": "Real impact",
-    "step3Desc": "The full surplus is transferred to accredited NGOs like Cruz Roja, generating direct and verifiable impact."
+    "step3Desc": "The surplus is directed to accredited NGOs and our own direct action projects in critical zones, generating direct and verifiable impact."
   },
   "transparency": {
     "title": "Transparency commitment",
@@ -67,11 +67,11 @@
   "about": {
     "title": "About us",
     "missionTitle": "Our mission",
-    "missionText": "Unaria is born from the conviction that organised solidarity is more efficient than individual charity. We exist to be the bridge between citizens' generosity and humanitarian organisations that know how to transform it into real change.",
+    "missionText": "Unaria is born from the conviction that organised solidarity is more efficient than individual charity. We act on two fronts: we channel funds towards the highest-impact NGOs and develop our own direct action projects in areas with documented vulnerability. We are the bridge between citizens' generosity and real change on the ground.",
     "valuesTitle": "Our values",
     "v1": "Absolute transparency in accounts and management",
     "v2": "Efficiency: minimum costs, maximum impact",
-    "v3": "Rigour in selecting partner NGOs",
+    "v3": "Rigour in selecting NGOs and our own projects",
     "v4": "Meticulous respect for members' privacy",
     "foundersTitle": "The founders",
     "f1Name": "David Muñoz",
@@ -93,19 +93,19 @@
   "howWeWorkPage": {
     "title": "How we work",
     "subtitle": "Our model is simple, honest and oriented towards maximum impact",
-    "intro": "When you become a member of Unaria, you join the association and contribute to a common fund. Unaria — not you directly — makes donations to partner NGOs. This ensures efficiency, volume and traceability.",
+    "intro": "When you become a member of Unaria, you join the association and contribute to a common fund. Unaria directs these funds in two directions: donations to accredited partner NGOs and funding for its own direct action projects in critical areas. This ensures efficiency, traceability and maximum impact.",
     "step1": "Become a member and choose your monthly fee",
     "step1Detail": "From €6/month. You can pay by SEPA direct debit or card. You can cancel at any time.",
     "step2": "Unaria manages the collective fund",
     "step2Detail": "All income accumulates in a dedicated bank account. We cover only the minimum essential costs (hosting, bank charges, accountancy).",
-    "step3": "The surplus goes entirely to the NGOs",
-    "step3Detail": "Every quarter we transfer the surplus to selected NGOs. We publish everything: amounts, dates and bank references.",
+    "step3": "Funds generate double impact",
+    "step3Detail": "Every quarter we transfer the surplus: part to selected partner NGOs and part to our own projects. We publish everything: amounts, dates and bank references.",
     "importantTitle": "Important: you are a member of Unaria, not of Cruz Roja",
-    "importantText": "The contractual relationship is between you and Unaria. Unaria, as an entity, makes donations to partner NGOs. This has important legal and tax implications explained in our legal notice.",
+    "importantText": "The contractual relationship is between you and Unaria. Unaria, as an entity, makes donations to partner NGOs and funds its own projects. This has important legal and tax implications explained in our legal notice.",
     "diagramTitle": "Flow diagram",
     "diagramMembers": "Members",
     "diagramFund": "Collective fund",
-    "diagramNGO": "Fund for NGOs",
+    "diagramNGO": "NGOs + Own projects",
     "stepLabel": "Step",
     "ctaTitle": "Ready to join?",
     "ctaText": "From €6/month you become part of a solidarity movement with real, transparent impact.",
@@ -260,7 +260,7 @@
     "save": "Save preferences"
   },
   "footer": {
-    "desc": "Non-profit association registered in Catalonia. We channel our members' solidarity towards the highest-impact NGOs.",
+    "desc": "Non-profit association registered in Catalonia. We channel funds towards the highest-impact NGOs and develop our own direct action projects.",
     "links": "Links",
     "legal": "Legal",
     "contact": "Contact",

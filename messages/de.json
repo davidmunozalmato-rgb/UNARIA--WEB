@@ -14,7 +14,7 @@
   },
   "hero": {
     "title": "Gemeinsam verändern wir Leben durch Solidarität",
-    "subtitle": "Unaria ist ein gemeinnütziger Verein, der die Beiträge seiner Mitglieder an die wirkungsstärksten NGOs weiterleitet.",
+    "subtitle": "Unaria ist ein gemeinnütziger Verein, der Mittel an die wirkungsstärksten NGOs weiterleitet und eigene Projekte mit direktem Einsatz in gefährdeten Gebieten entwickelt.",
     "ctaMember": "Mitglied werden",
     "ctaDonate": "Jetzt spenden",
     "badge": "Eingetragen im Vereinsregister Kataloniens"
@@ -33,7 +33,7 @@
     "step2Title": "Verantwortungsvolles Management",
     "step2Desc": "Unaria deckt nur die unbedingt notwendigen Betriebskosten zum Funktionieren.",
     "step3Title": "Echter Wirkung",
-    "step3Desc": "Der gesamte Überschuss wird an akkreditierte NGOs wie Cruz Roja überwiesen und erzeugt direkten, nachprüfbaren Wirkung."
+    "step3Desc": "Der Überschuss wird an akkreditierte NGOs und unsere eigenen Direktprojekte in kritischen Gebieten verteilt, was direkte und überprüfbare Wirkung erzeugt."
   },
   "transparency": {
     "title": "Transparenzverpflichtung",
@@ -66,11 +66,11 @@
   "about": {
     "title": "Über uns",
     "missionTitle": "Unsere Mission",
-    "missionText": "Unaria entstand aus der Überzeugung, dass organisierte Solidarität effizienter ist als individuelle Wohltätigkeit. Wir existieren, um die Brücke zwischen der Großzügigkeit der Bürger und den humanitären Organisationen zu sein, die wissen, wie man sie in echten Wandel umwandelt.",
+    "missionText": "Unaria entstand aus der Überzeugung, dass organisierte Solidarität effizienter ist als individuelle Wohltätigkeit. Wir agieren auf zwei Ebenen: Wir leiten Mittel an die wirkungsstärksten NGOs weiter und entwickeln eigene Projekte mit direktem Einsatz in dokumentierten Krisengebieten. Wir sind die Brücke zwischen der Großzügigkeit der Bürger und echtem Wandel vor Ort.",
     "valuesTitle": "Unsere Werte",
     "v1": "Absolute Transparenz in Buchhaltung und Management",
     "v2": "Effizienz: minimale Kosten, maximale Wirkung",
-    "v3": "Strenge Auswahl der Partner-NGOs",
+    "v3": "Strenge Auswahl der NGOs und eigener Projekte",
     "v4": "Gewissenhafter Respekt vor der Privatsphäre der Mitglieder",
     "foundersTitle": "Die Gründer",
     "f1Name": "David Muñoz",
@@ -92,19 +92,19 @@
   "howWeWorkPage": {
     "title": "Wie wir arbeiten",
     "subtitle": "Unser Modell ist einfach, ehrlich und auf maximale Wirkung ausgerichtet",
-    "intro": "Wenn Sie Mitglied von Unaria werden, treten Sie dem Verein bei und tragen zu einem gemeinsamen Fonds bei. Unaria – und nicht Sie direkt – leistet Spenden an Partner-NGOs. Dies gewährleistet Effizienz, Volumen und Nachverfolgbarkeit.",
+    "intro": "Wenn Sie Mitglied von Unaria werden, treten Sie dem Verein bei und tragen zu einem gemeinsamen Fonds bei. Unaria leitet diese Mittel in zwei Richtungen: Spenden an akkreditierte Partner-NGOs und Finanzierung eigener Direktprojekte in kritischen Gebieten. Dies gewährleistet Effizienz, Nachverfolgbarkeit und maximale Wirkung.",
     "step1": "Sie werden Mitglied und wählen Ihren monatlichen Beitrag",
     "step1Detail": "Ab 6€/Monat. Zahlung per SEPA-Lastschrift oder Karte möglich. Kündigung jederzeit möglich.",
     "step2": "Unaria verwaltet den gemeinsamen Fonds",
     "step2Detail": "Alle Einnahmen werden auf einem dedizierten Bankkonto angesammelt. Wir decken nur die unbedingt notwendigen Mindestkosten (Hosting, Bankgebühren, Buchhaltung).",
-    "step3": "Der Überschuss geht vollständig an die NGOs",
-    "step3Detail": "Jedes Quartal überweisen wir den Überschuss an ausgewählte NGOs. Wir veröffentlichen alles: Beträge, Daten und Bankreferenzen.",
+    "step3": "Mittel erzeugen doppelte Wirkung",
+    "step3Detail": "Jedes Quartal überweisen wir den Überschuss: ein Teil an ausgewählte Partner-NGOs, ein anderer Teil an unsere eigenen Projekte. Wir veröffentlichen alles: Beträge, Daten und Bankreferenzen.",
     "importantTitle": "Wichtig: Sie sind Mitglied von Unaria, nicht von Cruz Roja",
-    "importantText": "Das Vertragsverhältnis besteht zwischen Ihnen und Unaria. Unaria leistet als Einrichtung Spenden an Partner-NGOs. Dies hat wichtige steuerliche und rechtliche Implikationen, die wir in unserem Impressum erläutern.",
+    "importantText": "Das Vertragsverhältnis besteht zwischen Ihnen und Unaria. Unaria leistet als Einrichtung Spenden an Partner-NGOs und finanziert eigene Projekte. Dies hat wichtige steuerliche und rechtliche Implikationen, die wir in unserem Impressum erläutern.",
     "diagramTitle": "Ablaufdiagramm",
     "diagramMembers": "Mitglieder",
     "diagramFund": "Gemeinschaftsfonds",
-    "diagramNGO": "Fonds für NGOs",
+    "diagramNGO": "NGOs + Eigene Projekte",
     "stepLabel": "Schritt",
     "ctaTitle": "Bereit beizutreten?",
     "ctaText": "Ab 6€/Monat werden Sie Teil einer solidarischen Bewegung mit echtem, transparentem Einfluss.",
@@ -259,7 +259,7 @@
     "save": "Einstellungen speichern"
   },
   "footer": {
-    "desc": "In Katalonien eingetragener gemeinnütziger Verein. Wir kanalisieren die Solidarität unserer Mitglieder zu den wirkungsstärksten NGOs.",
+    "desc": "In Katalonien eingetragener gemeinnütziger Verein. Wir leiten Mittel an die wirkungsstärksten NGOs weiter und entwickeln eigene Direktprojekte.",
     "links": "Links",
     "legal": "Rechtliches",
     "contact": "Kontakt",

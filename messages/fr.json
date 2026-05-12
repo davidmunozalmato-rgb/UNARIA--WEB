@@ -14,7 +14,7 @@
   },
   "hero": {
     "title": "Ensemble, nous transformons des vies par la solidarité",
-    "subtitle": "Unaria est une association à but non lucratif qui canalise les contributions de ses membres vers les ONG générant le plus d'impact.",
+    "subtitle": "Unaria est une association à but non lucratif qui canalise des fonds vers les ONG à plus fort impact et développe ses propres projets d'action directe dans les zones vulnérables.",
     "ctaMember": "Devenir membre",
     "ctaDonate": "Faire un don",
     "badge": "Enregistrée au Registre des Associations de Catalogne"
@@ -33,7 +33,7 @@
     "step2Title": "Gestion responsable",
     "step2Desc": "Unaria ne couvre que les coûts opérationnels minimaux strictement nécessaires au fonctionnement.",
     "step3Title": "Impact réel",
-    "step3Desc": "L'intégralité du surplus est transféré aux ONG accréditées comme la Cruz Roja, générant un impact direct et vérifiable."
+    "step3Desc": "Le surplus est destiné aux ONG accréditées et à nos propres projets d'action directe dans les zones critiques, générant un impact direct et vérifiable."
   },
   "transparency": {
     "title": "Engagement de transparence",
@@ -66,11 +66,11 @@
   "about": {
     "title": "Qui sommes-nous",
     "missionTitle": "Notre mission",
-    "missionText": "Unaria est née de la conviction que la solidarité organisée est plus efficace que la charité individuelle. Nous existons pour être le pont entre la générosité des citoyens et les organisations humanitaires qui savent comment la transformer en changement réel.",
+    "missionText": "Unaria est née de la conviction que la solidarité organisée est plus efficace que la charité individuelle. Nous agissons sur deux fronts : nous canalisons des fonds vers les ONG à plus fort impact et développons nos propres projets d'action directe dans des zones à vulnérabilité documentée. Nous sommes le pont entre la générosité des citoyens et le changement réel sur le terrain.",
     "valuesTitle": "Nos valeurs",
     "v1": "Transparence absolue dans les comptes et la gestion",
-    "v2": "Efficacité : coûts minimaux, impact maximal",
-    "v3": "Rigueur dans la sélection des ONG partenaires",
+    "v2": "Efficacité : coûts minimaux, impact maximal",
+    "v3": "Rigueur dans la sélection des ONG et de nos propres projets",
     "v4": "Respect scrupuleux de la vie privée des membres",
     "foundersTitle": "Les fondateurs",
     "f1Name": "David Muñoz",
@@ -92,21 +92,21 @@
   "howWeWorkPage": {
     "title": "Comment nous travaillons",
     "subtitle": "Notre modèle est simple, honnête et orienté vers un impact maximal",
-    "intro": "Quand vous devenez membre d'Unaria, vous faites partie de l'association et contribuez à un fonds commun. Unaria — et non vous directement — effectue les dons aux ONG partenaires. Cela garantit efficacité, volume et traçabilité.",
+    "intro": "Quand vous devenez membre d'Unaria, vous faites partie de l'association et contribuez à un fonds commun. Unaria dirige ces fonds dans deux directions : des dons aux ONG partenaires accréditées et le financement de ses propres projets d'action directe dans des zones critiques. Cela garantit efficacité, traçabilité et impact maximal.",
     "step1": "Vous devenez membre et choisissez votre cotisation mensuelle",
     "step1Detail": "À partir de 6€/mois. Vous pouvez payer par prélèvement SEPA ou carte. Vous pouvez annuler à tout moment.",
     "step2": "Unaria gère le fonds collectif",
     "step2Detail": "Tous les revenus s'accumulent dans un compte bancaire dédié. Nous ne couvrons que les coûts minimaux indispensables (hébergement, frais bancaires, comptabilité).",
-    "step3": "Le surplus va intégralement aux ONG",
-    "step3Detail": "Chaque trimestre, nous transférons le surplus aux ONG sélectionnées. Nous publions tout : montants, dates et références bancaires.",
-    "importantTitle": "Important : vous êtes membre d'Unaria, pas de la Cruz Roja",
-    "importantText": "La relation contractuelle est entre vous et Unaria. Unaria, en tant qu'entité, effectue des dons aux ONG partenaires. Cela a des implications fiscales et juridiques importantes expliquées dans nos mentions légales.",
+    "step3": "Les fonds génèrent un double impact",
+    "step3Detail": "Chaque trimestre, nous transférons le surplus : une partie aux ONG partenaires sélectionnées et une autre à nos propres projets. Nous publions tout : montants, dates et références bancaires.",
+    "importantTitle": "Important : vous êtes membre d'Unaria, pas de la Cruz Roja",
+    "importantText": "La relation contractuelle est entre vous et Unaria. Unaria, en tant qu'entité, effectue des dons aux ONG partenaires et finance ses propres projets. Cela a des implications fiscales et juridiques importantes expliquées dans nos mentions légales.",
     "diagramTitle": "Diagramme de flux",
     "diagramMembers": "Membres",
     "diagramFund": "Fonds collectif",
-    "diagramNGO": "Fonds pour les ONG",
+    "diagramNGO": "ONG + Projets propres",
     "stepLabel": "Étape",
-    "ctaTitle": "Prêt à rejoindre ?",
+    "ctaTitle": "Prêt à rejoindre ?",
     "ctaText": "À partir de 6€/mois, vous faites partie d'un mouvement solidaire à impact réel et transparent.",
     "ctaMember": "Devenir membre",
     "ctaDonate": "Faire un don"
@@ -259,7 +259,7 @@
     "save": "Enregistrer les préférences"
   },
   "footer": {
-    "desc": "Association à but non lucratif enregistrée en Catalogne. Nous canalisons la solidarité de nos membres vers les ONG à plus fort impact.",
+    "desc": "Association à but non lucratif enregistrée en Catalogne. Nous canalisons des fonds vers les ONG à plus fort impact et développons nos propres projets d'action directe.",
     "links": "Liens",
     "legal": "Mentions légales",
     "contact": "Contact",
