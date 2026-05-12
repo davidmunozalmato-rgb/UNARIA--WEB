@@ -221,47 +221,44 @@ export default function Navbar({ locale }: NavbarProps) {
               )
             })}
 
-            {/* Transparency accordion for mobile */}
-            <div>
-              <button
-                onClick={toggleTransparencyMobile}
-                className={`flex items-center justify-between w-full px-3 py-2.5 text-sm font-medium rounded-lg transition-colors ${
-                  isTransparencyActive
-                    ? 'text-brand-blue font-semibold border-l-2 border-brand-blue bg-gray-50'
-                    : 'text-gray-700 hover:bg-gray-50 hover:text-brand-blue'
-                }`}
-              >
-                {t('transparency')}
-                <ChevronDown
-                  className={`w-4 h-4 transition-transform duration-200 ${
-                    transparencyMobileOpen ? 'rotate-180' : ''
-                  }`}
-                />
-              </button>
+            {/* Transparency link at top level on mobile */}
+            <Link
+              href={`/${locale}/transparency`}
+              onClick={() => setMobileOpen(false)}
+              className={`block px-3 py-2.5 text-sm font-medium rounded-lg transition-colors ${
+                pathname === `/${locale}/transparency`
+                  ? 'bg-blue-50 text-brand-blue font-semibold border-l-2 border-brand-blue'
+                  : 'text-gray-700 hover:bg-gray-50 hover:text-brand-blue'
+              }`}
+            >
+              {t('transparency')}
+            </Link>
 
-              {transparencyMobileOpen && (
-                <div className="mt-1 ml-3 pl-3 border-l-2 border-blue-100 space-y-0.5">
-                  {transparencyLinks.map(({ href, label, icon: Icon }) => {
-                    const isItemActive = pathname === href
-                    return (
-                      <Link
-                        key={href}
-                        href={href}
-                        onClick={() => setMobileOpen(false)}
-                        className={`flex items-center gap-2.5 px-3 py-2 text-sm rounded-lg transition-colors ${
-                          isItemActive
-                            ? 'text-brand-blue font-semibold bg-blue-50'
-                            : 'text-gray-600 hover:bg-gray-50 hover:text-brand-blue'
-                        }`}
-                      >
-                        <Icon className="w-4 h-4 flex-shrink-0" />
-                        {label}
-                      </Link>
-                    )
-                  })}
-                </div>
-              )}
-            </div>
+            {/* Impact Map at top level on mobile */}
+            <Link
+              href={`/${locale}/transparency/map`}
+              onClick={() => setMobileOpen(false)}
+              className={`block px-3 py-2.5 text-sm font-medium rounded-lg transition-colors ${
+                pathname === `/${locale}/transparency/map`
+                  ? 'bg-blue-50 text-brand-blue font-semibold border-l-2 border-brand-blue'
+                  : 'text-gray-700 hover:bg-gray-50 hover:text-brand-blue'
+              }`}
+            >
+              {t('impactMap')}
+            </Link>
+
+            {/* Own Projects at top level on mobile */}
+            <Link
+              href={`/${locale}/transparency/own-projects`}
+              onClick={() => setMobileOpen(false)}
+              className={`block px-3 py-2.5 text-sm font-medium rounded-lg transition-colors ${
+                pathname === `/${locale}/transparency/own-projects`
+                  ? 'bg-blue-50 text-brand-blue font-semibold border-l-2 border-brand-blue'
+                  : 'text-gray-700 hover:bg-gray-50 hover:text-brand-blue'
+              }`}
+            >
+              {t('ownProjects')}
+            </Link>
 
             <div className="pt-2 pb-1 space-y-2 border-t border-gray-100 mt-2">
               <Link
