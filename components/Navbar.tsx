@@ -1,11 +1,11 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, ChevronDown, Globe, FolderOpen, BarChart2 } from 'lucide-react'
 import LanguageSwitcher from './LanguageSwitcher'
 
 interface NavbarProps {
@@ -17,6 +17,9 @@ export default function Navbar({ locale }: NavbarProps) {
   const pathname = usePathname()
   const [mobileOpen, setMobileOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [transparencyOpen, setTransparencyOpen] = useState(false)
+  const [transparencyMobileOpen, setTransparencyMobileOpen] = useState(false)
+  const transparencyRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -24,13 +27,40 @@ export default function Navbar({ locale }: NavbarProps) {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
+  // Close dropdown on click outside
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (transparencyRef.current && !transparencyRef.current.contains(e.target as Node)) {
+        setTransparencyOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [])
+
+  // Close dropdown on route change
+  useEffect(() => {
+    setTransparencyOpen(false)
+    setMobileOpen(false)
+  }, [pathname])
+
+  const toggleTransparency = useCallback(() => setTransparencyOpen((v) => !v), [])
+  const toggleTransparencyMobile = useCallback(() => setTransparencyMobileOpen((v) => !v), [])
+
   const links = [
     { href: `/${locale}`, label: t('home') },
     { href: `/${locale}/about`, label: t('about') },
     { href: `/${locale}/how-we-work`, label: t('howWeWork') },
     { href: `/${locale}/strategy`, label: t('strategy') },
-    { href: `/${locale}/transparency`, label: t('transparency') },
   ]
+
+  const transparencyLinks = [
+    { href: `/${locale}/transparency`, label: t('transparency'), icon: BarChart2 },
+    { href: `/${locale}/transparency/map`, label: t('impactMap'), icon: Globe },
+    { href: `/${locale}/transparency/own-projects`, label: t('ownProjects'), icon: FolderOpen },
+  ]
+
+  const isTransparencyActive = pathname.startsWith(`/${locale}/transparency`)
 
   return (
     <nav
@@ -73,6 +103,53 @@ export default function Navbar({ locale }: NavbarProps) {
                 </Link>
               )
             })}
+
+            {/* Transparency dropdown */}
+            <div className="relative" ref={transparencyRef}>
+              <button
+                onClick={toggleTransparency}
+                className={`flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+                  isTransparencyActive
+                    ? 'text-brand-blue font-semibold border-b-2 border-brand-blue rounded-none pb-1.5'
+                    : 'text-gray-700 hover:bg-gray-50 hover:text-brand-blue'
+                }`}
+                aria-expanded={transparencyOpen}
+                aria-haspopup="menu"
+              >
+                {t('transparency')}
+                <ChevronDown
+                  className={`w-3.5 h-3.5 transition-transform duration-200 ${
+                    transparencyOpen ? 'rotate-180' : ''
+                  }`}
+                />
+              </button>
+
+              {transparencyOpen && (
+                <div
+                  role="menu"
+                  className="absolute top-full left-0 mt-1.5 w-52 bg-white rounded-xl shadow-lg border border-gray-100 py-1.5 z-50"
+                >
+                  {transparencyLinks.map(({ href, label, icon: Icon }) => {
+                    const isItemActive = pathname === href
+                    return (
+                      <Link
+                        key={href}
+                        href={href}
+                        role="menuitem"
+                        className={`flex items-center gap-2.5 px-4 py-2.5 text-sm transition-colors ${
+                          isItemActive
+                            ? 'bg-blue-50 text-brand-blue font-semibold'
+                            : 'text-gray-700 hover:bg-blue-50 hover:text-brand-blue'
+                        }`}
+                      >
+                        <Icon className="w-4 h-4 flex-shrink-0" />
+                        {label}
+                      </Link>
+                    )
+                  })}
+                </div>
+              )}
+            </div>
           </div>
 
           <div className="flex items-center gap-2">
@@ -92,12 +169,10 @@ export default function Navbar({ locale }: NavbarProps) {
           </div>
         </div>
 
-        {/* ── MOBILE header: logo centrat ── */}
+        {/* ── MOBILE header ── */}
         <div className="md:hidden flex items-center h-16 relative">
-          {/* Spacer esquerra igual d'amplada que el botó dret */}
           <div className="w-10" />
 
-          {/* Logo centrat absolutament */}
           <Link
             href={`/${locale}`}
             className="absolute left-1/2 -translate-x-1/2 flex items-center gap-2"
@@ -113,7 +188,6 @@ export default function Navbar({ locale }: NavbarProps) {
             <span className="text-lg font-bold text-[#1a2e4a]">Unaria</span>
           </Link>
 
-          {/* Hamburger a la dreta */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="ml-auto p-2 rounded-lg text-gray-700 hover:bg-gray-100"
@@ -125,7 +199,7 @@ export default function Navbar({ locale }: NavbarProps) {
 
       </div>
 
-      {/* Mobile menu */}
+      {/* ── MOBILE menu ── */}
       {mobileOpen && (
         <div className="md:hidden bg-white border-t border-gray-100 shadow-lg">
           <div className="px-4 py-3 space-y-1">
@@ -146,6 +220,49 @@ export default function Navbar({ locale }: NavbarProps) {
                 </Link>
               )
             })}
+
+            {/* Transparency accordion for mobile */}
+            <div>
+              <button
+                onClick={toggleTransparencyMobile}
+                className={`flex items-center justify-between w-full px-3 py-2.5 text-sm font-medium rounded-lg transition-colors ${
+                  isTransparencyActive
+                    ? 'bg-blue-50 text-brand-blue font-semibold border-l-2 border-brand-blue'
+                    : 'text-gray-700 hover:bg-gray-50 hover:text-brand-blue'
+                }`}
+              >
+                {t('transparency')}
+                <ChevronDown
+                  className={`w-4 h-4 transition-transform duration-200 ${
+                    transparencyMobileOpen ? 'rotate-180' : ''
+                  }`}
+                />
+              </button>
+
+              {transparencyMobileOpen && (
+                <div className="mt-1 ml-3 pl-3 border-l-2 border-blue-100 space-y-0.5">
+                  {transparencyLinks.map(({ href, label, icon: Icon }) => {
+                    const isItemActive = pathname === href
+                    return (
+                      <Link
+                        key={href}
+                        href={href}
+                        onClick={() => setMobileOpen(false)}
+                        className={`flex items-center gap-2.5 px-3 py-2 text-sm rounded-lg transition-colors ${
+                          isItemActive
+                            ? 'text-brand-blue font-semibold bg-blue-50'
+                            : 'text-gray-600 hover:bg-gray-50 hover:text-brand-blue'
+                        }`}
+                      >
+                        <Icon className="w-4 h-4 flex-shrink-0" />
+                        {label}
+                      </Link>
+                    )
+                  })}
+                </div>
+              )}
+            </div>
+
             <div className="pt-2 pb-1 space-y-2 border-t border-gray-100 mt-2">
               <Link
                 href={`/${locale}/donate`}
