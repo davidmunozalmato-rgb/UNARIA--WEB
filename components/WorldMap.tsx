@@ -12,45 +12,60 @@ const GEO_URL = '/world-110m.json'
 
 const UNARIA_BLUE = '#0052FF'
 const UNARIA_BLUE_DARK = '#003ACC'
+const PARTNER_BLUE = '#93C5FD'
+const PARTNER_BLUE_DARK = '#60A5FA'
+
+interface TooltipState {
+  name: string
+  x: number
+  y: number
+  type: 'active' | 'partner'
+}
 
 interface FundedCountry {
   id: string
   name: string
 }
 
-interface TooltipState {
-  name: string
-  x: number
-  y: number
-}
-
 interface WorldMapProps {
   fundedCountries: FundedCountry[]
-  tooltipLabel: string
+  partnerCountries: FundedCountry[]
+  tooltipActiveLabel: string
+  tooltipPartnerLabel: string
 }
 
-export default function WorldMap({ fundedCountries, tooltipLabel }: WorldMapProps) {
+export default function WorldMap({ 
+  fundedCountries, 
+  partnerCountries, 
+  tooltipActiveLabel,
+  tooltipPartnerLabel
+}: WorldMapProps) {
   const [tooltip, setTooltip] = useState<TooltipState | null>(null)
 
   const fundedMap = new Map(fundedCountries.map((c) => [c.id, c.name]))
+  const partnerMap = new Map(partnerCountries.map((c) => [c.id, c.name]))
 
   const handleMouseEnter = useCallback(
     (e: React.MouseEvent<SVGPathElement>, geoId: string) => {
-      const name = fundedMap.get(geoId)
-      if (name) setTooltip({ name, x: e.clientX, y: e.clientY })
+      const fundedName = fundedMap.get(geoId)
+      const partnerName = partnerMap.get(geoId)
+      
+      if (fundedName) {
+        setTooltip({ name: fundedName, x: e.clientX, y: e.clientY, type: 'active' })
+      } else if (partnerName) {
+        setTooltip({ name: partnerName, x: e.clientX, y: e.clientY, type: 'partner' })
+      }
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [fundedCountries]
+    [fundedMap, partnerMap]
   )
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<SVGPathElement>, geoId: string) => {
-      if (fundedMap.has(geoId)) {
+      if (fundedMap.has(geoId) || partnerMap.has(geoId)) {
         setTooltip((prev) => (prev ? { ...prev, x: e.clientX, y: e.clientY } : null))
       }
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [fundedCountries]
+    [fundedMap, partnerMap]
   )
 
   const handleMouseLeave = useCallback(() => setTooltip(null), [])
@@ -66,11 +81,13 @@ export default function WorldMap({ fundedCountries, tooltipLabel }: WorldMapProp
             <div className="flex items-center gap-1.5 mb-0.5">
               <span
                 className="inline-block w-2.5 h-2.5 rounded-full flex-shrink-0"
-                style={{ background: UNARIA_BLUE }}
+                style={{ background: tooltip.type === 'active' ? UNARIA_BLUE : PARTNER_BLUE }}
               />
               {tooltip.name}
             </div>
-            <div className="text-xs text-blue-300">{tooltipLabel}</div>
+            <div className="text-xs text-blue-300">
+              {tooltip.type === 'active' ? tooltipActiveLabel : tooltipPartnerLabel}
+            </div>
           </div>
         </div>
       )}
@@ -88,6 +105,19 @@ export default function WorldMap({ fundedCountries, tooltipLabel }: WorldMapProp
                 geographies.map((geo: GeographyFeature) => {
                   const geoId = String(geo.id)
                   const isFunded = fundedMap.has(geoId)
+                  const isPartner = partnerMap.has(geoId)
+                  
+                  let fillColor = '#D1D5DB'
+                  let hoverColor = '#B8BDC8'
+                  
+                  if (isFunded) {
+                    fillColor = UNARIA_BLUE
+                    hoverColor = UNARIA_BLUE_DARK
+                  } else if (isPartner) {
+                    fillColor = PARTNER_BLUE
+                    hoverColor = PARTNER_BLUE_DARK
+                  }
+
                   return (
                     <Geography
                       key={geo.rsmKey}
@@ -97,21 +127,21 @@ export default function WorldMap({ fundedCountries, tooltipLabel }: WorldMapProp
                       onMouseLeave={handleMouseLeave}
                       style={{
                         default: {
-                          fill: isFunded ? UNARIA_BLUE : '#D1D5DB',
+                          fill: fillColor,
                           stroke: '#FFFFFF',
                           strokeWidth: 0.5,
                           outline: 'none',
-                          cursor: isFunded ? 'pointer' : 'default',
+                          cursor: (isFunded || isPartner) ? 'pointer' : 'default',
                           transition: 'fill 0.15s ease',
                         },
                         hover: {
-                          fill: isFunded ? UNARIA_BLUE_DARK : '#B8BDC8',
+                          fill: hoverColor,
                           stroke: '#FFFFFF',
                           strokeWidth: 0.5,
                           outline: 'none',
                         },
                         pressed: {
-                          fill: isFunded ? UNARIA_BLUE : '#D1D5DB',
+                          fill: fillColor,
                           outline: 'none',
                         },
                       }}

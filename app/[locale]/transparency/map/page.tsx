@@ -58,6 +58,14 @@ export default async function ImpactMapPage({ params: { locale } }: PageProps) {
     { id: '418', name: t('laos') },
   ]
 
+  const partnerCountries = [
+    { id: '724', name: t('spain') },
+    { id: '250', name: t('france') },
+    { id: '404', name: t('kenya') },
+    { id: '076', name: t('brazil') },
+    { id: '356', name: t('india') },
+  ]
+
   return (
     <div className="min-h-screen bg-white">
 
@@ -90,7 +98,12 @@ export default async function ImpactMapPage({ params: { locale } }: PageProps) {
 
           {/* Map container */}
           <div className="bg-brand-gray rounded-2xl p-4 sm:p-6 mb-4 border border-gray-100 shadow-sm">
-            <WorldMap fundedCountries={fundedCountries} tooltipLabel={t('tooltipActive')} />
+            <WorldMap 
+              fundedCountries={fundedCountries} 
+              partnerCountries={partnerCountries}
+              tooltipActiveLabel={t('tooltipActive')} 
+              tooltipPartnerLabel={t('tooltipPartner')}
+            />
           </div>
 
           {/* Mobile hint */}
@@ -101,6 +114,10 @@ export default async function ImpactMapPage({ params: { locale } }: PageProps) {
             <div className="flex items-center gap-2">
               <span className="w-4 h-4 rounded-sm flex-shrink-0" style={{ background: '#0052FF' }} />
               <span className="text-sm text-gray-700 font-medium">{t('legendFunded')}</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-4 h-4 rounded-sm flex-shrink-0" style={{ background: '#93C5FD' }} />
+              <span className="text-sm text-gray-700 font-medium">{t('legendPartner')}</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="w-4 h-4 rounded-sm bg-gray-300 flex-shrink-0" />
