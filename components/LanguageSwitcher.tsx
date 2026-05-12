@@ -6,11 +6,11 @@ import { setCookie } from 'cookies-next'
 import { ChevronDown } from 'lucide-react'
 
 const languages = [
-  { code: 'ca', label: 'Català', flag: '🏴󠁥󠁳󠁣󠁴󠁿', short: 'CA' },
-  { code: 'es', label: 'Castellano', flag: '🇪🇸', short: 'ES' },
-  { code: 'en', label: 'English', flag: '🇬🇧', short: 'EN' },
-  { code: 'fr', label: 'Français', flag: '🇫🇷', short: 'FR' },
-  { code: 'de', label: 'Deutsch', flag: '🇩🇪', short: 'DE' },
+  { code: 'ca', label: 'Català', flag: 'https://flagcdn.com/w40/es-ct.png', short: 'CA' },
+  { code: 'es', label: 'Castellano', flag: 'https://flagcdn.com/w40/es.png', short: 'ES' },
+  { code: 'en', label: 'English', flag: 'https://flagcdn.com/w40/gb.png', short: 'EN' },
+  { code: 'fr', label: 'Français', flag: 'https://flagcdn.com/w40/fr.png', short: 'FR' },
+  { code: 'de', label: 'Deutsch', flag: 'https://flagcdn.com/w40/de.png', short: 'DE' },
 ]
 
 interface LanguageSwitcherProps {
@@ -60,7 +60,11 @@ export default function LanguageSwitcher({ currentLocale, variant = 'light' }: L
         aria-expanded={open}
         aria-haspopup="listbox"
       >
-        <span className="text-base leading-none" aria-hidden="true">{current.flag}</span>
+        <img 
+          src={current.flag} 
+          alt="" 
+          className="w-4 h-3 object-cover rounded-sm flex-shrink-0 shadow-sm" 
+        />
         <span className="hidden sm:inline">{current.label}</span>
         <span className="sm:hidden">{current.short}</span>
         <ChevronDown
@@ -86,7 +90,11 @@ export default function LanguageSwitcher({ currentLocale, variant = 'light' }: L
               role="option"
               aria-selected={lang.code === currentLocale}
             >
-              <span className="text-base">{lang.flag}</span>
+              <img 
+                src={lang.flag} 
+                alt="" 
+                className="w-4 h-3 object-cover rounded-sm flex-shrink-0 shadow-sm" 
+              />
               <span>{lang.label}</span>
               {lang.code === currentLocale && (
                 <span className="ml-auto w-1.5 h-1.5 rounded-full bg-brand-blue" />
