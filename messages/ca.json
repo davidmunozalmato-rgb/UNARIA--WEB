@@ -15,7 +15,7 @@
   },
   "hero": {
     "title": "Junts transformem vides a través de la solidaritat",
-    "subtitle": "Unaria és una associació sense ànim de lucre que canalitza les aportacions dels seus socis cap a les ONG que més impacte generen.",
+    "subtitle": "Unaria és una associació sense ànim de lucre que canalitza fons cap a les ONG de major impacte i desenvolupa projectes propis d'acció directa en zones de vulnerabilitat.",
     "ctaMember": "Fes-te soci",
     "ctaDonate": "Fes una donació",
     "badge": "Registrada al Registre d'Associacions de Catalunya"
@@ -34,7 +34,7 @@
     "step2Title": "Gestió responsable",
     "step2Desc": "Unaria cobreix només els costos operatius mínims estrictament necessaris per funcionar.",
     "step3Title": "Impacte real",
-    "step3Desc": "El superàvit íntegre es transfereix a ONG acreditades com la Creu Roja, generant un impacte directe i verificable."
+    "step3Desc": "El superàvit es destina a ONG acreditades i a projectes propis d'acció directa en zones crítiques, generant un impacte directe i verificable."
   },
   "transparency": {
     "title": "Compromís de transparència",
@@ -67,11 +67,11 @@
   "about": {
     "title": "Qui som",
     "missionTitle": "La nostra missió",
-    "missionText": "Unaria neix de la convicció que la solidaritat organitzada és més eficient que la caritat individual. Existim per ser el pont entre la generositat dels ciutadans i les organitzacions humanitàries que saben com transformar-la en canvi real.",
+    "missionText": "Unaria neix de la convicció que la solidaritat organitzada és més eficient que la caritat individual. Actuem en dos fronts: canalitzem fons cap a les ONG de major impacte i desenvolupem projectes propis d'acció directa en zones amb vulnerabilitat documentada. Som el pont entre la generositat dels ciutadans i el canvi real sobre el terreny.",
     "valuesTitle": "Els nostres valors",
     "v1": "Transparència absoluta en comptes i gestió",
     "v2": "Eficiència: costos mínims, impacte màxim",
-    "v3": "Rigor en la selecció de les ONG col·laboradores",
+    "v3": "Rigor en la selecció d'ONG i projectes propis",
     "v4": "Respecte escrupolós per la privacitat dels socis",
     "foundersTitle": "Els fundadors",
     "f1Name": "David Muñoz",
@@ -93,19 +93,19 @@
   "howWeWorkPage": {
     "title": "Com funcionem",
     "subtitle": "El nostre model és senzill, honest i orientat al màxim impacte",
-    "intro": "Quan et fas soci d'Unaria, formes part de l'associació i contribueixes a un fons comú. Unaria —i no tu directament— fa les donacions a les ONG col·laboradores. Això garanteix eficiència, volum i traçabilitat.",
+    "intro": "Quan et fas soci d'Unaria, formes part de l'associació i contribueixes a un fons comú. Unaria destina aquests fons en dues direccions: donacions a ONG col·laboradores acreditades i finançament de projectes propis d'acció directa en zones crítiques. Això garanteix eficiència, traçabilitat i màxim impacte.",
     "step1": "Et fas soci i tries la teva quota mensual",
     "step1Detail": "Des de 6€/mes. Pots pagar per domiciliació SEPA o targeta. Pots cancel·lar quan vulguis.",
     "step2": "Unaria gestiona el fons col·lectiu",
     "step2Detail": "Tots els ingressos s'acumulen en un compte bancari dedicat. Cobrim només els costos mínims imprescindibles (hosting, comissions bancàries, gestoria).",
-    "step3": "El superàvit va íntegre a les ONG",
-    "step3Detail": "Cada trimestre transferim el superàvit a les ONG seleccionades. Ho publiquem tot: imports, dates i referència bancària.",
+    "step3": "Els fons generen un impacte doble",
+    "step3Detail": "Cada trimestre transferim el superàvit: una part a les ONG col·laboradores seleccionades i una altra als nostres projectes propis. Ho publiquem tot: imports, dates i referència bancària.",
     "importantTitle": "Important: ets soci d'Unaria, no de la Creu Roja",
-    "importantText": "La relació contractual és entre tu i Unaria. Unaria, com a entitat, fa donacions a les ONG col·laboradores. Això té implicacions fiscals i legals importants que expliquem en el nostre avís legal.",
+    "importantText": "La relació contractual és entre tu i Unaria. Unaria, com a entitat, fa donacions a les ONG col·laboradores i finança els seus propis projectes. Això té implicacions fiscals i legals importants que expliquem en el nostre avís legal.",
     "diagramTitle": "Diagrama de flux",
     "diagramMembers": "Socis",
     "diagramFund": "Fons col·lectiu",
-    "diagramNGO": "Fons per a les ONG",
+    "diagramNGO": "ONG + Projectes propis",
     "stepLabel": "Pas",
     "ctaTitle": "Preparat per unir-te?",
     "ctaText": "Des de 6€/mes formes part d'un moviment solidari amb impacte real i transparent.",
@@ -260,7 +260,7 @@
     "save": "Guardar preferències"
   },
   "footer": {
-    "desc": "Associació sense ànim de lucre registrada a Catalunya. Canalitzem la solidaritat dels nostres socis cap a les ONG de major impacte.",
+    "desc": "Associació sense ànim de lucre registrada a Catalunya. Canalitzem fons cap a les ONG de major impacte i desenvolupem projectes propis d'acció directa.",
     "links": "Enllaços",
     "legal": "Legal",
     "contact": "Contacte",

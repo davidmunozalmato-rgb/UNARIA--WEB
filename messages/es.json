@@ -15,8 +15,8 @@
   },
   "hero": {
     "title": "Juntos transformamos vidas a través de la solidaridad",
-    "subtitle": "Unaria es una asociación sin ánimo de lucro que canaliza las aportaciones de sus socios hacia las ONG que más impacto generan.",
-    "ctaMember": "Hazte socio",
+    "subtitle": "Unaria es una asociación sin ánimo de lucro que canaliza fondos hacia las ONG de mayor impacto y desarrolla sus propios proyectos de acción directa en zonas de vulnerabilidad.",
+    "ctaMember": "Házte socio",
     "ctaDonate": "Haz una donación",
     "badge": "Registrada en el Registro de Asociaciones de Cataluña"
   },
@@ -34,7 +34,7 @@
     "step2Title": "Gestión responsable",
     "step2Desc": "Unaria cubre solo los costes operativos mínimos estrictamente necesarios para funcionar.",
     "step3Title": "Impacto real",
-    "step3Desc": "El superávit íntegro se transfiere a ONG acreditadas como Cruz Roja, generando un impacto directo y verificable."
+    "step3Desc": "El superávit se destina a ONG acreditadas y a proyectos propios de acción directa en zonas críticas, generando un impacto directo y verificable."
   },
   "transparency": {
     "title": "Compromiso de transparencia",
@@ -67,11 +67,11 @@
   "about": {
     "title": "Quiénes somos",
     "missionTitle": "Nuestra misión",
-    "missionText": "Unaria nace de la convicción de que la solidaridad organizada es más eficiente que la caridad individual. Existimos para ser el puente entre la generosidad de los ciudadanos y las organizaciones humanitarias que saben cómo transformarla en cambio real.",
+    "missionText": "Unaria nace de la convicción de que la solidaridad organizada es más eficiente que la caridad individual. Actuamos en dos frentes: canalizamos fondos hacia las ONG de mayor impacto y desarrollamos proyectos propios de acción directa en zonas con vulnerabilidad documentada. Somos el puente entre la generosidad de los ciudadanos y el cambio real sobre el terreno.",
     "valuesTitle": "Nuestros valores",
     "v1": "Transparencia absoluta en cuentas y gestión",
     "v2": "Eficiencia: costes mínimos, impacto máximo",
-    "v3": "Rigor en la selección de las ONG colaboradoras",
+    "v3": "Rigor en la selección de ONG y proyectos propios",
     "v4": "Respeto escrupuloso por la privacidad de los socios",
     "foundersTitle": "Los fundadores",
     "f1Name": "David Muñoz",
@@ -93,23 +93,23 @@
   "howWeWorkPage": {
     "title": "Cómo funcionamos",
     "subtitle": "Nuestro modelo es sencillo, honesto y orientado al máximo impacto",
-    "intro": "Cuando te haces socio de Unaria, formas parte de la asociación y contribuyes a un fondo común. Unaria —y no tú directamente— realiza las donaciones a las ONG colaboradoras. Esto garantiza eficiencia, volumen y trazabilidad.",
+    "intro": "Cuando te haces socio de Unaria, formas parte de la asociación y contribuyes a un fondo común. Unaria destina estos fondos en dos direcciones: donaciones a ONG colaboradoras acreditadas y financiación de proyectos propios de acción directa en zonas críticas. Esto garantiza eficiencia, trazabilidad y máximo impacto.",
     "step1": "Te haces socio y eliges tu cuota mensual",
     "step1Detail": "Desde 6€/mes. Puedes pagar por domiciliación SEPA o tarjeta. Puedes cancelar cuando quieras.",
     "step2": "Unaria gestiona el fondo colectivo",
     "step2Detail": "Todos los ingresos se acumulan en una cuenta bancaria dedicada. Cubrimos solo los costes mínimos imprescindibles (hosting, comisiones bancarias, gestoría).",
-    "step3": "El superávit va íntegro a las ONG",
-    "step3Detail": "Cada trimestre transferimos el superávit a las ONG seleccionadas. Lo publicamos todo: importes, fechas y referencia bancaria.",
+    "step3": "Los fondos generan impacto doble",
+    "step3Detail": "Cada trimestre transferimos el superávit: una parte a las ONG colaboradoras seleccionadas y otra a nuestros proyectos propios. Lo publicamos todo: importes, fechas y referencia bancaria.",
     "importantTitle": "Importante: eres socio de Unaria, no de Cruz Roja",
-    "importantText": "La relación contractual es entre tú y Unaria. Unaria, como entidad, realiza donaciones a las ONG colaboradoras. Esto tiene implicaciones fiscales y legales importantes que explicamos en nuestro aviso legal.",
+    "importantText": "La relación contractual es entre tú y Unaria. Unaria, como entidad, realiza donaciones a las ONG colaboradoras y financia sus propios proyectos. Esto tiene implicaciones fiscales y legales importantes que explicamos en nuestro aviso legal.",
     "diagramTitle": "Diagrama de flujo",
     "diagramMembers": "Socios",
     "diagramFund": "Fondo colectivo",
-    "diagramNGO": "Fondo para las ONG",
+    "diagramNGO": "ONG + Proyectos propios",
     "stepLabel": "Paso",
     "ctaTitle": "¿Listo para unirte?",
     "ctaText": "Desde 6€/mes formas parte de un movimiento solidario con impacto real y transparente.",
-    "ctaMember": "Hazte socio",
+    "ctaMember": "Házte socio",
     "ctaDonate": "Haz una donación"
   },
   "becomeMember": {
@@ -260,7 +260,7 @@
     "save": "Guardar preferencias"
   },
   "footer": {
-    "desc": "Asociación sin ánimo de lucro registrada en Cataluña. Canalizamos la solidaridad de nuestros socios hacia las ONG de mayor impacto.",
+    "desc": "Asociación sin ánimo de lucro registrada en Cataluña. Canalizamos fondos hacia las ONG de mayor impacto y desarrollamos proyectos propios de acción directa.",
     "links": "Enlaces",
     "legal": "Legal",
     "contact": "Contacto",
