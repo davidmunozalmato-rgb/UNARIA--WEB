@@ -2,9 +2,9 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { UserPlus, X, QrCode, Copy, Check, ExternalLink } from 'lucide-react'
+import { UserPlus, X, Copy, Check, ExternalLink } from 'lucide-react'
 
-type Step = 'form' | 'payment'
+type Step = 'form' | 'confirm'
 
 export default function AddMemberButton() {
   const router = useRouter()
@@ -56,7 +56,7 @@ export default function AddMemberButton() {
       if (!res.ok) throw new Error(data.error || 'Error')
       setCheckoutUrl(data.checkoutUrl ?? '')
       setMemberName(`${name} ${surname}`)
-      setStep('payment')
+      setStep('confirm')
       router.refresh()
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : 'Error al registrar el soci')
@@ -64,10 +64,6 @@ export default function AddMemberButton() {
       setLoading(false)
     }
   }
-
-  const qrUrl = checkoutUrl
-    ? `https://api.qrserver.com/v1/create-qr-code/?size=220x220&margin=10&data=${encodeURIComponent(checkoutUrl)}`
-    : ''
 
   return (
     <>
@@ -83,7 +79,7 @@ export default function AddMemberButton() {
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <div className="absolute inset-0 bg-black/40" onClick={step === 'form' ? handleClose : undefined} />
 
-          {/* ── STEP 1: Form ── */}
+          {/* ── STEP 1: Formulari ── */}
           {step === 'form' && (
             <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-lg p-6">
               <div className="flex items-center justify-between mb-6">
@@ -125,48 +121,35 @@ export default function AddMemberButton() {
                     Cancel·lar
                   </button>
                   <button type="submit" disabled={loading} className="btn-primary flex-1 py-2.5 text-sm disabled:opacity-60">
-                    {loading ? 'Creant compte...' : 'Registrar i generar pagament →'}
+                    {loading ? 'Creant compte...' : 'Registrar soci →'}
                   </button>
                 </div>
               </form>
             </div>
           )}
 
-          {/* ── STEP 2: Payment QR or no-Stripe confirmation ── */}
-          {step === 'payment' && (
-            <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6 text-center">
-              <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-3 ${checkoutUrl ? 'bg-green-50' : 'bg-blue-50'}`}>
-                {checkoutUrl
-                  ? <QrCode className="w-6 h-6 text-green-600" />
-                  : <Check className="w-6 h-6 text-blue-600" />
-                }
+          {/* ── STEP 2: Confirmació ── */}
+          {step === 'confirm' && (
+            <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-9 h-9 bg-green-50 rounded-xl flex items-center justify-center shrink-0">
+                  <Check className="w-5 h-5 text-green-600" />
+                </div>
+                <div>
+                  <p className="font-semibold text-gray-900">{memberName}</p>
+                  <p className="text-sm text-gray-500">Soci registrat correctament</p>
+                </div>
               </div>
-              <h2 className="text-lg font-bold text-gray-900 mb-1">
-                Soci registrat ✓
-              </h2>
 
               {checkoutUrl ? (
                 <>
-                  <p className="text-sm text-gray-500 mb-5">
-                    Fes que <span className="font-semibold text-gray-700">{memberName}</span> escanegi el QR per activar el pagament mensual
+                  <p className="text-sm text-gray-500 mb-3">
+                    Envia l&apos;enllaç de pagament al soci per activar la quota mensual:
                   </p>
-
-                  <div className="flex justify-center mb-4">
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
-                      src={qrUrl}
-                      alt="QR pagament Stripe"
-                      width={220}
-                      height={220}
-                      className="rounded-xl border border-gray-100 shadow-sm"
-                    />
+                  <div className="flex items-center gap-2 bg-gray-50 rounded-lg px-3 py-2 mb-4">
+                    <span className="text-xs text-gray-400 truncate flex-1">{checkoutUrl}</span>
                   </div>
-
-                  <p className="text-[11px] text-gray-400 mb-4">
-                    El soci pot pagar amb targeta o SEPA (IBAN)
-                  </p>
-
-                  <div className="flex gap-2 mb-3">
+                  <div className="flex gap-2 mb-4">
                     <button
                       onClick={handleCopy}
                       className="flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-medium border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
@@ -181,26 +164,18 @@ export default function AddMemberButton() {
                       className="flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-medium border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
                     >
                       <ExternalLink className="w-4 h-4" />
-                      Obrir link
+                      Obrir
                     </a>
                   </div>
                 </>
               ) : (
-                <div className="mb-5">
-                  <p className="text-sm text-gray-500 mb-3">
-                    <span className="font-semibold text-gray-700">{memberName}</span> s&apos;ha guardat correctament com a soci.
-                  </p>
-                  <p className="text-xs text-amber-600 bg-amber-50 rounded-lg px-3 py-2">
-                    Stripe no està configurat encara. Quan afegeixis les claus de Stripe a Vercel, podràs generar l&apos;enllaç de pagament des del llistat de socis.
-                  </p>
-                </div>
+                <p className="text-xs text-amber-600 bg-amber-50 rounded-lg px-3 py-2 mb-4">
+                  Stripe no està configurat. Quan afegeixis les claus a Vercel, podràs generar l&apos;enllaç de pagament.
+                </p>
               )}
 
-              <button
-                onClick={handleClose}
-                className="w-full btn-primary py-2.5 text-sm"
-              >
-                Fet — Tancar
+              <button onClick={handleClose} className="w-full btn-primary py-2.5 text-sm">
+                Tancar
               </button>
             </div>
           )}
