@@ -42,3 +42,4 @@ prisma/migrations/dev/
 docker-compose.override.yml
 
 .vercel
+.env*.local
