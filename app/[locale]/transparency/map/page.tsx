@@ -52,18 +52,22 @@ export default async function ImpactMapPage({ params: { locale } }: PageProps) {
   const tn = await getTranslations({ locale, namespace: 'nav' })
 
   const fundedCountries = [
-    { id: '764', name: t('thailand') },
-    { id: '104', name: t('myanmar') },
-    { id: '116', name: t('cambodia') },
-    { id: '418', name: t('laos') },
+    { id: '724', name: t('spain') },
   ]
 
   const partnerCountries = [
-    { id: '724', name: t('spain') },
-    { id: '250', name: t('france') },
-    { id: '404', name: t('kenya') },
-    { id: '076', name: t('brazil') },
+    { id: '804', name: t('ukraine') },
+    { id: '275', name: t('palestine') },
     { id: '356', name: t('india') },
+    { id: '404', name: t('kenya') },
+    { id: '231', name: t('ethiopia') },
+    { id: '050', name: t('bangladesh') },
+    { id: '728', name: t('southsudan') },
+    { id: '180', name: t('drc') },
+    { id: '887', name: t('yemen') },
+    { id: '170', name: t('colombia') },
+    { id: '076', name: t('brazil') },
+    { id: '104', name: t('myanmar') },
   ]
 
   return (
@@ -126,20 +130,38 @@ export default async function ImpactMapPage({ params: { locale } }: PageProps) {
           </div>
 
           {/* Countries list */}
-          <div className="border-t border-gray-100 pt-8">
-            <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-5">
-              {t('countriesTitle')}
-            </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {fundedCountries.map((country) => (
-                <div
-                  key={country.id}
-                  className="flex items-center gap-2.5 bg-blue-50 border border-blue-100 rounded-xl px-4 py-3"
-                >
-                  <MapPin className="w-4 h-4 text-[#0052FF] flex-shrink-0" />
-                  <span className="text-sm font-semibold text-brand-blue">{country.name}</span>
-                </div>
-              ))}
+          <div className="border-t border-gray-100 pt-8 space-y-6">
+            {/* Funded */}
+            <div>
+              <h2 className="text-lg sm:text-xl font-bold text-gray-900 mb-4">
+                {t('countriesTitle')}
+              </h2>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {fundedCountries.map((country) => (
+                  <div
+                    key={country.id}
+                    className="flex items-center gap-2.5 bg-blue-50 border border-blue-100 rounded-xl px-4 py-3"
+                  >
+                    <MapPin className="w-4 h-4 text-[#0052FF] flex-shrink-0" />
+                    <span className="text-sm font-semibold text-brand-blue">{country.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            {/* Partners */}
+            <div>
+              <h2 className="text-base font-bold text-gray-700 mb-3">{t('legendPartner')}</h2>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {partnerCountries.map((country) => (
+                  <div
+                    key={country.id}
+                    className="flex items-center gap-2.5 bg-sky-50 border border-sky-100 rounded-xl px-4 py-3"
+                  >
+                    <MapPin className="w-4 h-4 text-sky-400 flex-shrink-0" />
+                    <span className="text-sm text-gray-600">{country.name}</span>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

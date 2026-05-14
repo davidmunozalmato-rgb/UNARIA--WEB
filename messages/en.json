@@ -274,7 +274,22 @@
     "tooltipActive": "Active project",
     "mobileHint": "Scroll to explore the map",
     "metaTitle": "Global Impact Map | Unaria",
-    "metaDesc": "See the countries where Unaria funds humanitarian projects. Full geographic transparency."
+    "metaDesc": "See the countries where Unaria funds humanitarian projects. Full geographic transparency.",
+    "spain": "Spain",
+    "ukraine": "Ukraine",
+    "ethiopia": "Ethiopia",
+    "bangladesh": "Bangladesh",
+    "southsudan": "South Sudan",
+    "drc": "D.R. Congo",
+    "yemen": "Yemen",
+    "colombia": "Colombia",
+    "palestine": "Palestine",
+    "kenya": "Kenya",
+    "brazil": "Brazil",
+    "india": "India",
+    "france": "France",
+    "legendPartner": "NGO partner presence",
+    "tooltipPartner": "NGO presence"
   },
   "ownProjectsPage": {
     "title": "Own Projects",

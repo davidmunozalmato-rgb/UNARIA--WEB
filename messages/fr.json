@@ -300,7 +300,22 @@
     "tooltipActive": "Projet actif",
     "mobileHint": "Faites défiler pour explorer la carte",
     "metaTitle": "Carte d'Impact Global | Unaria",
-    "metaDesc": "Visualisez les pays où Unaria finance des projets humanitaires. Transparence géographique totale."
+    "metaDesc": "Visualisez les pays où Unaria finance des projets humanitaires. Transparence géographique totale.",
+    "spain": "Espagne",
+    "ukraine": "Ukraine",
+    "ethiopia": "Éthiopie",
+    "bangladesh": "Bangladesh",
+    "southsudan": "Soudan du Sud",
+    "drc": "Rép. Dém. du Congo",
+    "yemen": "Yémen",
+    "colombia": "Colombie",
+    "palestine": "Palestine",
+    "kenya": "Kenya",
+    "brazil": "Brésil",
+    "india": "Inde",
+    "france": "France",
+    "legendPartner": "Présence ONG partenaires",
+    "tooltipPartner": "Présence ONG"
   },
   "ownProjectsPage": {
     "title": "Projets Propres",

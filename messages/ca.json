@@ -281,7 +281,15 @@
     "tooltipPartner": "Presència d'ONG",
     "mobileHint": "Fes scroll per explorar el mapa",
     "metaTitle": "Mapa d'Impacte Global | Unaria",
-    "metaDesc": "Visualitza els països on Unaria finança projectes humanitaris. Transparència geogràfica total."
+    "metaDesc": "Visualitza els països on Unaria finança projectes humanitaris. Transparència geogràfica total.",
+    "ukraine": "Ucraïna",
+    "ethiopia": "Etiòpia",
+    "bangladesh": "Bangladesh",
+    "southsudan": "Sudan del Sud",
+    "drc": "Rep. Dem. del Congo",
+    "yemen": "Iemen",
+    "colombia": "Colòmbia",
+    "palestine": "Palestina"
   },
   "ownProjectsPage": {
     "title": "Projectes Propis",
