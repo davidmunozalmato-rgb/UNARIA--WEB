@@ -20,6 +20,8 @@ export async function POST(req: NextRequest) {
 
   try {
     switch (event.type) {
+
+      // ── Soci paga via link de checkout ──
       case 'checkout.session.completed': {
         const session = event.data.object as Stripe.Checkout.Session
         const memberId = session.metadata?.memberId
@@ -35,15 +37,63 @@ export async function POST(req: NextRequest) {
         break
       }
 
-      case 'customer.subscription.deleted': {
-        const sub = event.data.object as Stripe.Subscription
+      // ── Pagament mensual cobrat correctament ──
+      case 'invoice.payment_succeeded': {
+        const invoice = event.data.object as Stripe.Invoice
+        if (!invoice.subscription || invoice.amount_paid === 0) break
+
+        const subscriptionId = invoice.subscription as string
+
         await prisma.member.updateMany({
-          where: { stripeSubscriptionId: sub.id },
-          data: { status: 'cancelled', cancelledAt: new Date() },
+          where: { stripeSubscriptionId: subscriptionId },
+          data: { status: 'active' },
+        })
+
+        const member = await prisma.member.findFirst({
+          where: { stripeSubscriptionId: subscriptionId },
+        })
+        if (!member) break
+
+        // Evita duplicats: si el payment_intent ja existeix, no crea una altra donació
+        const paymentIntentId = typeof invoice.payment_intent === 'string'
+          ? invoice.payment_intent
+          : null
+
+        if (paymentIntentId) {
+          const existing = await prisma.donation.findUnique({
+            where: { stripePaymentIntentId: paymentIntentId },
+          })
+          if (existing) break
+        }
+
+        await prisma.donation.create({
+          data: {
+            donorName: `${member.name} ${member.surname}`,
+            donorEmail: member.email,
+            amount: invoice.amount_paid / 100,
+            currency: invoice.currency.toUpperCase(),
+            type: 'subscription',
+            status: 'completed',
+            memberId: member.id,
+            stripePaymentIntentId: paymentIntentId,
+          },
         })
         break
       }
 
+      // ── Pagament fallit → soci passa a pausat ──
+      case 'invoice.payment_failed': {
+        const invoice = event.data.object as Stripe.Invoice
+        if (!invoice.subscription) break
+
+        await prisma.member.updateMany({
+          where: { stripeSubscriptionId: invoice.subscription as string },
+          data: { status: 'paused' },
+        })
+        break
+      }
+
+      // ── Subscripció actualitzada (per exemple, reanudada manualment des de Stripe) ──
       case 'customer.subscription.updated': {
         const sub = event.data.object as Stripe.Subscription
         if (sub.status === 'active') {
@@ -51,7 +101,7 @@ export async function POST(req: NextRequest) {
             where: { stripeSubscriptionId: sub.id },
             data: { status: 'active' },
           })
-        } else if (sub.status === 'past_due' || sub.status === 'unpaid') {
+        } else if (sub.status === 'past_due' || sub.status === 'unpaid' || sub.status === 'incomplete') {
           await prisma.member.updateMany({
             where: { stripeSubscriptionId: sub.id },
             data: { status: 'paused' },
@@ -60,40 +110,19 @@ export async function POST(req: NextRequest) {
         break
       }
 
-      case 'invoice.payment_succeeded': {
-        const invoice = event.data.object as Stripe.Invoice
-        if (!invoice.subscription) break
-
+      // ── Subscripció cancel·lada (des de Stripe o per impagament definitiu) ──
+      case 'customer.subscription.deleted': {
+        const sub = event.data.object as Stripe.Subscription
         await prisma.member.updateMany({
-          where: { stripeSubscriptionId: invoice.subscription as string },
-          data: { status: 'active' },
+          where: { stripeSubscriptionId: sub.id },
+          data: { status: 'cancelled', cancelledAt: new Date() },
         })
-
-        // Registra el cobrament com a donació
-        const member = await prisma.member.findFirst({
-          where: { stripeSubscriptionId: invoice.subscription as string },
-        })
-        if (member && invoice.amount_paid > 0) {
-          await prisma.donation.create({
-            data: {
-              donorName: `${member.name} ${member.surname}`,
-              donorEmail: member.email,
-              amount: invoice.amount_paid / 100,
-              currency: invoice.currency.toUpperCase(),
-              type: 'subscription',
-              status: 'completed',
-              memberId: member.id,
-              stripePaymentIntentId: typeof invoice.payment_intent === 'string'
-                ? invoice.payment_intent
-                : null,
-            },
-          })
-        }
         break
       }
     }
   } catch (err) {
     console.error('[webhook stripe]', err)
+    // Retornem 200 igualment perquè Stripe no reintenti indefinidament
   }
 
   return NextResponse.json({ received: true })
