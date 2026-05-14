@@ -54,7 +54,7 @@ export default function AddMemberButton() {
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || 'Error')
-      setCheckoutUrl(data.checkoutUrl)
+      setCheckoutUrl(data.checkoutUrl ?? '')
       setMemberName(`${name} ${surname}`)
       setStep('payment')
       router.refresh()
@@ -132,54 +132,69 @@ export default function AddMemberButton() {
             </div>
           )}
 
-          {/* ── STEP 2: Payment QR ── */}
+          {/* ── STEP 2: Payment QR or no-Stripe confirmation ── */}
           {step === 'payment' && (
             <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-sm p-6 text-center">
-              <div className="w-12 h-12 bg-green-50 rounded-2xl flex items-center justify-center mx-auto mb-3">
-                <QrCode className="w-6 h-6 text-green-600" />
+              <div className={`w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-3 ${checkoutUrl ? 'bg-green-50' : 'bg-blue-50'}`}>
+                {checkoutUrl
+                  ? <QrCode className="w-6 h-6 text-green-600" />
+                  : <Check className="w-6 h-6 text-blue-600" />
+                }
               </div>
               <h2 className="text-lg font-bold text-gray-900 mb-1">
                 Soci registrat ✓
               </h2>
-              <p className="text-sm text-gray-500 mb-5">
-                Fes que <span className="font-semibold text-gray-700">{memberName}</span> escanegi el QR per activar el pagament mensual
-              </p>
 
-              {/* QR Code */}
-              <div className="flex justify-center mb-4">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={qrUrl}
-                  alt="QR pagament Stripe"
-                  width={220}
-                  height={220}
-                  className="rounded-xl border border-gray-100 shadow-sm"
-                />
-              </div>
+              {checkoutUrl ? (
+                <>
+                  <p className="text-sm text-gray-500 mb-5">
+                    Fes que <span className="font-semibold text-gray-700">{memberName}</span> escanegi el QR per activar el pagament mensual
+                  </p>
 
-              <p className="text-[11px] text-gray-400 mb-4">
-                El soci pot pagar amb targeta o SEPA (IBAN)
-              </p>
+                  <div className="flex justify-center mb-4">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={qrUrl}
+                      alt="QR pagament Stripe"
+                      width={220}
+                      height={220}
+                      className="rounded-xl border border-gray-100 shadow-sm"
+                    />
+                  </div>
 
-              {/* Actions */}
-              <div className="flex gap-2 mb-3">
-                <button
-                  onClick={handleCopy}
-                  className="flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-medium border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
-                >
-                  {copied ? <Check className="w-4 h-4 text-green-600" /> : <Copy className="w-4 h-4" />}
-                  {copied ? 'Copiat!' : 'Copiar link'}
-                </button>
-                <a
-                  href={checkoutUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-medium border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  Obrir link
-                </a>
-              </div>
+                  <p className="text-[11px] text-gray-400 mb-4">
+                    El soci pot pagar amb targeta o SEPA (IBAN)
+                  </p>
+
+                  <div className="flex gap-2 mb-3">
+                    <button
+                      onClick={handleCopy}
+                      className="flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-medium border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                    >
+                      {copied ? <Check className="w-4 h-4 text-green-600" /> : <Copy className="w-4 h-4" />}
+                      {copied ? 'Copiat!' : 'Copiar link'}
+                    </button>
+                    <a
+                      href={checkoutUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 flex items-center justify-center gap-2 py-2.5 text-sm font-medium border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors"
+                    >
+                      <ExternalLink className="w-4 h-4" />
+                      Obrir link
+                    </a>
+                  </div>
+                </>
+              ) : (
+                <div className="mb-5">
+                  <p className="text-sm text-gray-500 mb-3">
+                    <span className="font-semibold text-gray-700">{memberName}</span> s&apos;ha guardat correctament com a soci.
+                  </p>
+                  <p className="text-xs text-amber-600 bg-amber-50 rounded-lg px-3 py-2">
+                    Stripe no està configurat encara. Quan afegeixis les claus de Stripe a Vercel, podràs generar l&apos;enllaç de pagament des del llistat de socis.
+                  </p>
+                </div>
+              )}
 
               <button
                 onClick={handleClose}
