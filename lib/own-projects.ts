@@ -3,8 +3,10 @@ export interface OwnProject {
   category: string
   categoryColor: string
   titles: Record<string, string>
+  descs: Record<string, string>
   location: string
   phase: string
+  image: string
 }
 
 export const ownProjects: OwnProject[] = [
@@ -19,8 +21,16 @@ export const ownProjects: OwnProject[] = [
       fr: 'Jouets pour enfants hospitalisés',
       de: 'Spielzeug für hospitalisierte Kinder',
     },
+    descs: {
+      ca: 'Donem joguines noves a nens en hospitals per alegrar la seva estada i acompanyar-los durant la recuperació.',
+      es: 'Donamos juguetes nuevos a niños en hospitales para alegrar su estancia y acompañarlos durante la recuperación.',
+      en: 'We donate new toys to children in hospitals to brighten their stay and support their recovery.',
+      fr: 'Nous donnons des jouets neufs aux enfants hospitalisés pour égayer leur séjour et soutenir leur rétablissement.',
+      de: 'Wir spenden neue Spielzeuge an Kinder in Krankenhäusern, um ihren Aufenthalt zu verschönern und ihre Genesung zu unterstützen.',
+    },
     location: 'España',
     phase: 'Fase 1',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'libros-infantiles',
@@ -33,8 +43,16 @@ export const ownProjects: OwnProject[] = [
       fr: 'Livres pour enfants 0–6 ans',
       de: 'Kinderbücher 0–6 Jahre',
     },
+    descs: {
+      ca: 'Repartim llibres infantils a famílies amb pocs recursos per afavorir el desenvolupament lector des dels primers anys.',
+      es: 'Distribuimos libros infantiles a familias con pocos recursos para favorecer el desarrollo lector desde los primeros años.',
+      en: 'We distribute children\'s books to low-income families to support early literacy from the very first years.',
+      fr: 'Nous distribuons des livres pour enfants aux familles à faibles revenus pour favoriser la lecture dès les premières années.',
+      de: 'Wir verteilen Kinderbücher an einkommensschwache Familien, um Lesen von früh an zu fördern.',
+    },
     location: 'España',
     phase: 'Fase 1',
+    image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'olla-comunitaria',
@@ -47,8 +65,16 @@ export const ownProjects: OwnProject[] = [
       fr: 'Marmite communautaire hebdomadaire (1 mois)',
       de: 'Wöchentlicher Gemeinschaftstopf (1 Monat)',
     },
+    descs: {
+      ca: 'Un cop a la setmana, durant un mes, oferim àpats calents a persones en situació de vulnerabilitat al barri.',
+      es: 'Una vez a la semana, durante un mes, ofrecemos comidas calientes a personas en situación de vulnerabilidad en el barrio.',
+      en: 'Once a week for a month we provide hot meals to vulnerable people in the neighbourhood.',
+      fr: 'Une fois par semaine pendant un mois, nous proposons des repas chauds aux personnes vulnérables du quartier.',
+      de: 'Einmal pro Woche bieten wir einen Monat lang warme Mahlzeiten für gefährdete Menschen im Viertel an.',
+    },
     location: 'España',
     phase: 'Fase 1',
+    image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'material-artistico',
@@ -61,8 +87,16 @@ export const ownProjects: OwnProject[] = [
       fr: 'Matériel artistique pour les écoles',
       de: 'Kunstmaterial für Schulen',
     },
+    descs: {
+      ca: 'Proporcionem pintures, llapis de colors i materials creatius a escoles amb manca de recursos per estimular la creativitat.',
+      es: 'Proporcionamos pinturas, lápices de colores y materiales creativos a escuelas con falta de recursos para estimular la creatividad.',
+      en: 'We supply paints, coloured pencils and creative materials to under-resourced schools to stimulate creativity.',
+      fr: 'Nous fournissons peintures, crayons de couleur et matériaux créatifs aux écoles manquant de ressources pour stimuler la créativité.',
+      de: 'Wir versorgen ressourcenarme Schulen mit Farben, Buntstiften und Kreativmaterialien.',
+    },
     location: 'España',
     phase: 'Fase 1',
+    image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'calcetines-termicos',
@@ -75,8 +109,16 @@ export const ownProjects: OwnProject[] = [
       fr: 'Chaussettes thermiques pour l\'hiver',
       de: 'Thermosocken für den Winter',
     },
+    descs: {
+      ca: 'Distribuïm mitjons tèrmics d\'alta qualitat a persones sense llar i famílies necessitades durant els mesos d\'hivern.',
+      es: 'Distribuimos calcetines térmicos de alta calidad a personas sin hogar y familias necesitadas durante los meses de invierno.',
+      en: 'We distribute high-quality thermal socks to homeless people and families in need throughout the winter months.',
+      fr: 'Nous distribuons des chaussettes thermiques de haute qualité aux sans-abri et aux familles dans le besoin pendant les mois d\'hiver.',
+      de: 'Wir verteilen hochwertige Thermosocken an Obdachlose und bedürftige Familien in den Wintermonaten.',
+    },
     location: 'España',
     phase: 'Fase 1',
+    image: 'https://images.unsplash.com/photo-1519781542704-957ff19eff00?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'manta-emergencia',
@@ -89,8 +131,16 @@ export const ownProjects: OwnProject[] = [
       fr: 'Couverture de survie',
       de: 'Notfalldecke (Überleben)',
     },
+    descs: {
+      ca: 'Distribuïm mantes isotèrmiques de supervivència per a situacions d\'emergència i protecció contra el fred extrem.',
+      es: 'Distribuimos mantas isotérmicas de supervivencia para situaciones de emergencia y protección contra el frío extremo.',
+      en: 'We distribute isothermal survival blankets for emergency situations and protection against extreme cold.',
+      fr: 'Nous distribuons des couvertures de survie isothermes pour les urgences et la protection contre le froid extrême.',
+      de: 'Wir verteilen isothermische Überlebensdecken für Notfallsituationen und Schutz vor extremer Kälte.',
+    },
     location: 'España',
     phase: 'Fase 1',
+    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'manta-saco',
@@ -103,8 +153,16 @@ export const ownProjects: OwnProject[] = [
       fr: 'Couverture et sac de couchage thermique',
       de: 'Thermische Decke und Schlafsack',
     },
+    descs: {
+      ca: 'Proporcionem mantes tèrmiques i sacs de dormir de qualitat a persones sense sostre per afrontar les nits fredes.',
+      es: 'Proporcionamos mantas térmicas y sacos de dormir de calidad a personas sin hogar para afrontar las noches frías.',
+      en: 'We provide quality thermal blankets and sleeping bags to homeless people to face cold nights.',
+      fr: 'Nous fournissons des couvertures thermiques et des sacs de couchage de qualité aux sans-abri pour affronter les nuits froides.',
+      de: 'Wir stellen Obdachlosen hochwertige Thermodecken und Schlafsäcke für kalte Nächte zur Verfügung.',
+    },
     location: 'España',
     phase: 'Fase 1',
+    image: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'actividades-recreativas',
@@ -117,8 +175,16 @@ export const ownProjects: OwnProject[] = [
       fr: 'Activités récréatives pour mineurs',
       de: 'Freizeitaktivitäten für Minderjährige',
     },
+    descs: {
+      ca: 'Organitzem tallers, jocs i sortides culturals per a nens i adolescents en situació de risc social.',
+      es: 'Organizamos talleres, juegos y salidas culturales para niños y adolescentes en situación de riesgo social.',
+      en: 'We organise workshops, games and cultural outings for children and teenagers in social risk situations.',
+      fr: 'Nous organisons des ateliers, jeux et sorties culturelles pour les enfants et adolescents en situation de risque social.',
+      de: 'Wir organisieren Workshops, Spiele und Kulturausflüge für Kinder und Jugendliche in sozialen Risikolagen.',
+    },
     location: 'España',
     phase: 'Fase 1',
+    image: 'https://images.unsplash.com/photo-1472898965229-f9b06b9c9bbe?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'limpieza-playa',
@@ -131,8 +197,16 @@ export const ownProjects: OwnProject[] = [
       fr: 'Nettoyage de plage ou rivière (événement)',
       de: 'Strand- oder Flussreinigung (Veranstaltung)',
     },
+    descs: {
+      ca: 'Organitzem esdeveniments de neteja de platges i rius amb voluntaris locals per preservar el medi ambient.',
+      es: 'Organizamos eventos de limpieza de playas y ríos con voluntarios locales para preservar el medio ambiente.',
+      en: 'We organise beach and river clean-up events with local volunteers to preserve the environment.',
+      fr: 'Nous organisons des événements de nettoyage de plages et rivières avec des bénévoles locaux pour préserver l\'environnement.',
+      de: 'Wir organisieren Strand- und Flussreinigungsveranstaltungen mit lokalen Freiwilligen zum Umweltschutz.',
+    },
     location: 'España',
     phase: 'Fase 1',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'educacion-ambiental',
@@ -145,8 +219,16 @@ export const ownProjects: OwnProject[] = [
       fr: 'Éducation environnementale dans les écoles',
       de: 'Umweltbildung in Schulen',
     },
+    descs: {
+      ca: 'Impartim tallers d\'educació ambiental a col·legis per sensibilitzar les properes generacions sobre la cura del planeta.',
+      es: 'Impartimos talleres de educación ambiental en colegios para concienciar a las próximas generaciones sobre el cuidado del planeta.',
+      en: 'We run environmental education workshops in schools to raise awareness among future generations about caring for the planet.',
+      fr: 'Nous animons des ateliers d\'éducation environnementale dans les écoles pour sensibiliser les prochaines générations.',
+      de: 'Wir führen Umweltbildungsworkshops in Schulen durch, um zukünftige Generationen für den Schutz des Planeten zu sensibilisieren.',
+    },
     location: 'España',
     phase: 'Fase 1',
+    image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'nevera-comunitaria',
@@ -159,8 +241,38 @@ export const ownProjects: OwnProject[] = [
       fr: 'Réfrigérateur communautaire + réapprovisionnement mensuel',
       de: 'Gemeinschaftskühlschrank + monatliche Auffüllung',
     },
+    descs: {
+      ca: 'Instal·lem una nevera comunitària al barri i la reposem mensualment amb aliments frescos per a qui els necessiti.',
+      es: 'Instalamos una nevera comunitaria en el barrio y la reponemos mensualmente con alimentos frescos para quien los necesite.',
+      en: 'We install a community fridge in the neighbourhood and restock it monthly with fresh food for anyone who needs it.',
+      fr: 'Nous installons un réfrigérateur communautaire dans le quartier et le réapprovisionnons mensuellement en aliments frais.',
+      de: 'Wir installieren einen Gemeinschaftskühlschrank im Viertel und füllen ihn monatlich mit frischen Lebensmitteln.',
+    },
     location: 'España',
     phase: 'Fase 1',
+    image: 'https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=600&q=80&auto=format&fit=crop',
+  },
+  {
+    id: 'silla-ruedas-persona',
+    category: 'Salut',
+    categoryColor: 'bg-red-100 text-red-700',
+    titles: {
+      ca: 'Cadira de rodes per a persona',
+      es: 'Silla de ruedas para persona',
+      en: 'Wheelchair for a person',
+      fr: 'Fauteuil roulant pour une personne',
+      de: 'Rollstuhl für eine Person',
+    },
+    descs: {
+      ca: 'Donem cadires de rodes a persones amb mobilitat reduïda que no poden accedir-hi pels seus propis mitjans.',
+      es: 'Donamos sillas de ruedas a personas con movilidad reducida que no pueden acceder a ellas por sus propios medios.',
+      en: 'We donate wheelchairs to people with reduced mobility who cannot access them through their own means.',
+      fr: 'Nous donnons des fauteuils roulants aux personnes à mobilité réduite qui ne peuvent y accéder par leurs propres moyens.',
+      de: 'Wir spenden Rollstühle an Menschen mit eingeschränkter Mobilität, die sie sich nicht leisten können.',
+    },
+    location: 'España',
+    phase: 'Fase 1',
+    image: 'https://images.unsplash.com/photo-1576671414038-28a13e0a4e93?w=600&q=80&auto=format&fit=crop',
   },
 ]
 

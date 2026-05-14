@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft, MapPin, Layers } from 'lucide-react'
 import type { Metadata } from 'next'
@@ -86,26 +87,40 @@ export default function OwnProjectsPage({ params: { locale } }: PageProps) {
             {ownProjects.map((project, index) => (
               <div
                 key={project.id}
-                className="bg-white rounded-2xl shadow-sm hover:shadow-md transition-shadow p-6 flex flex-col gap-4"
+                className="bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all hover:-translate-y-0.5 flex flex-col overflow-hidden"
               >
-                <div className="flex items-start justify-between gap-3">
-                  <span className={`inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-semibold ${project.categoryColor}`}>
-                    {project.category}
-                  </span>
-                  <span className="text-xs font-bold text-gray-300 tabular-nums">
+                <div className="relative h-44 overflow-hidden bg-gray-100">
+                  <Image
+                    src={project.image}
+                    alt={project.titles[lang]}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                  <span className="absolute top-3 right-3 text-xs font-bold text-white/60 tabular-nums drop-shadow">
                     {String(index + 1).padStart(2, '0')}
                   </span>
                 </div>
 
-                <h3 className="text-base font-bold text-gray-900 leading-snug">
-                  {project.titles[lang]}
-                </h3>
+                <div className="p-5 flex flex-col gap-3 flex-1">
+                  <span className={`inline-flex items-center self-start px-2.5 py-1 rounded-lg text-xs font-semibold ${project.categoryColor}`}>
+                    {project.category}
+                  </span>
 
-                <div className="mt-auto flex items-center gap-1.5 text-xs text-gray-400">
-                  <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
-                  <span>{project.location}</span>
-                  <span className="mx-1">·</span>
-                  <span className="font-medium text-gray-500">{project.phase}</span>
+                  <h3 className="text-base font-bold text-gray-900 leading-snug">
+                    {project.titles[lang]}
+                  </h3>
+
+                  <p className="text-sm text-gray-500 leading-relaxed flex-1">
+                    {project.descs[lang]}
+                  </p>
+
+                  <div className="flex items-center gap-1.5 text-xs text-gray-400 mt-auto pt-1 border-t border-gray-50">
+                    <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
+                    <span>{project.location}</span>
+                    <span className="mx-1">·</span>
+                    <span className="font-medium text-gray-500">{project.phase}</span>
+                  </div>
                 </div>
               </div>
             ))}
