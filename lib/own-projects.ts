@@ -52,7 +52,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: 'https://images.unsplash.com/photo-1755963248051-38f1066a0f43?w=600&q=80&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1573309463410-ed96625bcd16?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'olla-comunitaria',
@@ -74,7 +74,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: '/images/projects/community-pot.png',
+    image: 'https://images.unsplash.com/photo-1662114765457-886df7eea202?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'material-artistico',
@@ -96,7 +96,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: '/images/projects/art-materials.png',
+    image: 'https://images.unsplash.com/photo-1471666875520-c75081f42081?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'calcetines-termicos',
@@ -118,7 +118,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: '/images/projects/thermal-socks.png',
+    image: 'https://images.unsplash.com/photo-1589895869111-cab6bf8354c8?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'manta-emergencia',
@@ -140,7 +140,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: '/images/projects/emergency-blanket.png',
+    image: 'https://images.unsplash.com/photo-1554053548-eb031b0ca35a?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'manta-saco',
@@ -162,7 +162,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: 'https://images.unsplash.com/photo-1536333969215-66288d4359a8?w=600&q=80&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1695088547619-5b099cfd9416?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'actividades-recreativas',
@@ -184,7 +184,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: 'https://images.unsplash.com/photo-1526634332515-d56c5fd16991?w=600&q=80&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1756982478237-2d3caa008bee?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'limpieza-playa',
@@ -206,7 +206,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: 'https://images.unsplash.com/photo-1758599668949-5118d71838fd?w=600&q=80&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1758599669317-efd787d954ef?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'educacion-ambiental',
@@ -228,7 +228,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600&q=80&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1667031860219-53ecbc4e18c4?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'nevera-comunitaria',
@@ -250,7 +250,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: 'https://images.unsplash.com/photo-1710947949965-8150d227d337?w=600&q=80&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1516594798947-e65505dbb29d?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'silla-ruedas-persona',
@@ -272,7 +272,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: '/images/projects/wheelchair.png',
+    image: 'https://images.unsplash.com/photo-1570793005299-c091be91bbad?w=600&q=80&auto=format&fit=crop',
   },
 ]
 
