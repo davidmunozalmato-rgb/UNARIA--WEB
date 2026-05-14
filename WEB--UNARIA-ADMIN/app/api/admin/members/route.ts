@@ -69,15 +69,13 @@ export async function POST(req: NextRequest) {
         const subscription = await stripe.subscriptions.create({
           customer: customer.id,
           items: [{
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             price_data: {
               currency: 'eur',
-              product_data: {
-                name: 'Quota soci Unaria',
-                description: `Aportació mensual de ${quota}€ a Unaria`,
-              },
+              product_data: { name: 'Quota soci Unaria' },
               unit_amount: Math.round(quota * 100),
               recurring: { interval: 'month' },
-            },
+            } as any,
           }],
           default_payment_method: paymentMethod.id,
           collection_method: 'charge_automatically',
