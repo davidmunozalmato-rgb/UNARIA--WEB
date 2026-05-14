@@ -9,7 +9,7 @@ import type { Metadata } from 'next'
 
 interface PageProps {
   params: { locale: string }
-  searchParams: { search?: string; status?: string; page?: string }
+  searchParams: { search?: string; status?: string; page?: string; payment?: string; member?: string }
 }
 
 export const dynamic = 'force-dynamic'
@@ -59,6 +59,16 @@ export default async function AdminMembersPage({ params: { locale }, searchParam
 
   return (
     <div className="space-y-6">
+      {searchParams.payment === 'ok' && (
+        <div className="bg-green-50 border border-green-200 text-green-800 rounded-xl px-4 py-3 text-sm font-medium">
+          ✓ Pagament completat correctament. El soci ja és actiu.
+        </div>
+      )}
+      {searchParams.payment === 'cancelled' && (
+        <div className="bg-amber-50 border border-amber-200 text-amber-800 rounded-xl px-4 py-3 text-sm font-medium">
+          El soci ha cancel·lat el procés de pagament. Pots tornar a enviar-li l&apos;enllaç quan vulgui.
+        </div>
+      )}
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-2xl font-bold text-gray-900">{t('members')}</h1>
