@@ -74,7 +74,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80&auto=format&fit=crop',
+    image: '/images/projects/community-pot.png',
   },
   {
     id: 'material-artistico',
@@ -96,7 +96,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600&q=80&auto=format&fit=crop',
+    image: '/images/projects/art-materials.png',
   },
   {
     id: 'calcetines-termicos',
@@ -118,7 +118,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: 'https://images.unsplash.com/photo-1545173168-9f1947eebb7f?w=600&q=80&auto=format&fit=crop',
+    image: '/images/projects/thermal-socks.png',
   },
   {
     id: 'manta-emergencia',
@@ -140,7 +140,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: 'https://images.unsplash.com/photo-1583895166879-bb695acf41f1?w=600&q=80&auto=format&fit=crop',
+    image: '/images/projects/emergency-blanket.png',
   },
   {
     id: 'manta-saco',
@@ -272,7 +272,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: 'https://images.unsplash.com/photo-1559757175-7cb0569ef59a?w=600&q=80&auto=format&fit=crop',
+    image: '/images/projects/wheelchair.png',
   },
 ]
 

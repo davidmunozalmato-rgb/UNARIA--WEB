@@ -13,7 +13,7 @@ export const projects: Project[] = [
     id: 'cruzroja-mayores',
     entity: 'Cruz Roja',
     entityColor: 'bg-red-100 text-red-700',
-    image: 'https://images.unsplash.com/photo-1576765608866-5b51046452be?w=700&q=80',
+    image: '/images/projects/elderly-care.png',
     imageAlt: {
       ca: 'Atenció a persones grans',
       es: 'Atención a personas mayores',
@@ -40,7 +40,7 @@ export const projects: Project[] = [
     id: 'cruzroja-pobreza',
     entity: 'Cruz Roja',
     entityColor: 'bg-red-100 text-red-700',
-    image: 'https://images.unsplash.com/photo-1593113598332-cd288d649433?w=700&q=80',
+    image: '/images/projects/food-poverty.png',
     imageAlt: {
       ca: 'Distribució d\'aliments',
       es: 'Distribución de alimentos',
@@ -67,7 +67,7 @@ export const projects: Project[] = [
     id: 'caritas-familias',
     entity: 'Cáritas',
     entityColor: 'bg-yellow-100 text-yellow-700',
-    image: 'https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=700&q=80',
+    image: '/images/projects/vulnerable-families.png',
     imageAlt: {
       ca: 'Suport a famílies vulnerables',
       es: 'Apoyo a familias vulnerables',
@@ -94,7 +94,7 @@ export const projects: Project[] = [
     id: 'caritas-refugiats',
     entity: 'Cáritas',
     entityColor: 'bg-yellow-100 text-yellow-700',
-    image: 'https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=700&q=80',
+    image: '/images/projects/refugee-integration.png',
     imageAlt: {
       ca: 'Acollida de refugiats',
       es: 'Acogida de refugiados',
@@ -121,7 +121,7 @@ export const projects: Project[] = [
     id: 'msf-medical',
     entity: 'Médicos Sin Fronteras',
     entityColor: 'bg-orange-100 text-orange-700',
-    image: 'https://images.unsplash.com/photo-1584515933487-779824d29309?w=700&q=80',
+    image: '/images/projects/medical-crisis.png',
     imageAlt: {
       ca: 'Atenció mèdica en zones de conflicte',
       es: 'Atención médica en zonas de conflicto',
@@ -148,7 +148,7 @@ export const projects: Project[] = [
     id: 'savechildren-educacio',
     entity: 'Save the Children',
     entityColor: 'bg-green-100 text-green-700',
-    image: 'https://images.unsplash.com/photo-1497486751825-1233686d5d80?w=700&q=80',
+    image: '/images/projects/children-education.png',
     imageAlt: {
       ca: 'Infants en classe',
       es: 'Niños en clase',
@@ -175,7 +175,7 @@ export const projects: Project[] = [
     id: 'water-access',
     entity: 'Oxfam',
     entityColor: 'bg-emerald-100 text-emerald-700',
-    image: '/images/water-well.png',
+    image: '/images/projects/water-access.png',
     imageAlt: {
       ca: 'Construcció de pous',
       es: 'Construcción de pozos',
@@ -202,7 +202,7 @@ export const projects: Project[] = [
     id: 'women-empowerment',
     entity: 'Vicenç Ferrer',
     entityColor: 'bg-pink-100 text-pink-700',
-    image: 'https://images.unsplash.com/photo-1534067783941-51c9c23ecefd?w=700&q=80',
+    image: '/images/projects/women-empowerment.png',
     imageAlt: {
       ca: 'Grup de dones treballant',
       es: 'Grupo de mujeres trabajando',
