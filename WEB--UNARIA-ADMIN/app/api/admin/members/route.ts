@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { getServerSession } from 'next-auth'
 import { authOptions } from '@/lib/auth'
 import prisma from '@/lib/prisma'
+import type Stripe from 'stripe'
 
 const ADMIN_URL = process.env.NEXTAUTH_URL ?? 'https://unaria-admin.vercel.app'
 const stripeReady = /^sk_(test|live)_[A-Za-z0-9]{20,}$/.test(process.env.STRIPE_SECRET_KEY ?? '')
@@ -59,32 +60,40 @@ export async function POST(req: NextRequest) {
             email: email.trim().toLowerCase(),
             phone: phone?.trim() || null,
             monthlyQuota: quota,
-            status: 'active',
+            status: 'pending',
             stripeCustomerId: customer.id,
             gdprConsent: true,
             gdprConsentAt: new Date(),
           },
         })
 
-        const subscription = await stripe.subscriptions.create({
-          customer: customer.id,
-          items: [{
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
-            price_data: {
-              currency: 'eur',
-              product_data: { name: 'Quota soci Unaria' },
-              unit_amount: Math.round(quota * 100),
-              recurring: { interval: 'month' },
-            } as any,
-          }],
-          default_payment_method: paymentMethod.id,
-          collection_method: 'charge_automatically',
-          metadata: { memberId: member.id, source: 'admin_manual_iban' },
-        })
+        let subscription: Stripe.Subscription
+        try {
+          subscription = await stripe.subscriptions.create({
+            customer: customer.id,
+            items: [{
+              // eslint-disable-next-line @typescript-eslint/no-explicit-any
+              price_data: {
+                currency: 'eur',
+                product_data: { name: 'Quota soci Unaria' },
+                unit_amount: Math.round(quota * 100),
+                recurring: { interval: 'month' },
+              } as any,
+            }],
+            default_payment_method: paymentMethod.id,
+            collection_method: 'charge_automatically',
+            metadata: { memberId: member.id, source: 'admin_manual_iban' },
+          })
+        } catch (stripeErr) {
+          // Si Stripe falla, deixa el soci pendent en lloc de borrar-lo
+          console.error('[IBAN subscription create failed]', stripeErr)
+          const msg = stripeErr instanceof Error ? stripeErr.message : String(stripeErr)
+          return NextResponse.json({ error: `Soci guardat però la subscripció ha fallat: ${msg}` }, { status: 500 })
+        }
 
         await prisma.member.update({
           where: { id: member.id },
-          data: { stripeSubscriptionId: subscription.id },
+          data: { stripeSubscriptionId: subscription.id, status: 'active' },
         })
 
         return NextResponse.json({ member, method: 'iban' }, { status: 201 })
