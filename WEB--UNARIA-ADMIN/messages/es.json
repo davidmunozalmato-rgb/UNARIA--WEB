@@ -1,0 +1,31 @@
+{
+  "admin": {
+    "title": "Panel de administración",
+    "dashboard": "Resumen",
+    "members": "Socios",
+    "donations": "Donaciones",
+    "transfers": "Transferencias ONG",
+    "reports": "Informes",
+    "logout": "Cerrar sesión",
+    "totalMembers": "Socios activos",
+    "monthlyRevenue": "Ingresos mensuales recurrentes",
+    "totalDonated": "Total transferido a ONG",
+    "pendingTransfers": "Transferencias pendientes",
+    "search": "Buscar",
+    "filterStatus": "Filtrar por estado",
+    "exportCsv": "Exportar CSV",
+    "addTransfer": "Registrar transferencia",
+    "ngoName": "Nombre de la ONG",
+    "amount": "Importe (€)",
+    "transferDate": "Fecha de transferencia",
+    "reference": "Referencia",
+    "notes": "Notas",
+    "save": "Guardar",
+    "cancel": "Cancelar",
+    "login": "Acceso administración",
+    "loginEmail": "Correo electrónico",
+    "loginPassword": "Contraseña",
+    "loginBtn": "Entrar",
+    "loginError": "Credenciales incorrectas"
+  }
+}

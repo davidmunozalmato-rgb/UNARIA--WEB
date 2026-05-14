@@ -1,0 +1,31 @@
+{
+  "admin": {
+    "title": "Admin Dashboard",
+    "dashboard": "Dashboard",
+    "members": "Members",
+    "donations": "Donations",
+    "transfers": "NGO Transfers",
+    "reports": "Reports",
+    "logout": "Logout",
+    "totalMembers": "Active members",
+    "monthlyRevenue": "Monthly recurring revenue",
+    "totalDonated": "Total transferred to NGO",
+    "pendingTransfers": "Pending transfers",
+    "search": "Search",
+    "filterStatus": "Filter by status",
+    "exportCsv": "Export CSV",
+    "addTransfer": "Register transfer",
+    "ngoName": "NGO Name",
+    "amount": "Amount (€)",
+    "transferDate": "Transfer date",
+    "reference": "Reference",
+    "notes": "Notes",
+    "save": "Save",
+    "cancel": "Cancel",
+    "login": "Admin Login",
+    "loginEmail": "Email",
+    "loginPassword": "Password",
+    "loginBtn": "Login",
+    "loginError": "Invalid credentials"
+  }
+}
