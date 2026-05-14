@@ -202,7 +202,7 @@ export const projects: Project[] = [
     id: 'women-empowerment',
     entity: 'Vicenç Ferrer',
     entityColor: 'bg-pink-100 text-pink-700',
-    image: '/images/projects/women-empowerment.png',
+    image: '/images/projects/women-empowerment.jpg',
     imageAlt: {
       ca: 'Grup de dones treballant',
       es: 'Grupo de mujeres trabajando',
