@@ -87,12 +87,12 @@ export default function Navbar({ locale }: NavbarProps) {
             <span className="text-xl font-bold text-[#1a2e4a]">Unaria</span>
           </Link>
 
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-0.5">
             {links.map((link) => {
               const isActive = pathname === link.href
               return (
                 <Link key={link.href} href={link.href}
-                  className={`px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+                  className={`whitespace-nowrap px-2.5 py-2 text-sm font-medium rounded-lg transition-colors ${
                     isActive
                       ? 'text-brand-blue font-semibold border-b-2 border-brand-blue rounded-none pb-1.5'
                       : 'text-gray-700 hover:bg-gray-50 hover:text-brand-blue'
@@ -107,7 +107,7 @@ export default function Navbar({ locale }: NavbarProps) {
             <div className="relative" ref={projectsRef}>
               <button
                 onClick={toggleProjects}
-                className={`flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+                className={`whitespace-nowrap flex items-center gap-1 px-2.5 py-2 text-sm font-medium rounded-lg transition-colors ${
                   isProjectsActive
                     ? 'text-brand-blue font-semibold border-b-2 border-brand-blue rounded-none pb-1.5'
                     : 'text-gray-700 hover:bg-gray-50 hover:text-brand-blue'
@@ -164,7 +164,7 @@ export default function Navbar({ locale }: NavbarProps) {
             <div className="relative" ref={transparencyRef}>
               <button
                 onClick={toggleTransparency}
-                className={`flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg transition-colors ${
+                className={`whitespace-nowrap flex items-center gap-1 px-2.5 py-2 text-sm font-medium rounded-lg transition-colors ${
                   isTransparencyActive
                     ? 'text-brand-blue font-semibold border-b-2 border-brand-blue rounded-none pb-1.5'
                     : 'text-gray-700 hover:bg-gray-50 hover:text-brand-blue'
@@ -198,12 +198,12 @@ export default function Navbar({ locale }: NavbarProps) {
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
             <LanguageSwitcher currentLocale={locale} />
-            <Link href={`/${locale}/donate`} className="px-4 py-2 text-sm font-semibold text-brand-blue border-2 border-brand-blue rounded-lg hover:bg-brand-blue hover:text-white transition-colors">
+            <Link href={`/${locale}/donate`} className="whitespace-nowrap px-3 py-2 text-sm font-semibold text-brand-blue border-2 border-brand-blue rounded-lg hover:bg-brand-blue hover:text-white transition-colors">
               {t('donate')}
             </Link>
-            <Link href={`/${locale}/become-member`} className="px-4 py-2 text-sm font-semibold bg-brand-blue text-white rounded-lg hover:bg-brand-blue-dark transition-colors">
+            <Link href={`/${locale}/become-member`} className="whitespace-nowrap px-3 py-2 text-sm font-semibold bg-brand-blue text-white rounded-lg hover:bg-brand-blue-dark transition-colors">
               {t('becomeMember')}
             </Link>
           </div>
