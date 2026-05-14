@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { ArrowRight, ArrowDownCircle, Shield, Target, Eye, Handshake, BarChart3 } from 'lucide-react'
 import NewsSection from '@/components/NewsSection'
 import ProjectsSection from '@/components/ProjectsSection'
+import OwnProjectsSection from '@/components/OwnProjectsSection'
 import AnimatedCounter from '@/components/AnimatedCounter'
 import { JsonLd } from '@/components/JsonLd'
 import type { Metadata } from 'next'
@@ -417,6 +418,7 @@ export default function HomePage({ params: { locale } }: PageProps) {
       <HeroSection locale={locale} />
       <ObjectiusSection locale={locale} />
       <ProjectsSection locale={locale} />
+      <OwnProjectsSection locale={locale} />
       <NewsSection locale={locale} />
       <DestacatsSection locale={locale} />
       <CtaSection locale={locale} />
