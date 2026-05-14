@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { UserPlus, X, Copy, Check, ExternalLink } from 'lucide-react'
 
 type Step = 'form' | 'confirm'
+type Method = 'iban' | 'checkout' | 'pending'
 
 export default function AddMemberButton() {
   const router = useRouter()
@@ -14,6 +15,7 @@ export default function AddMemberButton() {
   const [error, setError] = useState('')
   const [checkoutUrl, setCheckoutUrl] = useState('')
   const [memberName, setMemberName] = useState('')
+  const [method, setMethod] = useState<Method>('pending')
   const [copied, setCopied] = useState(false)
 
   function handleClose() {
@@ -22,6 +24,7 @@ export default function AddMemberButton() {
     setError('')
     setCheckoutUrl('')
     setMemberName('')
+    setMethod('pending')
     setCopied(false)
   }
 
@@ -44,6 +47,7 @@ export default function AddMemberButton() {
       email: fd.get('email'),
       phone: fd.get('phone') || null,
       monthlyQuota: fd.get('monthlyQuota'),
+      iban: fd.get('iban') || null,
       status: 'pending',
     }
     try {
@@ -56,6 +60,7 @@ export default function AddMemberButton() {
       if (!res.ok) throw new Error(data.error || 'Error')
       setCheckoutUrl(data.checkoutUrl ?? '')
       setMemberName(`${name} ${surname}`)
+      setMethod(data.method ?? 'pending')
       setStep('confirm')
       router.refresh()
     } catch (err: unknown) {
@@ -113,6 +118,22 @@ export default function AddMemberButton() {
                     <input name="monthlyQuota" type="number" step="0.01" min="1" defaultValue="6" className="form-input" />
                   </div>
                 </div>
+                <div>
+                  <label className="form-label">
+                    IBAN
+                    <span className="ml-1.5 text-[11px] font-normal text-green-600 bg-green-50 px-1.5 py-0.5 rounded">
+                      cobrament automàtic
+                    </span>
+                  </label>
+                  <input
+                    name="iban"
+                    className="form-input font-mono tracking-wide"
+                    placeholder="ES91 2100 0418 4502 0005 1332"
+                  />
+                  <p className="text-[11px] text-gray-400 mt-1">
+                    Si introdueixes l&apos;IBAN, Stripe cobrarà automàticament cada mes sense que el soci hagi de fer res.
+                  </p>
+                </div>
                 {error && (
                   <p className="text-sm text-red-600 bg-red-50 px-3 py-2 rounded-lg">{error}</p>
                 )}
@@ -121,7 +142,7 @@ export default function AddMemberButton() {
                     Cancel·lar
                   </button>
                   <button type="submit" disabled={loading} className="btn-primary flex-1 py-2.5 text-sm disabled:opacity-60">
-                    {loading ? 'Creant compte...' : 'Registrar soci →'}
+                    {loading ? 'Registrant...' : 'Registrar soci →'}
                   </button>
                 </div>
               </form>
@@ -141,14 +162,17 @@ export default function AddMemberButton() {
                 </div>
               </div>
 
-              {checkoutUrl ? (
+              {method === 'iban' && (
+                <p className="text-sm text-gray-600 bg-green-50 rounded-lg px-3 py-2 mb-4">
+                  Subscripció creada. Stripe cobrarà els <strong>primers 3–5 dies hàbils</strong> i després cada mes automàticament.
+                </p>
+              )}
+
+              {method === 'checkout' && checkoutUrl && (
                 <>
                   <p className="text-sm text-gray-500 mb-3">
                     Envia l&apos;enllaç de pagament al soci per activar la quota mensual:
                   </p>
-                  <div className="flex items-center gap-2 bg-gray-50 rounded-lg px-3 py-2 mb-4">
-                    <span className="text-xs text-gray-400 truncate flex-1">{checkoutUrl}</span>
-                  </div>
                   <div className="flex gap-2 mb-4">
                     <button
                       onClick={handleCopy}
@@ -168,7 +192,9 @@ export default function AddMemberButton() {
                     </a>
                   </div>
                 </>
-              ) : (
+              )}
+
+              {method === 'pending' && (
                 <p className="text-xs text-amber-600 bg-amber-50 rounded-lg px-3 py-2 mb-4">
                   Stripe no està configurat. Quan afegeixis les claus a Vercel, podràs generar l&apos;enllaç de pagament.
                 </p>
