@@ -11,7 +11,9 @@
     "strategy": "Estratègia",
     "language": "Idioma",
     "impactMap": "Mapa d'Impacte",
-    "ownProjects": "Projectes Propis"
+    "ownProjects": "Projectes Propis",
+    "projects": "Projectes",
+    "externalProjects": "Externs"
   },
   "hero": {
     "title": "Junts transformem vides",
@@ -220,35 +222,6 @@
     "liabilityText": "Unaria no es responsabilitza dels danys o perjudicis derivats de l'ús del lloc web, ni de la informació continguda en llocs web de tercers als quals es pugui accedir mitjançant enllaços.",
     "jurisdictionTitle": "5. Llei aplicable i jurisdicció",
     "jurisdictionText": "Aquestes condicions es regeixen per la legislació espanyola. Per a qualsevol litigi, les parts se sotmeten als jutjats i tribunals de Barcelona, amb renúncia a qualsevol altre fur que pogués correspondre'ls."
-  },
-  "admin": {
-    "title": "Panell d'administració",
-    "dashboard": "Resum",
-    "members": "Socis",
-    "donations": "Donacions",
-    "transfers": "Transferències ONG",
-    "reports": "Informes",
-    "logout": "Tancar sessió",
-    "totalMembers": "Socis actius",
-    "monthlyRevenue": "Ingressos mensuals recurrents",
-    "totalDonated": "Total transferit a ONG",
-    "pendingTransfers": "Transferències pendents",
-    "search": "Cercar",
-    "filterStatus": "Filtrar per estat",
-    "exportCsv": "Exportar CSV",
-    "addTransfer": "Registrar transferència",
-    "ngoName": "Nom de l'ONG",
-    "amount": "Import (€)",
-    "transferDate": "Data de transferència",
-    "reference": "Referència",
-    "notes": "Notes",
-    "save": "Guardar",
-    "cancel": "Cancel·lar",
-    "login": "Accés administració",
-    "loginEmail": "Correu electrònic",
-    "loginPassword": "Contrasenya",
-    "loginBtn": "Entrar",
-    "loginError": "Credencials incorrectes"
   },
   "cookie": {
     "title": "Ús de galetes",

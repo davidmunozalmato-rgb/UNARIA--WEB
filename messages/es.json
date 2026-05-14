@@ -11,7 +11,9 @@
     "strategy": "Estrategia",
     "language": "Idioma",
     "impactMap": "Mapa de Impacto",
-    "ownProjects": "Proyectos Propios"
+    "ownProjects": "Proyectos Propios",
+    "projects": "Proyectos",
+    "externalProjects": "Externos"
   },
   "hero": {
     "title": "Juntos transformamos vidas",
@@ -220,35 +222,6 @@
     "liabilityText": "Unaria no se responsabiliza de los daños o perjuicios derivados del uso del sitio web, ni de la información contenida en sitios web de terceros a los que se pueda acceder mediante enlaces.",
     "jurisdictionTitle": "5. Ley aplicable y jurisdicción",
     "jurisdictionText": "Estas condiciones se rigen por la legislación española. Para cualquier litigio, las partes se someten a los juzgados y tribunales de Barcelona, con renuncia a cualquier otro fuero que pudiera corresponderles."
-  },
-  "admin": {
-    "title": "Panel de administración",
-    "dashboard": "Resumen",
-    "members": "Socios",
-    "donations": "Donaciones",
-    "transfers": "Transferencias ONG",
-    "reports": "Informes",
-    "logout": "Cerrar sesión",
-    "totalMembers": "Socios activos",
-    "monthlyRevenue": "Ingresos mensuales recurrentes",
-    "totalDonated": "Total transferido a ONG",
-    "pendingTransfers": "Transferencias pendientes",
-    "search": "Buscar",
-    "filterStatus": "Filtrar por estado",
-    "exportCsv": "Exportar CSV",
-    "addTransfer": "Registrar transferencia",
-    "ngoName": "Nombre de la ONG",
-    "amount": "Importe (€)",
-    "transferDate": "Fecha de transferencia",
-    "reference": "Referencia",
-    "notes": "Notas",
-    "save": "Guardar",
-    "cancel": "Cancelar",
-    "login": "Acceso administración",
-    "loginEmail": "Correo electrónico",
-    "loginPassword": "Contraseña",
-    "loginBtn": "Entrar",
-    "loginError": "Credenciales incorrectas"
   },
   "cookie": {
     "title": "Uso de cookies",

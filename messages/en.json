@@ -11,7 +11,9 @@
     "strategy": "Strategy",
     "language": "Language",
     "impactMap": "Impact Map",
-    "ownProjects": "Own Projects"
+    "ownProjects": "Own Projects",
+    "projects": "Projects",
+    "externalProjects": "External"
   },
   "hero": {
     "title": "Together we transform lives",
@@ -220,35 +222,6 @@
     "liabilityText": "Unaria is not responsible for any damages arising from the use of the website, nor for information contained on third-party websites that may be accessed via links.",
     "jurisdictionTitle": "5. Applicable law and jurisdiction",
     "jurisdictionText": "These terms are governed by Spanish law. For any dispute, the parties submit to the courts of Barcelona, waiving any other jurisdiction that may apply."
-  },
-  "admin": {
-    "title": "Admin dashboard",
-    "dashboard": "Overview",
-    "members": "Members",
-    "donations": "Donations",
-    "transfers": "NGO transfers",
-    "reports": "Reports",
-    "logout": "Log out",
-    "totalMembers": "Active members",
-    "monthlyRevenue": "Monthly recurring revenue",
-    "totalDonated": "Total transferred to NGOs",
-    "pendingTransfers": "Pending transfers",
-    "search": "Search",
-    "filterStatus": "Filter by status",
-    "exportCsv": "Export CSV",
-    "addTransfer": "Record transfer",
-    "ngoName": "NGO name",
-    "amount": "Amount (€)",
-    "transferDate": "Transfer date",
-    "reference": "Reference",
-    "notes": "Notes",
-    "save": "Save",
-    "cancel": "Cancel",
-    "login": "Admin login",
-    "loginEmail": "Email address",
-    "loginPassword": "Password",
-    "loginBtn": "Sign in",
-    "loginError": "Invalid credentials"
   },
   "cookie": {
     "title": "Cookie usage",
