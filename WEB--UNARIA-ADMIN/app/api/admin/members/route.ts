@@ -4,7 +4,8 @@ import { authOptions } from '@/lib/auth'
 import prisma from '@/lib/prisma'
 
 const ADMIN_URL = process.env.NEXTAUTH_URL ?? 'https://unaria-admin.vercel.app'
-const stripeReady = process.env.STRIPE_SECRET_KEY?.startsWith('sk_')
+// Clau real: sk_test_XXX... o sk_live_XXX... amb mínim 20 caràcters alfanumèrics
+const stripeReady = /^sk_(test|live)_[A-Za-z0-9]{20,}$/.test(process.env.STRIPE_SECRET_KEY ?? '')
 
 export async function POST(req: NextRequest) {
   const session = await getServerSession(authOptions)
