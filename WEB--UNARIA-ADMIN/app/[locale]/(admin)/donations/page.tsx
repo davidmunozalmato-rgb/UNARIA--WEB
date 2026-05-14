@@ -9,6 +9,7 @@ import { CreditCard, Download } from 'lucide-react'
 import { Suspense } from 'react'
 import DonationsFilters from './DonationsFilters'
 import DonationsPagination from './DonationsPagination'
+import AddDonationButton from './AddDonationButton'
 
 interface PageProps {
   params: { locale: string }
@@ -69,6 +70,7 @@ export default async function AdminDonationsPage({ params: { locale }, searchPar
             <Download className="w-4 h-4" />
             Exportar
           </button>
+          <AddDonationButton />
         </div>
       </div>
 

@@ -4,10 +4,10 @@ import { redirect } from 'next/navigation'
 import SessionProvider from '@/components/SessionProvider'
 import Sidebar from '@/components/Sidebar'
 
-export default async function DashboardLayout({ 
+export default async function AdminLayout({
   children,
-  params: { locale }
-}: { 
+  params: { locale },
+}: {
   children: React.ReactNode
   params: { locale: string }
 }) {

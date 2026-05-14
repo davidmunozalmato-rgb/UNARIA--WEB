@@ -4,6 +4,7 @@ import { redirect } from 'next/navigation'
 import { getTranslations } from 'next-intl/server'
 import prisma from '@/lib/prisma'
 import MembersTable from './MembersTable'
+import AddMemberButton from './AddMemberButton'
 import type { Metadata } from 'next'
 
 interface PageProps {
@@ -63,9 +64,12 @@ export default async function AdminMembersPage({ params: { locale }, searchParam
           <h1 className="text-2xl font-bold text-gray-900">{t('members')}</h1>
           <p className="text-sm text-gray-500 mt-1">Gestió dels socis de la fundació</p>
         </div>
-        <div className="bg-white px-4 py-2 rounded-lg border border-gray-100 shadow-sm">
-          <span className="text-sm font-medium text-gray-400">Total: </span>
-          <span className="text-sm font-bold text-brand-blue">{total}</span>
+        <div className="flex items-center gap-3">
+          <div className="bg-white px-4 py-2 rounded-lg border border-gray-100 shadow-sm">
+            <span className="text-sm font-medium text-gray-400">Total: </span>
+            <span className="text-sm font-bold text-brand-blue">{total}</span>
+          </div>
+          <AddMemberButton />
         </div>
       </div>
       <MembersTable members={members} total={total} page={page} pageSize={pageSize} locale={locale} />
