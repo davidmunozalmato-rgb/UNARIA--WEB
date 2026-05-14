@@ -30,7 +30,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1611764461465-09162da6465a?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'libros-infantiles',
@@ -52,7 +52,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=600&q=80&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1755963248051-38f1066a0f43?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'olla-comunitaria',
@@ -74,7 +74,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: 'https://images.unsplash.com/photo-1547592166-23ac45744acd?w=600&q=80&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'material-artistico',
@@ -96,7 +96,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: 'https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=600&q=80&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'calcetines-termicos',
@@ -118,7 +118,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: 'https://images.unsplash.com/photo-1519781542704-957ff19eff00?w=600&q=80&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1545173168-9f1947eebb7f?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'manta-emergencia',
@@ -140,7 +140,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=80&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1583895166879-bb695acf41f1?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'manta-saco',
@@ -162,7 +162,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: 'https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600&q=80&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1536333969215-66288d4359a8?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'actividades-recreativas',
@@ -184,7 +184,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: 'https://images.unsplash.com/photo-1472898965229-f9b06b9c9bbe?w=600&q=80&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1526634332515-d56c5fd16991?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'limpieza-playa',
@@ -206,7 +206,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&q=80&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1758599668949-5118d71838fd?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'educacion-ambiental',
@@ -228,7 +228,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&q=80&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'nevera-comunitaria',
@@ -250,7 +250,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: 'https://images.unsplash.com/photo-1488459716781-31db52582fe9?w=600&q=80&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1710947949965-8150d227d337?w=600&q=80&auto=format&fit=crop',
   },
   {
     id: 'silla-ruedas-persona',
@@ -272,7 +272,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: 'https://images.unsplash.com/photo-1576671414038-28a13e0a4e93?w=600&q=80&auto=format&fit=crop',
+    image: 'https://images.unsplash.com/photo-1559757175-7cb0569ef59a?w=600&q=80&auto=format&fit=crop',
   },
 ]
 
