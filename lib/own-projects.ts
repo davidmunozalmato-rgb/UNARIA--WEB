@@ -74,7 +74,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: 'https://images.unsplash.com/photo-1662114765457-886df7eea202?w=600&q=80&auto=format&fit=crop',
+    image: '/images/projects/community-pot.jpg',
   },
   {
     id: 'material-artistico',
@@ -118,7 +118,7 @@ export const ownProjects: OwnProject[] = [
     },
     location: 'España',
     phase: 'Fase 1',
-    image: 'https://images.unsplash.com/photo-1589895869111-cab6bf8354c8?w=600&q=80&auto=format&fit=crop',
+    image: '/images/projects/thermal-socks.jpg',
   },
   {
     id: 'manta-emergencia',
